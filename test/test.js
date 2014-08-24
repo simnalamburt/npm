@@ -26,12 +26,12 @@ var setData = function(){
 
 function expectStream(t, options){
   options = options || {};
-  var ext = options.client ? '.js' : '.html';
+  var ext = '.html';
   var compiler = slm.compile;
   return through.obj(function(file, enc, cb){
     options.filename = filename;
     var compiled = compiler(fs.readFileSync(filename), options);
-    var expected = options.client ? compiled : compiled(options.data || options.locals);
+    var expected = compiled(options.data || options.locals);
     t.equal(expected, String(file.contents));
     t.equal(extname(file.path), ext);
     if(file.relative){
@@ -89,29 +89,7 @@ test('should compile my slm files into HTML with data property', function(t){
     }));
 });
 
-test('should compile my slm files into JS', function(t){
-  gulp.src(filename)
-    .pipe(task({
-      client: true
-    }))
-    .pipe(expectStream(t, {
-      client: true
-    }));
-});
-
-test('should always return contents as buffer with client = true', function(t){
-  gulp.src(filename)
-    .pipe(task({
-      client: true
-    }))
-    .pipe(through.obj(function(file, enc, cb){
-      t.ok(file.contents instanceof Buffer);
-      t.end();
-      cb();
-    }));
-});
-
-test('should always return contents as buffer with client = false', function(t){
+test('should always return contents as buffer', function(t){
   gulp.src(filename)
     .pipe(task())
     .pipe(through.obj(function(file, enc, cb){
