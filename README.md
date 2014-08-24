@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/simnalamburt/gulp-slm.png?branch=master)](https://travis-ci.org/simnalamburt/gulp-slm)
+gulp-slm [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Dependency Status][depstat-image]][depstat-url]
+========
 
 ## Information
 
@@ -34,57 +35,6 @@ gulp.task('templates', function() {
 });
 ```
 
-## Options
-
-No options are supported
-
-## AMD
-
-No support for AMD wrapper
-
-## Use with [gulp-data](https://www.npmjs.org/package/gulp-data)
-
-As an alternative, the ```gulp-data``` plugin, is a standard method for piping data down-stream to other plugins that need data in the form of a new file property ```file.data```. If you have data from a JSON file, front-matter, a database, or anything really, use ```gulp-data``` to pass that data to gulp-slm.
-
-Retrieve data from a JSON file, keyed on file name:
-
-```
-var getJsonData = function(file, cb) {
-  var jsonPath = './examples/' + path.basename(file.path) + '.json';
-  cb(require(jsonPath));
-};
-
-gulp.task('json-test', function() {
-  return gulp.src('./examples/test1.html')
-    .pipe(data(getJsonData))
-    .pipe(slm())
-    .pipe(gulp.dest('build'));
-});
-```
-
-Since gulp-data provides a callback, it means you can get data from a database query as well:
-
-```
-var getMongoData = function(file, cb) {
-  MongoClient.connect('mongodb://127.0.0.1:27017/gulp-data-test', function(err, db) {
-    var collection = db.collection('file-data-test');
-    collection.findOne({filename: path.basename(file.path)}, function(err, doc) {
-      db.close();
-      cb(doc);
-    });
-  });
-};
-
-gulp.task('db-test', function() {
-  return gulp.src('./examples/test3.html')
-    .pipe(data(getMongoData))
-    .pipe(slm())
-    .pipe(gulp.dest('build'));
-});
-````
-
-More info on [gulp-data](https://www.npmjs.org/package/gulp-data)
-
 ## LICENSE
 
 (MIT License)
@@ -109,3 +59,12 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+[npm-url]: https://npmjs.org/package/gulp-slm
+[npm-image]: https://badge.fury.io/js/gulp-slm.svg
+[travis-url]: https://travis-ci.org/simnalamburt/gulp-slm
+[travis-image]: https://travis-ci.org/simnalamburt/gulp-slm.svg?branch=master
+[coveralls-url]: https://coveralls.io/r/simnalamburt/gulp-slm
+[coveralls-image]: https://img.shields.io/coveralls/simnalamburt/gulp-slm.svg
+[depstat-url]: https://david-dm.org/simnalamburt/gulp-slm
+[depstat-image]: https://david-dm.org/simnalamburt/gulp-slm.svg
