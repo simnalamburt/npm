@@ -30,7 +30,7 @@ function expectStream(t, options){
   var compiler = slm.compile;
   return through.obj(function(file, enc, cb){
     options.filename = filename;
-    var compiled = compiler(fs.readFileSync(filename), options);
+    var compiled = compiler(fs.readFileSync(filename, enc), options);
     var expected = compiled(options.data || options.locals);
     t.equal(expected, String(file.contents));
     t.equal(extname(file.path), ext);
