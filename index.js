@@ -9,7 +9,7 @@ function handleCompile(contents, opts){
   return compile(contents, opts)(opts.locals || opts.data);
 }
 
-function handleExtension(filepath, opts){
+function handleExtension(filepath){
   return ext(filepath, '.html');
 }
 
