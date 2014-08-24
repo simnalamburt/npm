@@ -6,9 +6,9 @@ var gulp = require('gulp');
 var task = require('../');
 var path = require('path');
 
-var filename = path.join(__dirname, './fixtures/jade-error.jade');
+var filename = path.join(__dirname, './fixtures/slm-error.slm');
 
-test('should emit errors of jade correctly', function(t){
+test('should emit errors of slm correctly', function(t){
   gulp.src(filename)
     .pipe(task()
       .on('error', function(err){

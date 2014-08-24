@@ -1,18 +1,18 @@
 {
-  "name": "gulp-jade",
-  "version": "0.7.0",
-  "description": "Compile Jade templates",
+  "name": "gulp-slm",
+  "version": "0.0.0",
+  "description": "Compile Slm templates",
   "keywords": [
-    "jade",
+    "slm",
     "gulpplugin",
     "stream",
     "compile"
   ],
-  "repository": "https://github.com/phated/gulp-jade.git",
-  "author": "Blaine Bublitz <blaine@iceddev.com>",
+  "repository": "https://github.com/simnalamburt/gulp-slm.git",
+  "author": "Hyeon Kim <simnalamburt@gmail.com>",
   "dependencies": {
     "gulp-util": "~2.2",
-    "jade": "1.1 - 1.5",
+    "slm": "^0.1.1",
     "through2": "^0.5.1"
   },
   "main": "index.js",

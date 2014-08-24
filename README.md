@@ -1,14 +1,14 @@
-[![Build Status](https://travis-ci.org/phated/gulp-jade.png?branch=master)](https://travis-ci.org/phated/gulp-jade)
+[![Build Status](https://travis-ci.org/simnalamburt/gulp-slm.png?branch=master)](https://travis-ci.org/simnalamburt/gulp-slm)
 
 ## Information
 
 <table>
 <tr>
-<td>Package</td><td>gulp-jade</td>
+<td>Package</td><td>gulp-slm</td>
 </tr>
 <tr>
 <td>Description</td>
-<td>Compile Jade templates</td>
+<td>Compile Slm templates</td>
 </tr>
 <tr>
 <td>Node Version</td>
@@ -21,28 +21,14 @@
 Compile to HTML
 
 ```javascript
-var jade = require('gulp-jade');
+var slm = require('gulp-slm');
 
 gulp.task('templates', function() {
   var YOUR_LOCALS = {};
 
-  gulp.src('./lib/*.jade')
-    .pipe(jade({
+  gulp.src('./lib/*.slm')
+    .pipe(slm({
       locals: YOUR_LOCALS
-    }))
-    .pipe(gulp.dest('./dist/'))
-});
-```
-
-Compile to JS
-
-```javascript
-var jade = require('gulp-jade');
-
-gulp.task('templates', function() {
-  gulp.src('./lib/*.jade')
-    .pipe(jade({
-      client: true
     }))
     .pipe(gulp.dest('./dist/'))
 });
@@ -50,34 +36,15 @@ gulp.task('templates', function() {
 
 ## Options
 
-All options supported by the [Jade API](http://jade-lang.com/api/) are supported
-
-In addition, you can pass in a `locals` or `data` option that will be used as locals for your HTML compilation.  The `locals` option takes precedence over the `data` option.
+No options are supported
 
 ## AMD
 
-If you are trying to wrap your Jade template functions in an AMD wrapper, use [`gulp-wrap-amd`](https://github.com/phated/gulp-wrap-amd)
-
-```javascript
-var jade = require('gulp-jade');
-var wrap = require('gulp-wrap-amd');
-
-gulp.task('templates', function() {
-  gulp.src('./lib/*.jade')
-    .pipe(jade({
-      client: true
-    }))
-    .pipe(wrap({
-      deps: ['jade'],
-      params: ['jade']
-    }))
-    .pipe(gulp.dest('./dist/'))
-});
-```
+No support for AMD wrapper
 
 ## Use with [gulp-data](https://www.npmjs.org/package/gulp-data)
 
-As an alternative, the ```gulp-data``` plugin, is a standard method for piping data down-stream to other plugins that need data in the form of a new file property ```file.data```. If you have data from a JSON file, front-matter, a database, or anything really, use ```gulp-data``` to pass that data to gulp-jade.
+As an alternative, the ```gulp-data``` plugin, is a standard method for piping data down-stream to other plugins that need data in the form of a new file property ```file.data```. If you have data from a JSON file, front-matter, a database, or anything really, use ```gulp-data``` to pass that data to gulp-slm.
 
 Retrieve data from a JSON file, keyed on file name:
 
@@ -90,7 +57,7 @@ var getJsonData = function(file, cb) {
 gulp.task('json-test', function() {
   return gulp.src('./examples/test1.html')
     .pipe(data(getJsonData))
-    .pipe(jade())
+    .pipe(slm())
     .pipe(gulp.dest('build'));
 });
 ```
@@ -111,7 +78,7 @@ var getMongoData = function(file, cb) {
 gulp.task('db-test', function() {
   return gulp.src('./examples/test3.html')
     .pipe(data(getMongoData))
-    .pipe(jade())
+    .pipe(slm())
     .pipe(gulp.dest('build'));
 });
 ````
@@ -122,7 +89,7 @@ More info on [gulp-data](https://www.npmjs.org/package/gulp-data)
 
 (MIT License)
 
-Copyright (c) 2013 Blaine Bublitz
+Copyright (c) 2014 Hyeon Kim
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
