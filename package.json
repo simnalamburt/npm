@@ -1,6 +1,6 @@
 { "name": "gulp-slm"
 , "version": "0.0.1"
-, "description": "Compile Slm templates"
+, "description": "Compile Slm to HTML for Gulp"
 , "author": "Hyeon Kim <simnalamburt@gmail.com>"
 , "homepage": "https://github.com/simnalamburt/gulp-slm"
 , "bugs":
