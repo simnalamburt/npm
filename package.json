@@ -25,7 +25,7 @@
   { "node": "^0.10"
   }
 , "scripts":
-  { "test": "gulp jshint && mocha"
+  { "test": "gulp && mocha"
   }
 , "dependencies":
   { "slm": "^0.1.3"
