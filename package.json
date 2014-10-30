@@ -25,7 +25,7 @@
   { "node": "^0.10"
   }
 , "scripts":
-  { "test": "mocha -R nyan && jshint . --reporter node_modules/jshint-stylish/stylish.js"
+  { "test": "mocha && jshint . --reporter node_modules/jshint-stylish/stylish.js"
   }
 , "dependencies":
   { "slm": "^0.1.3"
