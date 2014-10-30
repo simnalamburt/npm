@@ -2,7 +2,4 @@ language: node_js
 node_js:
   - "0.10"
 after_script:
-  - export NODE_ENV=test
-  - export YOURPACKAGE_COVERAGE=1
-  - PATH="$PATH:$PWD/node_modules/.bin"
   - mocha --require blanket -R mocha-lcov-reporter | coveralls
