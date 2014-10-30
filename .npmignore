@@ -3,5 +3,4 @@
 .jshintrc
 .npmignore
 .travis.yml
-Gulpfile.js
 test
