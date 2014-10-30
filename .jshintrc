@@ -1,19 +1,18 @@
-{
-	"node": true,
-	"bitwise": true,
-	"camelcase": false,
-	"curly": true,
-	"eqeqeq": true,
-	"forin": true,
-	"immed": true,
-	"latedef": true,
-	"newcap": true,
-	"noarg": true,
-	"nonew": true,
-	"noempty": true,
-	"undef": true,
-	"unused": true,
-	"strict": true,
-	"trailing": true,
-	"globals": {}
+{ "indent": 2
+, "node": true
+, "bitwise": true
+, "camelcase": true
+, "curly": true
+, "eqeqeq": true
+, "forin": true
+, "immed": true
+, "latedef": true
+, "newcap": true
+, "noarg": true
+, "nonew": true
+, "noempty": true
+, "undef": true
+, "unused": true
+, "strict": true
+, "trailing": true
 }
