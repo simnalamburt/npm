@@ -5,18 +5,18 @@ var compile = require('slm').compile;
 var ext = require('gulp-util').replaceExtension;
 var PluginError = require('gulp-util').PluginError;
 
-function handleCompile(contents, opts){
+function handleCompile(contents, opts) {
   return compile(contents, opts)(opts.locals || opts.data);
 }
 
-function handleExtension(filepath){
+function handleExtension(filepath) {
   return ext(filepath, '.html');
 }
 
-module.exports = function(options){
+module.exports = function(options) {
   var opts = options || {};
 
-  function CompileSlm(file, enc, cb){
+  function CompileSlm(file, enc, cb) {
     opts.filename = file.path;
 
     if (file.data) {
@@ -25,17 +25,18 @@ module.exports = function(options){
 
     file.path = handleExtension(file.path, opts);
 
-    if(file.isStream()){
+    if(file.isStream()) {
       return cb(new PluginError('gulp-slm', 'Streaming not supported'));
     }
 
-    if(file.isBuffer()){
+    if(file.isBuffer()) {
       try {
         file.contents = new Buffer(handleCompile(String(file.contents), opts));
       } catch(e) {
         return cb(new PluginError('gulp-slm', e));
       }
     }
+
     cb(null, file);
   }
 

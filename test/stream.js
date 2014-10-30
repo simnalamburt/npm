@@ -5,7 +5,6 @@
 var assert = require('chai').assert;
 
 var task = require('../');
-
 var path = require('path');
 var fs = require('fs');
 var File = require('gulp-util').File;
@@ -23,14 +22,12 @@ var file = new File({
 });
 
 describe('gulp-slm', function() {
-
-it('should error if contents is a stream', function() {
-  var stream = task();
-  stream.on('error', function(err){
-    assert.ok(err instanceof PluginError, 'not an instance of PluginError');
+  it('should error if contents is a stream', function() {
+    var stream = task();
+    stream.on('error', function(err){
+      assert.ok(err instanceof PluginError, 'not an instance of PluginError');
+    });
+    stream.write(file);
+    stream.end();
   });
-  stream.write(file);
-  stream.end();
-});
-
 });
