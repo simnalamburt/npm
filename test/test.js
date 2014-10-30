@@ -1,6 +1,8 @@
+/*global describe, it */
+
 'use strict';
 
-var test = require('tap').test;
+var assert = require('chai').assert;
 
 var gulp = require('gulp');
 var task = require('../');
@@ -14,7 +16,7 @@ var filename = path.join(__dirname, './fixtures/helloworld.slm');
 
 // Mock Data Plugin
 // (not testing the gulp-data plugin options, just that gulp-slm can get its data from file.data)
-var setData = function(){
+function setData() {
   return through.obj(function(file, enc, callback) {
     file.data = {
       title: 'Greetings!'
@@ -22,79 +24,83 @@ var setData = function(){
     this.push(file);
     return callback();
   });
-};
+}
 
-function expectStream(t, options){
+function expectStream(options) {
   options = options || {};
   var ext = '.html';
   var compiler = slm.compile;
-  return through.obj(function(file, enc, cb){
+  return through.obj(function(file, enc, cb) {
     options.filename = filename;
     var compiled = compiler(fs.readFileSync(filename, enc), options);
     var expected = compiled(options.data || options.locals);
-    t.equal(expected, String(file.contents));
-    t.equal(extname(file.path), ext);
+    assert.equal(expected, String(file.contents));
+    assert.equal(extname(file.path), ext);
     if(file.relative){
-      t.equal(extname(file.relative), ext);
+      assert.equal(extname(file.relative), ext);
     } else {
-      t.equal(extname(file.relative), '');
+      assert.equal(extname(file.relative), '');
     }
-    t.end();
     cb();
   });
 }
 
-test('should compile my slm files into HTML', function(t){
+
+
+describe('gulp-slm', function() {
+
+it('should compile my slm files into HTML', function() {
   gulp.src(filename)
     .pipe(task())
-    .pipe(expectStream(t));
+    .pipe(expectStream());
 });
 
-test('should compile my slm files into HTML with locals passed in', function(t){
+it('should compile my slm files into HTML with locals passed in', function() {
   gulp.src(filename)
     .pipe(task({
       locals: {
         title: 'Yellow Curled'
       }
     }))
-    .pipe(expectStream(t, {
+    .pipe(expectStream({
       locals: {
         title: 'Yellow Curled'
       }
     }));
 });
 
-test('should compile my slm files into HTML with data passed in', function(t){
+it('should compile my slm files into HTML with data passed in', function() {
   gulp.src(filename)
     .pipe(task({
       data: {
         title: 'Yellow Curled'
       }
     }))
-    .pipe(expectStream(t, {
+    .pipe(expectStream({
       data: {
         title: 'Yellow Curled'
       }
     }));
 });
 
-test('should compile my slm files into HTML with data property', function(t){
+it('should compile my slm files into HTML with data property', function() {
   gulp.src(filename)
     .pipe(setData())
     .pipe(task())
-    .pipe(expectStream(t, {
+    .pipe(expectStream({
       data: {
         title: 'Greetings!'
       }
     }));
 });
 
-test('should always return contents as buffer', function(t){
+it('should always return contents as buffer', function() {
   gulp.src(filename)
     .pipe(task())
-    .pipe(through.obj(function(file, enc, cb){
-      t.ok(file.contents instanceof Buffer);
-      t.end();
+    .pipe(through.obj(function(file, enc, cb) {
+      assert.ok(file.contents instanceof Buffer);
       cb();
     }));
+});
+
 });

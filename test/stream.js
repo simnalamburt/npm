@@ -1,6 +1,8 @@
+/*global describe, it */
+
 'use strict';
 
-var test = require('tap').test;
+var assert = require('chai').assert;
 
 var task = require('../');
 
@@ -20,12 +22,15 @@ var file = new File({
   contents: fs.createReadStream(filePath)
 });
 
-test('should error if contents is a stream', function(t){
+describe('gulp-slm', function() {
+
+it('should error if contents is a stream', function() {
   var stream = task();
   stream.on('error', function(err){
-    t.ok(err instanceof PluginError, 'not an instance of PluginError');
-    t.end();
+    assert.ok(err instanceof PluginError, 'not an instance of PluginError');
   });
   stream.write(file);
   stream.end();
+});
+
 });
