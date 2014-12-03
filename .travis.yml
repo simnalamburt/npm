@@ -3,9 +3,9 @@ node_js:
   - "0.10"
 notifications:
   irc:
-    nick: "simnalamburt/gulp-slm"
+    nick: simnalamburt/gulp-slm
     channels:
-      - "irc.example.com:16667#redacted"
+      - irc.example.com:16667#redacted
     template:
       - "#%{build_number} %{result}, %{build_url}"
     skip_join: true
