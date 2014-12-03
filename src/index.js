@@ -23,7 +23,7 @@ module.exports = function(options) {
       opts.data = file.data;
     }
 
-    file.path = handleExtension(file.path, opts);
+    file.path = handleExtension(file.path);
 
     if(file.isStream()) {
       return cb(new PluginError('gulp-slm', 'Streaming not supported'));
