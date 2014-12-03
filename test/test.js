@@ -1,8 +1,6 @@
 /*global describe, it */
 'use strict';
 
-require('chai').should();
-
 var slm = require('../');
 var compile = require('slm').compile;
 
@@ -13,6 +11,8 @@ var extname = require('path').extname;
 var gulp = require('gulp');
 var File = require('gulp-util').File;
 var PluginError = require('gulp-util').PluginError;
+
+var expect = require('chai').expect;
 
 //
 // Absolute path of fixtures/helloworld.slm
@@ -48,9 +48,9 @@ function expectStream(options) {
   var ext = '.html';
 
   return through.obj(function(file, enc, cb) {
-    expected.should.eql(String(file.contents));
-    extname(file.path).should.eql(ext);
-    extname(file.relative).should.eql(file.relative ? ext : '');
+    expect(expected)              .to.be.eql(String(file.contents));
+    expect(extname(file.path))    .to.be.eql(ext);
+    expect(extname(file.relative)).to.be.eql(file.relative ? ext : '');
 
     return cb();
   });
@@ -109,7 +109,7 @@ describe('gulp-slm', function() {
     gulp.src(filename)
       .pipe(slm())
       .pipe(through.obj(function(file, enc, cb) {
-        file.contents.should.be.an.instanceof(Buffer);
+        expect(file.contents).to.be.an.instanceOf(Buffer);
         return cb();
       }));
   });
@@ -118,7 +118,7 @@ describe('gulp-slm', function() {
     var stream = slm();
 
     stream.on('error', function(err) {
-      err.should.be.an.instanceof(PluginError);
+      expect(err).to.be.an.instanceOf(PluginError);
     });
     stream.write(new File({
       path: filename,
