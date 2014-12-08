@@ -1,7 +1,15 @@
-gulp-slm [![NPM version][npm-i]][npm-u] [![Build Status][travis-i]][travis-u] [![Coveralls Status][coveralls-i]][coveralls-u] [![Dependency Status][depstat-i]][depstat-u]
+gulp-slm
 ========
 
-Compile Slm to HTML for Gulp
+&nbsp;
+[![][version-i]][npm]
+[![][download-i]][npm]<br>
+[![][buildstat-i]][travis]
+[![][coverage-i]][coveralls]
+[![][depstat-i]][david]
+[![][devdepstat-i]][david]
+
+Let's use **[Slm][slm]** with *[Gulp][gulp]!*
 
 ```slim
 doctype html
@@ -29,7 +37,7 @@ gulp.task('slm', function() {
 });
 ```
 
-Result: (whitespace included for readability)
+##### Result
 
 ```html
 <!DOCTYPE html>
@@ -45,20 +53,22 @@ Result: (whitespace included for readability)
 </html>
 ```
 
-### Information
+*(whitespace included for readability)*
 
-<table><tbody>
-<tr><td>  Package       </td><td>  gulp-slm      </td></tr>
-<tr><td>  Node Version  </td><td>  ≥ 0.10        </td></tr>
-<tr><td>  Gulp Version  </td><td>  ≥ 3.8.7       </td></tr>
-<tr><td>  LICENSE       </td><td>  BSD 3-Clause  </td></tr>
-</tbody></table>
+--------
 
-[npm-u]: https://npmjs.org/package/gulp-slm
-[npm-i]: https://badge.fury.io/js/gulp-slm.svg
-[travis-u]: https://travis-ci.org/simnalamburt/gulp-slm
-[travis-i]: https://travis-ci.org/simnalamburt/gulp-slm.svg?branch=master
-[coveralls-u]: https://coveralls.io/r/simnalamburt/gulp-slm
-[coveralls-i]: https://img.shields.io/coveralls/simnalamburt/gulp-slm.svg
-[depstat-u]: https://david-dm.org/simnalamburt/gulp-slm
-[depstat-i]: https://david-dm.org/simnalamburt/gulp-slm.svg
+[BSD 2-Clause](LICENSE.md)
+
+[slm]:          //github.com/slm-lang/slm
+[gulp]:         //gulpjs.com/
+[npm]:          //npmjs.org/package/gulp-slm
+[travis]:       //travis-ci.org/simnalamburt/gulp-slm
+[coveralls]:    //coveralls.io/r/simnalamburt/gulp-slm
+[david]:        //david-dm.org/simnalamburt/gulp-slm
+
+[version-i]:    https://img.shields.io/npm/v/gulp-slm.svg?style=flat
+[download-i]:   https://img.shields.io/npm/dm/gulp-slm.svg?style=flat
+[buildstat-i]:  https://img.shields.io/travis/simnalamburt/gulp-slm/master.svg?style=flat
+[coverage-i]:   https://img.shields.io/coveralls/simnalamburt/gulp-slm.svg?style=flat
+[depstat-i]:    https://david-dm.org/simnalamburt/gulp-slm.svg?style=flat
+[devdepstat-i]: https://david-dm.org/simnalamburt/gulp-slm/dev-status.svg?style=flat

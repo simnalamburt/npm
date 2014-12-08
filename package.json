@@ -1,5 +1,5 @@
 { "name": "gulp-slm"
-, "version": "0.1.0"
+, "version": "1.0.0"
 , "description": "Compile Slm to HTML for Gulp"
 , "author": "Hyeon Kim <simnalamburt@gmail.com>"
 , "homepage": "https://github.com/simnalamburt/gulp-slm"
@@ -7,13 +7,14 @@
   { "url": "https://github.com/simnalamburt/gulp-slm/issues"
   }
 , "license":
-  { "type": "BSD 3-Clause"
-  , "url": "https://github.com/simnalamburt/gulp-slm/blob/master/LICENSE"
+  { "type": "BSD 2-Clause"
+  , "url": "https://github.com/simnalamburt/gulp-slm/blob/master/LICENSE.md"
   }
 , "keywords":
   [ "slm"
+  , "gulp"
+  , "plugin"
   , "gulpplugin"
-  , "stream"
   , "compile"
   ]
 , "repository":
