@@ -2,14 +2,14 @@ gulp-slm
 ========
 
 &nbsp;
-[![][version-i]][npm]
-[![][download-i]][npm]<br>
-[![][buildstat-i]][travis]
-[![][coverage-i]][coveralls]
-[![][depstat-i]][david]
-[![][devdepstat-i]][david]
+[![version-i][]][npm]
+[![download-i][]][npm]<br>
+[![buildstat-i][]][travis]
+[![coverage-i][]][coveralls]
+[![depstat-i][]][david]
+[![devdepstat-i][]][david]
 
-Let's use **[Slm][slm]** with *[Gulp][gulp]!*
+Let's use **[Slm][]** with *[Gulp][]!*
 
 ```slim
 doctype html
@@ -59,8 +59,8 @@ gulp.task('slm', function() {
 
 [BSD 2-Clause](LICENSE.md)
 
-[slm]:          //github.com/slm-lang/slm
-[gulp]:         //gulpjs.com/
+[Slm]:          //github.com/slm-lang/slm
+[Gulp]:         //gulpjs.com/
 [npm]:          //npmjs.org/package/gulp-slm
 [travis]:       //travis-ci.org/simnalamburt/gulp-slm
 [coveralls]:    //coveralls.io/r/simnalamburt/gulp-slm
