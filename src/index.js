@@ -10,7 +10,8 @@ function handleCompile(contents, opts) {
 }
 
 function handleExtension(filepath) {
-  return ext(filepath, '.html');
+  var extension = opts.extension !== undefined ? opts.extension : '.html';
+  return ext(filepath, extension);
 }
 
 module.exports = function(options) {
