@@ -9,7 +9,7 @@ function handleCompile(contents, opts) {
   return compile(contents, opts)(opts.locals || opts.data);
 }
 
-function handleExtension(filepath) {
+function handleExtension(filepath, opts) {
   var extension = opts.extension !== undefined ? opts.extension : '.html';
   return ext(filepath, extension);
 }
@@ -24,7 +24,7 @@ module.exports = function(options) {
       opts.data = file.data;
     }
 
-    file.path = handleExtension(file.path);
+    file.path = handleExtension(file.path, opts);
 
     if(file.isStream()) {
       return cb(new PluginError('gulp-slm', 'Streaming not supported'));
