@@ -1,13 +1,19 @@
 sudo: false
 language: node_js
+node_js:
+  - 5
+  - 4
 
 after_script: mocha --require blanket -R mocha-lcov-reporter | coveralls
 cache:
-  directories: node_modules
+  directories:
+    - ~/.npm
+    - ~/.node-gyp
+    - node_modules
 
 notifications:
   irc:
     nick: gulp-slm
-    channels: 'ircs://irc.example.com:16667#redacted'
+    channels: 'ircs://irc.example.com:16664#redacted'
     template: '#%{build_number} %{result}, %{build_url}'
     skip_join: true
