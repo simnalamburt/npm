@@ -38,7 +38,7 @@
     "mocha": "^2.0.1",
     "chai": "^3.0.0",
     "blanket": "^1.1.6",
-    "mocha-lcov-reporter": "^0.0.2",
+    "mocha-lcov-reporter": "^1.2.0",
     "coveralls": "^2.11.2"
   },
   "config": {
