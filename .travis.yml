@@ -1,15 +1,11 @@
 sudo: false
 language: node_js
 node_js:
-  - 5
+  - node
   - 4
 
 after_script: mocha --require blanket -R mocha-lcov-reporter | coveralls
-cache:
-  directories:
-    - ~/.npm
-    - ~/.node-gyp
-    - node_modules
+cache: yarn
 
 notifications:
   irc:
