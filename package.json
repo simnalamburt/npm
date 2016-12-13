@@ -28,18 +28,18 @@
   },
   "dependencies": {
     "gulp-util": "^3.0.0",
-    "slm": "^0.5.1",
+    "slm": "^0.6.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {
+    "blanket": "^1.1.6",
+    "chai": "^3.0.0",
+    "coveralls": "^2.11.2",
     "gulp": "^3.8.7",
     "jshint": "^2.5.8",
     "jshint-stylish": "^2.0.0",
-    "mocha": "^2.0.1",
-    "chai": "^3.0.0",
-    "blanket": "^1.1.6",
-    "mocha-lcov-reporter": "^1.2.0",
-    "coveralls": "^2.11.2"
+    "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.2.0"
   },
   "config": {
     "blanket": {
