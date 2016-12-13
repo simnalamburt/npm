@@ -1,15 +1,7 @@
-gulp-slm
+gulp-slm [![version-i] ![download-i]][npm]
 ========
 
-&nbsp;
-[![version-i][]][npm]
-[![download-i][]][npm]<br>
-[![buildstat-i][]][travis]
-[![coverage-i][]][coveralls]
-[![depstat-i][]][david]
-[![devdepstat-i][]][david]
-
-Let's use **[Slm][]** with *[Gulp][]!*
+Let's use [Slm] with [Gulp]!
 
 ```slim
 doctype html
@@ -37,7 +29,7 @@ gulp.task('slm', function() {
 });
 ```
 
-##### Result
+##### Result *(whitespace included for readability)*
 
 ```html
 <!DOCTYPE html>
@@ -53,18 +45,21 @@ gulp.task('slm', function() {
 </html>
 ```
 
-*(whitespace included for readability)*
+[![buildstat-i]][travis]
+[![coverage-i]][coveralls]
+[![depstat-i]][david]
+[![devdepstat-i]][david]
 
 --------
 
 [BSD 2-Clause](LICENSE.md)
 
-[Slm]:          //github.com/slm-lang/slm
-[Gulp]:         //gulpjs.com/
-[npm]:          //npmjs.org/package/gulp-slm
-[travis]:       //travis-ci.org/simnalamburt/gulp-slm
-[coveralls]:    //coveralls.io/r/simnalamburt/gulp-slm
-[david]:        //david-dm.org/simnalamburt/gulp-slm
+[Slm]:          https://github.com/slm-lang/slm
+[Gulp]:         https://gulpjs.com/
+[npm]:          https://npmjs.org/package/gulp-slm
+[travis]:       https://travis-ci.org/simnalamburt/gulp-slm
+[coveralls]:    https://coveralls.io/r/simnalamburt/gulp-slm
+[david]:        https://david-dm.org/simnalamburt/gulp-slm
 
 [version-i]:    https://img.shields.io/npm/v/gulp-slm.svg?style=flat
 [download-i]:   https://img.shields.io/npm/dm/gulp-slm.svg?style=flat
