@@ -52,7 +52,7 @@ gulp.task('slm', function() {
 
 --------
 
-[BSD 2-Clause](LICENSE.md)
+[BSD 2-Clause](LICENSE)
 
 [Slm]:          https://github.com/slm-lang/slm
 [Gulp]:         https://gulpjs.com/
