@@ -45,10 +45,20 @@ gulp.task('slm', function() {
 </html>
 ```
 
+### Developer manuel
+
 [![buildstat-i]][travis]
 [![coverage-i]][coveralls]
 [![depstat-i]][david]
 [![devdepstat-i]][david]
+
+```bash
+# Install dependencies
+yarn
+
+# Install dependencies
+yarn test
+```
 
 --------
 
