@@ -45,6 +45,8 @@ gulp.task('slm', function() {
 </html>
 ```
 
+<br>
+
 ### Developer manuel
 
 [![buildstat-i]][travis]
