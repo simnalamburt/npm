@@ -62,9 +62,12 @@ yarn
 yarn test
 ```
 
+<br>
+
 --------
 
-[BSD 2-Clause](LICENSE)
+*gulp-slm* is primarily distributed under the terms of both the [MIT license]
+and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 
 [Slm]:          https://github.com/slm-lang/slm
 [Gulp]:         https://gulpjs.com/
@@ -79,3 +82,7 @@ yarn test
 [coverage-i]:   https://img.shields.io/coveralls/simnalamburt/gulp-slm.svg?style=flat
 [depstat-i]:    https://david-dm.org/simnalamburt/gulp-slm.svg?style=flat
 [devdepstat-i]: https://david-dm.org/simnalamburt/gulp-slm/dev-status.svg?style=flat
+
+[MIT license]: LICENSE-MIT
+[Apache License (Version 2.0)]: LICENSE-APACHE
+[COPYRIGHT]: COPYRIGHT

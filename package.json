@@ -7,10 +7,7 @@
   "bugs": {
     "url": "https://github.com/simnalamburt/gulp-slm/issues"
   },
-  "license": {
-    "type": "BSD-2-Clause",
-    "url": "https://github.com/simnalamburt/gulp-slm/blob/master/LICENSE.md"
-  },
+  "license": "(Apache-2.0 OR MIT)",
   "keywords": [
     "slm",
     "gulp",
