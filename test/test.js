@@ -8,8 +8,8 @@ const path = require('path');
 const fs = require('fs');
 const extname = require('path').extname;
 const gulp = require('gulp');
-const File = require('gulp-util').File;
-const PluginError = require('gulp-util').PluginError;
+const File = require('vinyl');
+const PluginError = require('plugin-error');
 
 const expect = require('chai').expect;
 

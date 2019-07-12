@@ -2,7 +2,8 @@
 
 const through = require('through2');
 const slm = require('slm');
-const {replaceExtension, PluginError} = require('gulp-util');
+const PluginError = require('plugin-error');
+const replaceExt = require('replace-ext');
 
 module.exports = (opts = {}) =>
   through.obj((file, enc, cb) => {
@@ -12,7 +13,7 @@ module.exports = (opts = {}) =>
       opts.data = file.data;
     }
 
-    file.path = replaceExtension(
+    file.path = replaceExt(
       file.path,
       opts.extension !== undefined ? opts.extension : '.html',
     );
