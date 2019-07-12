@@ -76,12 +76,12 @@ and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 [coveralls]:    https://coveralls.io/r/simnalamburt/gulp-slm
 [david]:        https://david-dm.org/simnalamburt/gulp-slm
 
-[version-i]:    https://img.shields.io/npm/v/gulp-slm.svg?style=flat
-[download-i]:   https://img.shields.io/npm/dm/gulp-slm.svg?style=flat
-[buildstat-i]:  https://img.shields.io/travis/simnalamburt/gulp-slm/master.svg?style=flat
-[coverage-i]:   https://img.shields.io/coveralls/simnalamburt/gulp-slm.svg?style=flat
-[depstat-i]:    https://david-dm.org/simnalamburt/gulp-slm.svg?style=flat
-[devdepstat-i]: https://david-dm.org/simnalamburt/gulp-slm/dev-status.svg?style=flat
+[version-i]:    https://badgen.net/npm/v/gulp-slm
+[download-i]:   https://badgen.net/npm/dt/gulp-slm
+[buildstat-i]:  https://badgen.net/travis/simnalamburt/gulp-slm/master
+[coverage-i]:   https://badgen.net/coveralls/c/github/simnalamburt/gulp-slm/master
+[depstat-i]:    https://badgen.net/david/dep/simnalamburt/gulp-slm
+[devdepstat-i]: https://badgen.net/david/dev/simnalamburt/gulp-slm
 
 [MIT license]: LICENSE-MIT
 [Apache License (Version 2.0)]: LICENSE-APACHE
