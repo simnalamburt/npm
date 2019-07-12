@@ -36,7 +36,7 @@ var filename = path.join(__dirname, 'fixtures', 'helloworld.slm');
 function setData() {
   return through.obj(function(file, enc, cb) {
     file.data = {
-      title: 'Greetings!'
+      title: 'Greetings!',
     };
     this.push(file);
 
@@ -57,8 +57,8 @@ function expectStream(options) {
   var ext = '.html';
 
   return through.obj(function(file, enc, cb) {
-    expect(expected)              .to.be.eql(String(file.contents));
-    expect(extname(file.path))    .to.be.eql(ext);
+    expect(expected).to.be.eql(String(file.contents));
+    expect(extname(file.path)).to.be.eql(ext);
     expect(extname(file.relative)).to.be.eql(file.relative ? ext : '');
 
     return cb();
@@ -70,57 +70,74 @@ function expectStream(options) {
 //
 describe('gulp-slm', function() {
   it('should compile my slm files into HTML', function() {
-    gulp.src(filename)
+    gulp
+      .src(filename)
       .pipe(slm())
       .pipe(expectStream());
   });
 
   it('should compile my slm files into HTML with locals passed in', function() {
-    gulp.src(filename)
-      .pipe(slm({
-        locals: {
-          title: 'Yellow Curled'
-        }
-      }))
-      .pipe(expectStream({
-        locals: {
-          title: 'Yellow Curled'
-        }
-      }));
+    gulp
+      .src(filename)
+      .pipe(
+        slm({
+          locals: {
+            title: 'Yellow Curled',
+          },
+        }),
+      )
+      .pipe(
+        expectStream({
+          locals: {
+            title: 'Yellow Curled',
+          },
+        }),
+      );
   });
 
   it('should compile my slm files into HTML with data passed in', function() {
-    gulp.src(filename)
-      .pipe(slm({
-        data: {
-          title: 'Yellow Curled'
-        }
-      }))
-      .pipe(expectStream({
-        data: {
-          title: 'Yellow Curled'
-        }
-      }));
+    gulp
+      .src(filename)
+      .pipe(
+        slm({
+          data: {
+            title: 'Yellow Curled',
+          },
+        }),
+      )
+      .pipe(
+        expectStream({
+          data: {
+            title: 'Yellow Curled',
+          },
+        }),
+      );
   });
 
   it('should compile my slm files into HTML with data property', function() {
-    gulp.src(filename)
+    gulp
+      .src(filename)
       .pipe(setData())
       .pipe(slm())
-      .pipe(expectStream({
-        data: {
-          title: 'Greetings!'
-        }
-      }));
+      .pipe(
+        expectStream({
+          data: {
+            title: 'Greetings!',
+          },
+        }),
+      );
   });
 
   it('should always return contents as a buffer', function() {
-    gulp.src(filename)
+    gulp
+      .src(filename)
       .pipe(slm())
-      .pipe(through.obj(function(file, enc, cb) {
-        expect(file.contents).to.be.an.instanceOf(Buffer);
-        return cb();
-      }));
+      .pipe(
+        through.obj(function(file, enc, cb) {
+          expect(file.contents).to.be.an.instanceOf(Buffer);
+          return cb();
+        }),
+      );
   });
 
   it('should throw an error if given contents is a stream', function() {
@@ -129,12 +146,14 @@ describe('gulp-slm', function() {
     stream.on('error', function(err) {
       expect(err).to.be.an.instanceOf(PluginError);
     });
-    stream.write(new File({
-      path: filename,
-      base: path.join(__dirname, 'fixtures'),
-      cwd: __dirname,
-      contents: fs.createReadStream(filename)
-    }));
+    stream.write(
+      new File({
+        path: filename,
+        base: path.join(__dirname, 'fixtures'),
+        cwd: __dirname,
+        contents: fs.createReadStream(filename),
+      }),
+    );
     stream.end();
   });
 });

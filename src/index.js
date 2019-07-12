@@ -34,14 +34,14 @@ module.exports = function(options) {
 
     file.path = handleExtension(file.path, opts);
 
-    if(file.isStream()) {
+    if (file.isStream()) {
       return cb(new PluginError('gulp-slm', 'Streaming not supported'));
     }
 
-    if(file.isBuffer()) {
+    if (file.isBuffer()) {
       try {
         file.contents = new Buffer(handleCompile(String(file.contents), opts));
-      } catch(e) {
+      } catch (e) {
         return cb(new PluginError('gulp-slm', e));
       }
     }
