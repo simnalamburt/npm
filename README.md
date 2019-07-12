@@ -15,18 +15,19 @@ html
 ```
 
 ```javascript
-var slm = require('gulp-slm');
+import slm from 'gulp-slm'
 
-gulp.task('slm', function() {
-  var data = {
+gulp.task('slm', _ => {
+  const data = {
     title: 'Hello, world!',
     text: 'Hello world example for slm template.',
-  };
+  }
 
-  return gulp.src('./src/*.slm')
-    .pipe(slm({ locals: data }))
-    .pipe(gulp.dest('./build/'));
-});
+  return gulp
+    .src('./src/*.slm')
+    .pipe(slm({locals: data}))
+    .pipe(gulp.dest('./build/'))
+})
 ```
 
 ##### Result *(whitespace included for readability)*
