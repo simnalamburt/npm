@@ -31,7 +31,7 @@
   "dependencies": {
     "gulp-util": "^3.0.0",
     "slm": ">=0.6.0",
-    "through2": "^2.0.0"
+    "through2": "^3.0.1"
   },
   "devDependencies": {
     "blanket": "^1.1.6",
