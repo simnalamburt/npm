@@ -1,23 +1,23 @@
 /*global describe, it */
 'use strict';
 
-var slm = require('../');
-var compile = require('slm').compile;
+const slm = require('../');
+const compile = require('slm').compile;
 
-var through = require('through2');
-var path = require('path');
-var fs = require('fs');
-var extname = require('path').extname;
-var gulp = require('gulp');
-var File = require('gulp-util').File;
-var PluginError = require('gulp-util').PluginError;
+const through = require('through2');
+const path = require('path');
+const fs = require('fs');
+const extname = require('path').extname;
+const gulp = require('gulp');
+const File = require('gulp-util').File;
+const PluginError = require('gulp-util').PluginError;
 
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 
 //
 // Absolute path of fixtures/helloworld.slm
 //
-var filename = path.join(__dirname, 'fixtures', 'helloworld.slm');
+const filename = path.join(__dirname, 'fixtures', 'helloworld.slm');
 
 //
 // Mockup plugin to set the file.data property
@@ -43,11 +43,11 @@ function expectStream(options) {
   options = options || {};
 
   options.filename = filename;
-  var compiled = compile(fs.readFileSync(filename, 'UTF-8'), options);
-  var expected = compiled(options.data || options.locals);
-  var ext = '.html';
+  const compiled = compile(fs.readFileSync(filename, 'UTF-8'), options);
+  const expected = compiled(options.data || options.locals);
+  const ext = '.html';
 
-  return through.obj(function(file, enc, cb) {
+  return through.obj((file, enc, cb) => {
     expect(expected).to.be.eql(String(file.contents));
     expect(extname(file.path)).to.be.eql(ext);
     expect(extname(file.relative)).to.be.eql(file.relative ? ext : '');
@@ -59,15 +59,15 @@ function expectStream(options) {
 //
 // Tests
 //
-describe('gulp-slm', function() {
-  it('should compile my slm files into HTML', function() {
+describe('gulp-slm', () => {
+  it('should compile my slm files into HTML', () => {
     gulp
       .src(filename)
       .pipe(slm())
       .pipe(expectStream());
   });
 
-  it('should compile my slm files into HTML with locals passed in', function() {
+  it('should compile my slm files into HTML with locals passed in', () => {
     gulp
       .src(filename)
       .pipe(
@@ -86,7 +86,7 @@ describe('gulp-slm', function() {
       );
   });
 
-  it('should compile my slm files into HTML with data passed in', function() {
+  it('should compile my slm files into HTML with data passed in', () => {
     gulp
       .src(filename)
       .pipe(
@@ -105,7 +105,7 @@ describe('gulp-slm', function() {
       );
   });
 
-  it('should compile my slm files into HTML with data property', function() {
+  it('should compile my slm files into HTML with data property', () => {
     gulp
       .src(filename)
       .pipe(setData())
@@ -119,22 +119,22 @@ describe('gulp-slm', function() {
       );
   });
 
-  it('should always return contents as a buffer', function() {
+  it('should always return contents as a buffer', () => {
     gulp
       .src(filename)
       .pipe(slm())
       .pipe(
-        through.obj(function(file, enc, cb) {
+        through.obj((file, enc, cb) => {
           expect(file.contents).to.be.an.instanceOf(Buffer);
           return cb();
         }),
       );
   });
 
-  it('should throw an error if given contents is a stream', function() {
-    var stream = slm();
+  it('should throw an error if given contents is a stream', () => {
+    const stream = slm();
 
-    stream.on('error', function(err) {
+    stream.on('error', err => {
       expect(err).to.be.an.instanceOf(PluginError);
     });
     stream.write(

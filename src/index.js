@@ -1,30 +1,21 @@
 'use strict';
 
-var through = require('through2');
-var compile = require('slm').compile;
-var ext = require('gulp-util').replaceExtension;
-var PluginError = require('gulp-util').PluginError;
+const through = require('through2');
+const slm = require('slm');
+const {replaceExtension, PluginError} = require('gulp-util');
 
-function handleCompile(contents, opts) {
-  return compile(contents, opts)(opts.locals || opts.data);
-}
-
-function handleExtension(filepath, opts) {
-  var extension = opts.extension !== undefined ? opts.extension : '.html';
-  return ext(filepath, extension);
-}
-
-module.exports = function(options) {
-  var opts = options || {};
-
-  function CompileSlm(file, enc, cb) {
+module.exports = (opts = {}) =>
+  through.obj((file, enc, cb) => {
     opts.filename = file.path;
 
     if (file.data) {
       opts.data = file.data;
     }
 
-    file.path = handleExtension(file.path, opts);
+    file.path = replaceExtension(
+      file.path,
+      opts.extension !== undefined ? opts.extension : '.html',
+    );
 
     if (file.isStream()) {
       return cb(new PluginError('gulp-slm', 'Streaming not supported'));
@@ -32,14 +23,13 @@ module.exports = function(options) {
 
     if (file.isBuffer()) {
       try {
-        file.contents = new Buffer(handleCompile(String(file.contents), opts));
+        const contents = String(file.contents);
+        const compiled = slm.compile(contents, opts)(opts.locals || opts.data);
+        file.contents = new Buffer(compiled);
       } catch (e) {
         return cb(new PluginError('gulp-slm', e));
       }
     }
 
     cb(null, file);
-  }
-
-  return through.obj(CompileSlm);
-};
+  });
