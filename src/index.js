@@ -25,7 +25,7 @@ module.exports = (opts = {}) =>
       try {
         const contents = String(file.contents);
         const compiled = slm.compile(contents, opts)(opts.locals || opts.data);
-        file.contents = new Buffer(compiled);
+        file.contents = Buffer.from(compiled);
       } catch (e) {
         return cb(new PluginError('gulp-slm', e));
       }
