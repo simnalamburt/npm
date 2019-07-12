@@ -20,6 +20,11 @@
     "url": "https://github.com/simnalamburt/gulp-slm.git"
   },
   "main": "src/index.js",
+  "files": [
+    "COPYRIGHT",
+    "LICENSE*",
+    "src/index.js"
+  ],
   "scripts": {
     "test": "mocha"
   },
