@@ -34,20 +34,10 @@
     "through2": "^3.0.1"
   },
   "devDependencies": {
-    "blanket": "^1.1.6",
     "chai": "^4.2.0",
     "coveralls": "^2.11.2",
     "gulp": "^4.0.2",
     "mocha": "^3.2.0",
-    "mocha-lcov-reporter": "^1.2.0"
-  },
-  "config": {
-    "blanket": {
-      "pattern": "src",
-      "data-cover-never": [
-        "node_modules",
-        "test"
-      ]
-    }
+    "nyc": "^14.1.1"
   }
 }
