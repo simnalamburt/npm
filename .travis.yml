@@ -7,10 +7,3 @@ node_js:
 
 after_script: mocha --require blanket -R mocha-lcov-reporter | coveralls
 cache: yarn
-
-notifications:
-  irc:
-    nick: gulp-slm
-    channels: 'ircs://irc.example.com:16664#redacted'
-    template: '#%{build_number} %{result}, %{build_url}'
-    skip_join: true
