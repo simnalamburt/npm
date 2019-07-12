@@ -1,4 +1,3 @@
-/*global describe, it */
 'use strict';
 
 const slm = require('../');
