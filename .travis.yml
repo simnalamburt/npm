@@ -6,11 +6,12 @@
 # option. This file may not be copied, modified, or distributed
 # except according to those terms.
 
-sudo: false
+dist: xenial
 language: node_js
 node_js:
   - node
-  - 4
+  - '10'
+  - '8'
 
 after_script: mocha --require blanket -R mocha-lcov-reporter | coveralls
 cache: yarn
