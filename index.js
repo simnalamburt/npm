@@ -1,75 +1,74 @@
-var SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107])
+const SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107])
 
-module.exports = XSalsa20
+module.exports = class XSalsa20 {
+  constructor(nonce, key) {
+    if (!nonce || nonce.length < 24) throw new Error('nonce must be at least 24 bytes')
+    if (!key || key.length < 32) throw new Error('key must be at least 32 bytes')
+    this._xor = new Fallback(nonce, key)
+  }
 
-function XSalsa20 (nonce, key) {
-  if (!(this instanceof XSalsa20)) return new XSalsa20(nonce, key)
-  if (!nonce || nonce.length < 24) throw new Error('nonce must be at least 24 bytes')
-  if (!key || key.length < 32) throw new Error('key must be at least 32 bytes')
-  this._xor = new Fallback(nonce, key)
+  update(input, output) {
+    if (!input) throw new Error('input must be Uint8Array or Buffer')
+    if (!output) output = new Uint8Array(input.length)
+    if (input.length) this._xor.update(input, output)
+    return output
+  }
+
+  finalize() {
+    this._xor.finalize()
+    this._xor = null
+  }
 }
 
-XSalsa20.prototype.update = function (input, output) {
-  if (!input) throw new Error('input must be Uint8Array or Buffer')
-  if (!output) output = new Uint8Array(input.length)
-  if (input.length) this._xor.update(input, output)
-  return output
-}
+class Fallback {
+  constructor(nonce, key) {
+    this._s = new Uint8Array(32)
+    this._z = new Uint8Array(16)
+    this._overflow = 0
+    core_hsalsa20(this._s, nonce, key, SIGMA)
+    for (let i = 0; i < 8; i++) this._z[i] = nonce[i + 16]
+  }
 
-XSalsa20.prototype.final =
-XSalsa20.prototype.finalize = function () {
-  this._xor.finalize()
-  this._xor = null
-}
+  update(input, output) {
+    const x = new Uint8Array(64)
+    let u = 0
+    let i = this._overflow
+    let b = input.length + this._overflow
+    const z = this._z
+    let mpos = -this._overflow
+    let cpos = -this._overflow
 
-function Fallback (nonce, key) {
-  this._s = new Uint8Array(32)
-  this._z = new Uint8Array(16)
-  this._overflow = 0
-  core_hsalsa20(this._s, nonce, key, SIGMA)
-  for (var i = 0; i < 8; i++) this._z[i] = nonce[i + 16]
-}
-
-Fallback.prototype.update = function (input, output) {
-  var x = new Uint8Array(64)
-  var u = 0
-  var i = this._overflow
-  var b = input.length + this._overflow
-  var z = this._z
-  var mpos = -this._overflow
-  var cpos = -this._overflow
-
-  while (b >= 64) {
-    core_salsa20(x, z, this._s, SIGMA)
-    for (; i < 64; i++) output[cpos + i] = input[mpos + i] ^ x[i]
-    u = 1
-    for (i = 8; i < 16; i++) {
-      u += (z[i] & 0xff) | 0
-      z[i] = u & 0xff
-      u >>>= 8
+    while (b >= 64) {
+      core_salsa20(x, z, this._s, SIGMA)
+      for (; i < 64; i++) output[cpos + i] = input[mpos + i] ^ x[i]
+      u = 1
+      for (i = 8; i < 16; i++) {
+        u += (z[i] & 0xff) | 0
+        z[i] = u & 0xff
+        u >>>= 8
+      }
+      b -= 64
+      cpos += 64
+      mpos += 64
+      i = 0
     }
-    b -= 64
-    cpos += 64
-    mpos += 64
-    i = 0
-  }
-  if (b > 0) {
-    core_salsa20(x, z, this._s, SIGMA)
-    for (; i < b; i++) output[cpos + i] = input[mpos + i] ^ x[i]
+    if (b > 0) {
+      core_salsa20(x, z, this._s, SIGMA)
+      for (; i < b; i++) output[cpos + i] = input[mpos + i] ^ x[i]
+    }
+
+    this._overflow = b & 63
   }
 
-  this._overflow = b & 63
-}
-
-Fallback.prototype.finalize = function () {
-  this._s.fill(0)
-  this._z.fill(0)
+  finalize() {
+    this._s.fill(0)
+    this._z.fill(0)
+  }
 }
 
 // below methods are ported from tweet nacl
-
 function core_salsa20(o, p, k, c) {
-  var j0  = c[ 0] & 0xff | (c[ 1] & 0xff) << 8 | (c[ 2] & 0xff) << 16 | (c[ 3] & 0xff) << 24,
+  const j0  = c[ 0] & 0xff | (c[ 1] & 0xff) << 8 | (c[ 2] & 0xff) << 16 | (c[ 3] & 0xff) << 24,
       j1  = k[ 0] & 0xff | (k[ 1] & 0xff) << 8 | (k[ 2] & 0xff) << 16 | (k[ 3] & 0xff) << 24,
       j2  = k[ 4] & 0xff | (k[ 5] & 0xff) << 8 | (k[ 6] & 0xff) << 16 | (k[ 7] & 0xff) << 24,
       j3  = k[ 8] & 0xff | (k[ 9] & 0xff) << 8 | (k[10] & 0xff) << 16 | (k[11] & 0xff) << 24,
@@ -86,11 +85,11 @@ function core_salsa20(o, p, k, c) {
       j14 = k[28] & 0xff | (k[29] & 0xff) << 8 | (k[30] & 0xff) << 16 | (k[31] & 0xff) << 24,
       j15 = c[12] & 0xff | (c[13] & 0xff) << 8 | (c[14] & 0xff) << 16 | (c[15] & 0xff) << 24
 
-  var x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
+  let x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
       x8 = j8, x9 = j9, x10 = j10, x11 = j11, x12 = j12, x13 = j13, x14 = j14,
       x15 = j15, u
 
-  for (var i = 0; i < 20; i += 2) {
+  for (let i = 0; i < 20; i += 2) {
     u = x0 + x12 | 0
     x4 ^= u << 7 | u >>> 25
     u = x4 + x0 | 0
@@ -262,7 +261,7 @@ function core_salsa20(o, p, k, c) {
 }
 
 function core_hsalsa20(o,p,k,c) {
-  var j0  = c[ 0] & 0xff | (c[ 1] & 0xff) << 8 | (c[ 2] & 0xff) << 16 | (c[ 3] & 0xff) << 24,
+  const j0  = c[ 0] & 0xff | (c[ 1] & 0xff) << 8 | (c[ 2] & 0xff) << 16 | (c[ 3] & 0xff) << 24,
       j1  = k[ 0] & 0xff | (k[ 1] & 0xff) << 8 | (k[ 2] & 0xff) << 16 | (k[ 3] & 0xff) << 24,
       j2  = k[ 4] & 0xff | (k[ 5] & 0xff) << 8 | (k[ 6] & 0xff) << 16 | (k[ 7] & 0xff) << 24,
       j3  = k[ 8] & 0xff | (k[ 9] & 0xff) << 8 | (k[10] & 0xff) << 16 | (k[11] & 0xff) << 24,
@@ -279,11 +278,11 @@ function core_hsalsa20(o,p,k,c) {
       j14 = k[28] & 0xff | (k[29] & 0xff) << 8 | (k[30] & 0xff) << 16 | (k[31] & 0xff) << 24,
       j15 = c[12] & 0xff | (c[13] & 0xff) << 8 | (c[14] & 0xff) << 16 | (c[15] & 0xff) << 24
 
-  var x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
+  let x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
       x8 = j8, x9 = j9, x10 = j10, x11 = j11, x12 = j12, x13 = j13, x14 = j14,
       x15 = j15, u
 
-  for (var i = 0; i < 20; i += 2) {
+  for (let i = 0; i < 20; i += 2) {
     u = x0 + x12 | 0
     x4 ^= u << 7 | u >>> 25
     u = x4 + x0 | 0

@@ -1,8 +1,8 @@
-var tape = require('tape')
-var crypto = require('crypto')
-var XSalsa20 = require('.')
+const tape = require('tape')
+const crypto = require('crypto')
+const XSalsa20 = require('.')
 
-var LIBSODIUM_TEST_KEY = new Buffer([
+const LIBSODIUM_TEST_KEY = new Buffer([
   0x1b, 0x27, 0x55, 0x64, 0x73, 0xe9, 0x85,
   0xd4, 0x62, 0xcd, 0x51, 0x19, 0x7a, 0x9a,
   0x46, 0xc7, 0x60, 0x09, 0x54, 0x9e, 0xac,
@@ -10,14 +10,14 @@ var LIBSODIUM_TEST_KEY = new Buffer([
   0x44, 0xf6, 0x83, 0x89
 ])
 
-var LIBSODIUM_TEST_NONCE = new Buffer([
+const LIBSODIUM_TEST_NONCE = new Buffer([
   0x69, 0x69, 0x6e, 0xe9, 0x55, 0xb6,
   0x2b, 0x73, 0xcd, 0x62, 0xbd, 0xa8,
   0x75, 0xfc, 0x73, 0xd6, 0x82, 0x19,
   0xe0, 0x03, 0x6b, 0x7a, 0x0b, 0x37
 ])
 
-var LIBSODIUM_TEST_MESSAGE = new Buffer([
+const LIBSODIUM_TEST_MESSAGE = new Buffer([
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0xbe, 0x07, 0x5f, 0xc5,
@@ -34,7 +34,7 @@ var LIBSODIUM_TEST_MESSAGE = new Buffer([
   0x76, 0x38, 0x48, 0x64, 0x5e, 0x07, 0x05
 ])
 
-var LIBSODIUM_TEST_CIPHER = new Buffer([
+const LIBSODIUM_TEST_CIPHER = new Buffer([
   0x8e, 0x99, 0x3b, 0x9f, 0x48, 0x68, 0x12, 0x73,
   0xc2, 0x96, 0x50, 0xba, 0x32, 0xfc, 0x76, 0xce,
   0x48, 0x33, 0x2e, 0xa7, 0x16, 0x4d, 0x96, 0xa4,
@@ -54,7 +54,7 @@ var LIBSODIUM_TEST_CIPHER = new Buffer([
   0xe3, 0x55, 0xa5
 ])
 
-var LIBSODIUM_TEST_KEY_2 = new Buffer([
+const LIBSODIUM_TEST_KEY_2 = new Buffer([
   0x1b, 0x27, 0x55, 0x64, 0x73, 0xe9, 0x85,
   0xd4, 0x62, 0xcd, 0x51, 0x19, 0x7a, 0x9a,
   0x46, 0xc7, 0x60, 0x09, 0x54, 0x9e, 0xac,
@@ -62,14 +62,14 @@ var LIBSODIUM_TEST_KEY_2 = new Buffer([
   0x44, 0xf6, 0x83, 0x89
 ])
 
-var LIBSODIUM_TEST_NONCE_2 = new Buffer([
+const LIBSODIUM_TEST_NONCE_2 = new Buffer([
   0x69, 0x69, 0x6e, 0xe9, 0x55, 0xb6,
   0x2b, 0x73, 0xcd, 0x62, 0xbd, 0xa8,
   0x75, 0xfc, 0x73, 0xd6, 0x82, 0x19,
   0xe0, 0x03, 0x6b, 0x7a, 0x0b, 0x37
 ])
 
-var LIBSODIUM_TEST_CIPHER_2 = new Buffer([
+const LIBSODIUM_TEST_CIPHER_2 = new Buffer([
   0xee, 0xa6, 0xa7, 0x25, 0x1c, 0x1e, 0x72, 0x91,
   0x6d, 0x11, 0xc2, 0xcb, 0x21, 0x4d, 0x3c, 0x25,
   0x25, 0x39, 0x12, 0x1d, 0x8e, 0x23, 0x4e, 0x65,
@@ -77,8 +77,8 @@ var LIBSODIUM_TEST_CIPHER_2 = new Buffer([
 ])
 
 tape('libsodium fixture', function (t) {
-  var xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
-  var output = new Buffer(LIBSODIUM_TEST_MESSAGE.length)
+  const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
+  const output = new Buffer(LIBSODIUM_TEST_MESSAGE.length)
   xor.update(LIBSODIUM_TEST_MESSAGE, output)
   xor.finalize()
   t.same(output.slice(32), LIBSODIUM_TEST_CIPHER, 'should match fixture')
@@ -86,10 +86,10 @@ tape('libsodium fixture', function (t) {
 })
 
 tape('libsodium fixture partial', function (t) {
-  var xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
-  var output = new Buffer(LIBSODIUM_TEST_MESSAGE.length)
+  const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
+  const output = new Buffer(LIBSODIUM_TEST_MESSAGE.length)
 
-  for (var i = 0; i < output.length; i++) {
+  for (let i = 0; i < output.length; i++) {
     xor.update(LIBSODIUM_TEST_MESSAGE.slice(i, i + 1), output.slice(i, i + 1))
   }
 
@@ -99,12 +99,12 @@ tape('libsodium fixture partial', function (t) {
 })
 
 tape('libsodium fixture partial (random chunks)', function (t) {
-  var xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
-  var output = new Buffer(LIBSODIUM_TEST_MESSAGE.length)
-  var i = 0
+  const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
+  const output = new Buffer(LIBSODIUM_TEST_MESSAGE.length)
+  let i = 0
 
   while (i < output.length) {
-    var end = i + Math.floor(Math.random() * 128)
+    const end = i + Math.floor(Math.random() * 128)
     xor.update(LIBSODIUM_TEST_MESSAGE.slice(i, end), output.slice(i, end))
     i = end
   }
@@ -115,8 +115,8 @@ tape('libsodium fixture partial (random chunks)', function (t) {
 })
 
 tape('libsodium crypto_stream fixture', function (t) {
-  var xor = new XSalsa20(LIBSODIUM_TEST_NONCE_2, LIBSODIUM_TEST_KEY_2)
-  var output = new Buffer(LIBSODIUM_TEST_CIPHER_2.length)
+  const xor = new XSalsa20(LIBSODIUM_TEST_NONCE_2, LIBSODIUM_TEST_KEY_2)
+  const output = new Buffer(LIBSODIUM_TEST_CIPHER_2.length)
   output.fill(0)
   xor.update(output, output)
   xor.finalize()
@@ -125,15 +125,15 @@ tape('libsodium crypto_stream fixture', function (t) {
 })
 
 tape('encrypt and decrypt basic', function (t) {
-  var key = crypto.randomBytes(32)
-  var nonce = crypto.randomBytes(24)
-  var cipher = new Buffer('hello world')
+  const key = crypto.randomBytes(32)
+  const nonce = crypto.randomBytes(24)
+  const cipher = new Buffer('hello world')
 
-  var a = new XSalsa20(nonce, key)
+  const a = new XSalsa20(nonce, key)
   a.update(cipher, cipher)
   t.notEqual(cipher, new Buffer('hello world'), 'encrypted')
 
-  var b = new XSalsa20(nonce, key)
+  const b = new XSalsa20(nonce, key)
   b.update(cipher, cipher)
   t.same(cipher, new Buffer('hello world'), 'unencrypted')
 
@@ -144,12 +144,12 @@ tape('encrypt and decrypt basic', function (t) {
 })
 
 tape('encrypt and decrypt', function (t) {
-  var key = crypto.randomBytes(32)
-  var nonce = crypto.randomBytes(24)
-  var message = crypto.randomBytes(10000)
-  var cipher = new Buffer(10000)
+  const key = crypto.randomBytes(32)
+  const nonce = crypto.randomBytes(24)
+  const message = crypto.randomBytes(10000)
+  const cipher = new Buffer(10000)
 
-  var xor = new XSalsa20(nonce, key)
+  let xor = new XSalsa20(nonce, key)
   xor.update(cipher, message)
   xor.finalize()
   t.notEqual(cipher, message, 'encrypted')
