@@ -1,6 +1,6 @@
 var tape = require('tape')
 var crypto = require('crypto')
-var xsalsa20 = require('./')
+var XSalsa20 = require('.')
 
 var LIBSODIUM_TEST_KEY = new Buffer([
   0x1b, 0x27, 0x55, 0x64, 0x73, 0xe9, 0x85,
@@ -77,7 +77,7 @@ var LIBSODIUM_TEST_CIPHER_2 = new Buffer([
 ])
 
 tape('libsodium fixture', function (t) {
-  var xor = xsalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
+  var xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
   var output = new Buffer(LIBSODIUM_TEST_MESSAGE.length)
   xor.update(LIBSODIUM_TEST_MESSAGE, output)
   xor.finalize()
@@ -86,7 +86,7 @@ tape('libsodium fixture', function (t) {
 })
 
 tape('libsodium fixture partial', function (t) {
-  var xor = xsalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
+  var xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
   var output = new Buffer(LIBSODIUM_TEST_MESSAGE.length)
 
   for (var i = 0; i < output.length; i++) {
@@ -99,7 +99,7 @@ tape('libsodium fixture partial', function (t) {
 })
 
 tape('libsodium fixture partial (random chunks)', function (t) {
-  var xor = xsalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
+  var xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
   var output = new Buffer(LIBSODIUM_TEST_MESSAGE.length)
   var i = 0
 
@@ -115,7 +115,7 @@ tape('libsodium fixture partial (random chunks)', function (t) {
 })
 
 tape('libsodium crypto_stream fixture', function (t) {
-  var xor = xsalsa20(LIBSODIUM_TEST_NONCE_2, LIBSODIUM_TEST_KEY_2)
+  var xor = new XSalsa20(LIBSODIUM_TEST_NONCE_2, LIBSODIUM_TEST_KEY_2)
   var output = new Buffer(LIBSODIUM_TEST_CIPHER_2.length)
   output.fill(0)
   xor.update(output, output)
@@ -129,11 +129,11 @@ tape('encrypt and decrypt basic', function (t) {
   var nonce = crypto.randomBytes(24)
   var cipher = new Buffer('hello world')
 
-  var a = xsalsa20(nonce, key)
+  var a = new XSalsa20(nonce, key)
   a.update(cipher, cipher)
   t.notEqual(cipher, new Buffer('hello world'), 'encrypted')
 
-  var b = xsalsa20(nonce, key)
+  var b = new XSalsa20(nonce, key)
   b.update(cipher, cipher)
   t.same(cipher, new Buffer('hello world'), 'unencrypted')
 
@@ -149,12 +149,12 @@ tape('encrypt and decrypt', function (t) {
   var message = crypto.randomBytes(10000)
   var cipher = new Buffer(10000)
 
-  var xor = xsalsa20(nonce, key)
+  var xor = new XSalsa20(nonce, key)
   xor.update(cipher, message)
   xor.finalize()
   t.notEqual(cipher, message, 'encrypted')
 
-  xor = xsalsa20(nonce, key)
+  xor = new XSalsa20(nonce, key)
   xor.update(cipher, cipher)
   xor.finalize()
   t.same(cipher, message, 'unencrypted')

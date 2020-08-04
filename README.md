@@ -13,11 +13,11 @@ npm install xsalsa20
 
 ``` js
 var crypto = require('crypto')
-var xsalsa20 = require('xsalsa20')
+var XSalsa20 = require('xsalsa20')
 var key = crypto.randomBytes(32)
 var nonce = crypto.randomBytes(24)
 
-var xor = xsalsa20(nonce, key)
+var xor = new XSalsa20(nonce, key)
 
 console.log(xor.update(new Buffer('hello')))
 console.log(xor.update(new Buffer('world')))
@@ -27,7 +27,7 @@ xor.finalize()
 
 ## API
 
-#### `var xor = xsalsa20(nonce, key)`
+#### `var xor = new XSalsa20(nonce, key)`
 
 Create a new xor instance.
 
