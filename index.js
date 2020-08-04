@@ -2,26 +2,11 @@ const SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 1
 
 module.exports = class XSalsa20 {
   constructor(nonce, key) {
-    if (!nonce || nonce.length < 24) throw new Error('nonce must be at least 24 bytes')
-    if (!key || key.length < 32) throw new Error('key must be at least 32 bytes')
-    this._xor = new Fallback(nonce, key)
-  }
+    // Check parameter
+    if (!nonce || nonce.length !== 24) throw new Error('nonce must be 24 bytes')
+    if (!key || key.length !== 32) throw new Error('key must be 32 bytes')
 
-  update(input, output) {
-    if (!input) throw new Error('input must be Uint8Array or Buffer')
-    if (!output) output = new Uint8Array(input.length)
-    if (input.length) this._xor.update(input, output)
-    return output
-  }
-
-  finalize() {
-    this._xor.finalize()
-    this._xor = null
-  }
-}
-
-class Fallback {
-  constructor(nonce, key) {
+    // Initialize
     this._s = new Uint8Array(32)
     this._z = new Uint8Array(16)
     this._overflow = 0
@@ -29,7 +14,11 @@ class Fallback {
     for (let i = 0; i < 8; i++) this._z[i] = nonce[i + 16]
   }
 
-  update(input, output) {
+  update(input, output = new Uint8Array(input.length)) {
+    // Check parameter
+    if (!input || !input.length) throw new Error('input must be Uint8Array or Buffer')
+
+    // XSalsa20
     const x = new Uint8Array(64)
     let u = 0
     let i = this._overflow
@@ -58,9 +47,13 @@ class Fallback {
     }
 
     this._overflow = b & 63
+
+    // Return
+    return output
   }
 
   finalize() {
+    // Zero-fill
     this._s.fill(0)
     this._z.fill(0)
   }
