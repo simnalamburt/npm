@@ -1,5 +1,25 @@
 const SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107])
 
+function* xsalsa20Stream(nonce, key) {
+  const s = new Uint8Array(32)
+  const z = new Uint8Array(16)
+  core_hsalsa20(s, nonce, key, SIGMA)
+  for (let i = 0; i < 8; i++) z[i] = nonce[i + 16]
+
+  for (;;) {
+    const output = new Uint8Array(64)
+    core_salsa20(output, z, s, SIGMA)
+    yield output
+
+    let u = 1
+    for (let i = 8; i < 16; i++) {
+      u += (z[i] & 0xff) | 0
+      z[i] = u & 0xff
+      u >>>= 8
+    }
+  }
+}
+
 module.exports = class XSalsa20 {
   constructor(nonce, key) {
     // Check parameter
@@ -7,46 +27,47 @@ module.exports = class XSalsa20 {
     if (!key || key.length !== 32) throw new Error('key must be 32 bytes')
 
     // Initialize
-    this._s = new Uint8Array(32)
-    this._z = new Uint8Array(16)
-    this._overflow = 0
-    core_hsalsa20(this._s, nonce, key, SIGMA)
-    for (let i = 0; i < 8; i++) this._z[i] = nonce[i + 16]
-  }
-
-  streamInplace(output) {
-    // XSalsa20
-    const x = new Uint8Array(64)
-    let u = 0
-    let i = this._overflow
-    let b = output.length + this._overflow
-    const z = this._z
-    let cpos = -this._overflow
-
-    while (b >= 64) {
-      core_salsa20(x, z, this._s, SIGMA)
-      for (; i < 64; i++) output[cpos + i] = x[i]
-      u = 1
-      for (i = 8; i < 16; i++) {
-        u += (z[i] & 0xff) | 0
-        z[i] = u & 0xff
-        u >>>= 8
-      }
-      b -= 64
-      cpos += 64
-      i = 0
-    }
-    if (b > 0) {
-      core_salsa20(x, z, this._s, SIGMA)
-      for (; i < b; i++) output[cpos + i] = x[i]
-    }
-
-    this._overflow = b & 63
+    this.xsalsa = xsalsa20Stream(nonce, key)
+    this.buffer = new Uint8Array(0)
   }
 
   stream(length) {
-    const output = new Uint8Array(length)
-    this.streamInplace(output)
+    let output
+    let counter
+
+    const bufLength = this.buffer.length
+    if (bufLength > 0) {
+      if (length < bufLength) {
+        output = this.buffer.slice(0, length);
+        this.buffer = this.buffer.slice(length);
+        return output
+      } else if (length === bufLength) {
+        output = this.buffer
+        this.buffer = new Uint8Array(0)
+        return output
+      } else {
+        output = new Uint8Array(length)
+        output.set(this.buffer)
+        counter = bufLength
+
+        this.buffer = new Uint8Array(0)
+      }
+    } else {
+      output = new Uint8Array(length)
+      counter = 0
+    }
+
+    while (length - counter >= 64) {
+      output.set(this.xsalsa.next().value, counter)
+      counter += 64
+    }
+    const remain = length - counter
+    if (remain > 0) {
+      const buffer = this.xsalsa.next().value
+      output.set(buffer.slice(0, remain), counter)
+      this.buffer = buffer.slice(remain)
+    }
+
     return output
   }
 
