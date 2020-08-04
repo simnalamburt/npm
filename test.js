@@ -80,7 +80,6 @@ tape('libsodium fixture', function (t) {
   const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
   const output = new Buffer(LIBSODIUM_TEST_MESSAGE.length)
   xor.update(LIBSODIUM_TEST_MESSAGE, output)
-  xor.finalize()
   t.same(output.slice(32), LIBSODIUM_TEST_CIPHER, 'should match fixture')
   t.end()
 })
@@ -93,7 +92,6 @@ tape('libsodium fixture partial', function (t) {
     xor.update(LIBSODIUM_TEST_MESSAGE.slice(i, i + 1), output.slice(i, i + 1))
   }
 
-  xor.finalize()
   t.same(output.slice(32), LIBSODIUM_TEST_CIPHER, 'should match fixture')
   t.end()
 })
@@ -109,7 +107,6 @@ tape('libsodium fixture partial (random chunks)', function (t) {
     i = end
   }
 
-  xor.finalize()
   t.same(output.slice(32), LIBSODIUM_TEST_CIPHER, 'should match fixture')
   t.end()
 })
@@ -119,7 +116,6 @@ tape('libsodium crypto_stream fixture', function (t) {
   const output = new Buffer(LIBSODIUM_TEST_CIPHER_2.length)
   output.fill(0)
   xor.update(output, output)
-  xor.finalize()
   t.same(output, LIBSODIUM_TEST_CIPHER_2)
   t.end()
 })
@@ -137,9 +133,6 @@ tape('encrypt and decrypt basic', function (t) {
   b.update(cipher, cipher)
   t.same(cipher, new Buffer('hello world'), 'unencrypted')
 
-  a.finalize()
-  b.finalize()
-
   t.end()
 })
 
@@ -151,12 +144,10 @@ tape('encrypt and decrypt', function (t) {
 
   let xor = new XSalsa20(nonce, key)
   xor.update(cipher, message)
-  xor.finalize()
   t.notEqual(cipher, message, 'encrypted')
 
   xor = new XSalsa20(nonce, key)
   xor.update(cipher, cipher)
-  xor.finalize()
   t.same(cipher, message, 'unencrypted')
   t.end()
 })

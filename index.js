@@ -51,12 +51,6 @@ module.exports = class XSalsa20 {
     // Return
     return output
   }
-
-  finalize() {
-    // Zero-fill
-    this._s.fill(0)
-    this._z.fill(0)
-  }
 }
 
 // below methods are ported from tweet nacl
