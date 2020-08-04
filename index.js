@@ -14,22 +14,18 @@ module.exports = class XSalsa20 {
     for (let i = 0; i < 8; i++) this._z[i] = nonce[i + 16]
   }
 
-  update(input, output = new Uint8Array(input.length)) {
-    // Check parameter
-    if (!input || !input.length) throw new Error('input must be Uint8Array or Buffer')
-
+  streamInplace(output) {
     // XSalsa20
     const x = new Uint8Array(64)
     let u = 0
     let i = this._overflow
-    let b = input.length + this._overflow
+    let b = output.length + this._overflow
     const z = this._z
-    let mpos = -this._overflow
     let cpos = -this._overflow
 
     while (b >= 64) {
       core_salsa20(x, z, this._s, SIGMA)
-      for (; i < 64; i++) output[cpos + i] = input[mpos + i] ^ x[i]
+      for (; i < 64; i++) output[cpos + i] = x[i]
       u = 1
       for (i = 8; i < 16; i++) {
         u += (z[i] & 0xff) | 0
@@ -38,15 +34,28 @@ module.exports = class XSalsa20 {
       }
       b -= 64
       cpos += 64
-      mpos += 64
       i = 0
     }
     if (b > 0) {
       core_salsa20(x, z, this._s, SIGMA)
-      for (; i < b; i++) output[cpos + i] = input[mpos + i] ^ x[i]
+      for (; i < b; i++) output[cpos + i] = x[i]
     }
 
     this._overflow = b & 63
+  }
+
+  stream(length) {
+    const output = new Uint8Array(length)
+    this.streamInplace(output)
+    return output
+  }
+
+  update(input, output = new Uint8Array(input.length)) {
+    // Check parameter
+    if (!input || !input.length) throw new Error('input must be Uint8Array or Buffer')
+
+    const stream = this.stream(input.length)
+    for (let i = 0; i < input.length; ++i) output[i] = input[i] ^ stream[i]
 
     // Return
     return output
