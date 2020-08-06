@@ -1,7 +1,7 @@
 const SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107])
 
-type xsalsa20Generator = Generator<Uint8Array, never, undefined>
-function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): xsalsa20Generator {
+type XSalsa20Generator = Generator<Uint8Array, never, undefined>
+function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): XSalsa20Generator {
   const s = new Uint8Array(32)
   const z = new Uint8Array(16)
   core_hsalsa20(s, nonce, key, SIGMA)
@@ -22,7 +22,7 @@ function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): xsalsa20Generat
 }
 
 export default class XSalsa20 {
-  xsalsa: xsalsa20Generator
+  xsalsa: XSalsa20Generator
   buffer: Uint8Array
 
   constructor(nonce: Uint8Array, key: Uint8Array) {
