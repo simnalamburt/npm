@@ -20,7 +20,7 @@ function* xsalsa20Stream(nonce, key) {
   }
 }
 
-module.exports = class XSalsa20 {
+export default class XSalsa20 {
   constructor(nonce, key) {
     // Check parameter
     if (!nonce || nonce.length !== 24) throw new Error('nonce must be 24 bytes')
