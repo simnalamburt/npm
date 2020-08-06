@@ -4,7 +4,7 @@ type BufferLike = Uint8Array | Buffer | number[]
 
 type xsalsa20Generator = Generator<BufferLike, never, never>
 
-function* xsalsa20Stream(nonce: BufferLike, key: BufferLike): xsalsa20Generator {
+function* xsalsa20Generator(nonce: BufferLike, key: BufferLike): xsalsa20Generator {
   const s = new Uint8Array(32)
   const z = new Uint8Array(16)
   core_hsalsa20(s, nonce, key, SIGMA)
@@ -34,7 +34,7 @@ export default class XSalsa20 {
     if (key.length !== 32) throw new Error('key must be 32 bytes')
 
     // Initialize
-    this.xsalsa = xsalsa20Stream(nonce, key)
+    this.xsalsa = xsalsa20Generator(nonce, key)
     this.buffer = new Uint8Array(0)
   }
 
