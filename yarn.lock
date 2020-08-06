@@ -5,6 +5,20 @@ __metadata:
   version: 4
   cacheKey: 5
 
+"@types/mocha@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "@types/mocha@npm:8.0.1"
+  checksum: 32cc366a86eeb1a6435ea07ad146a6bb1bfa321e8e511f61e04987676b20188eff1dbdb16a542ff8f0f19a00fbda3db7324240f036fa494f74d558578bd84e2a
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^14.0.27":
+  version: 14.0.27
+  resolution: "@types/node@npm:14.0.27"
+  checksum: 54ecf408eb94f44685e12ef395d8d9d5789cb9e209f171153b6b951272af6b8da099778d09d66454aa5d35ce246f3922ebd7476ed768bf3bd4267306c12a6703
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:1":
   version: 1.1.1
   resolution: "abbrev@npm:1.1.1"
@@ -1776,6 +1790,8 @@ typescript@^3.9.7:
   version: 0.0.0-use.local
   resolution: "xsalsa20@workspace:."
   dependencies:
+    "@types/mocha": ^8.0.1
+    "@types/node": ^14.0.27
     mocha: ^8.1.1
     typescript: ^3.9.7
   languageName: unknown
