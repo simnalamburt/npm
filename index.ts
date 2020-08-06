@@ -1,10 +1,7 @@
 const SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107])
 
-type BufferLike = Uint8Array | Buffer
-
 type xsalsa20Generator = Generator<Uint8Array, never, never>
-
-function* xsalsa20Generator(nonce: BufferLike, key: BufferLike): xsalsa20Generator {
+function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): xsalsa20Generator {
   const s = new Uint8Array(32)
   const z = new Uint8Array(16)
   core_hsalsa20(s, nonce, key, SIGMA)
@@ -28,7 +25,7 @@ export default class XSalsa20 {
   xsalsa: xsalsa20Generator
   buffer: Uint8Array
 
-  constructor(nonce: BufferLike, key: BufferLike) {
+  constructor(nonce: Uint8Array, key: Uint8Array) {
     // Check parameter
     if (nonce.length !== 24) throw new Error('nonce must be 24 bytes')
     if (key.length !== 32) throw new Error('key must be 32 bytes')
@@ -78,7 +75,7 @@ export default class XSalsa20 {
     return output
   }
 
-  update(input: BufferLike, output: BufferLike = new Uint8Array(input.length)) {
+  update(input: Uint8Array, output: Uint8Array = new Uint8Array(input.length)) {
     const stream = this.stream(input.length)
     for (let i = 0; i < input.length; ++i) output[i] = input[i] ^ stream[i]
 
@@ -282,7 +279,7 @@ function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array
   o[63] = x15 >>> 24 & 0xff
 }
 
-function core_hsalsa20(o: Uint8Array, p: BufferLike, k: BufferLike, c: Uint8Array) {
+function core_hsalsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array) {
   const
       j0  = c[ 0] | c[ 1] << 8 | c[ 2] << 16 | c[ 3] << 24,
       j1  = k[ 0] | k[ 1] << 8 | k[ 2] << 16 | k[ 3] << 24,
