@@ -1,4 +1,4 @@
-const tape = require('tape')
+const assert = require('assert')
 const crypto = require('crypto')
 const XSalsa20 = require('..')
 
@@ -76,15 +76,14 @@ const LIBSODIUM_TEST_CIPHER_2 = Buffer.from([
   0x2d, 0x65, 0x1f, 0xa4, 0xc8, 0xcf, 0xf8, 0x80
 ])
 
-tape('libsodium fixture', function (t) {
+it('libsodium fixture', () => {
   const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
   const output = Buffer.alloc(LIBSODIUM_TEST_MESSAGE.length)
   xor.update(LIBSODIUM_TEST_MESSAGE, output)
-  t.same(output.slice(32), LIBSODIUM_TEST_CIPHER, 'should match fixture')
-  t.end()
+  assert(output.slice(32).equals(LIBSODIUM_TEST_CIPHER))
 })
 
-tape('libsodium fixture partial', function (t) {
+it('libsodium fixture partial', () => {
   const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
   const output = Buffer.alloc(LIBSODIUM_TEST_MESSAGE.length)
 
@@ -92,11 +91,10 @@ tape('libsodium fixture partial', function (t) {
     xor.update(LIBSODIUM_TEST_MESSAGE.slice(i, i + 1), output.slice(i, i + 1))
   }
 
-  t.same(output.slice(32), LIBSODIUM_TEST_CIPHER, 'should match fixture')
-  t.end()
+  assert(output.slice(32).equals(LIBSODIUM_TEST_CIPHER))
 })
 
-tape('libsodium fixture partial (random chunks)', function (t) {
+it('libsodium fixture partial (random chunks)', () => {
   const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
   const output = Buffer.alloc(LIBSODIUM_TEST_MESSAGE.length)
   let i = 0
@@ -107,36 +105,32 @@ tape('libsodium fixture partial (random chunks)', function (t) {
     i = end
   }
 
-  t.same(output.slice(32), LIBSODIUM_TEST_CIPHER, 'should match fixture')
-  t.end()
+  assert(output.slice(32).equals(LIBSODIUM_TEST_CIPHER))
 })
 
-tape('libsodium crypto_stream fixture', function (t) {
+it('libsodium crypto_stream fixture', () => {
   const xor = new XSalsa20(LIBSODIUM_TEST_NONCE_2, LIBSODIUM_TEST_KEY_2)
   const output = Buffer.alloc(LIBSODIUM_TEST_CIPHER_2.length)
   output.fill(0)
   xor.update(output, output)
-  t.same(output, LIBSODIUM_TEST_CIPHER_2)
-  t.end()
+  assert(output.equals(LIBSODIUM_TEST_CIPHER_2))
 })
 
-tape('encrypt and decrypt basic', function (t) {
+it('encrypt and decrypt basic', () => {
   const key = crypto.randomBytes(32)
   const nonce = crypto.randomBytes(24)
   const cipher = Buffer.from('hello world')
 
   const a = new XSalsa20(nonce, key)
   a.update(cipher, cipher)
-  t.notEqual(cipher, Buffer.from('hello world'), 'encrypted')
+  assert(!cipher.equals(Buffer.from('hello world')))
 
   const b = new XSalsa20(nonce, key)
   b.update(cipher, cipher)
-  t.same(cipher, Buffer.from('hello world'), 'unencrypted')
-
-  t.end()
+  assert(cipher.equals(Buffer.from('hello world')))
 })
 
-tape('encrypt and decrypt', function (t) {
+it('encrypt and decrypt', () => {
   const key = crypto.randomBytes(32)
   const nonce = crypto.randomBytes(24)
   const message = crypto.randomBytes(10000)
@@ -144,10 +138,9 @@ tape('encrypt and decrypt', function (t) {
 
   let xor = new XSalsa20(nonce, key)
   xor.update(cipher, message)
-  t.notEqual(cipher, message, 'encrypted')
+  assert(!cipher.equals(message))
 
   xor = new XSalsa20(nonce, key)
   xor.update(cipher, cipher)
-  t.same(cipher, message, 'unencrypted')
-  t.end()
+  assert(cipher.equals(message))
 })

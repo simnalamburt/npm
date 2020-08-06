@@ -4,10 +4,10 @@
   "description": "XSalsa20 implemented in Javascript and WebAssembly",
   "main": "index.js",
   "devDependencies": {
-    "tape": "^4.6.3"
+    "mocha": "^8.1.1"
   },
   "scripts": {
-    "test": "tape test/test.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
