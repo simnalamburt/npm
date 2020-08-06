@@ -1,6 +1,6 @@
 const tape = require('tape')
 const crypto = require('crypto')
-const XSalsa20 = require('.')
+const XSalsa20 = require('..')
 
 const LIBSODIUM_TEST_KEY = Buffer.from([
   0x1b, 0x27, 0x55, 0x64, 0x73, 0xe9, 0x85,
