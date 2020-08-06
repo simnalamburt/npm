@@ -1,6 +1,6 @@
 const SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107])
 
-type xsalsa20Generator = Generator<Uint8Array, never, never>
+type xsalsa20Generator = Generator<Uint8Array, never, undefined>
 function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): xsalsa20Generator {
   const s = new Uint8Array(32)
   const z = new Uint8Array(16)
