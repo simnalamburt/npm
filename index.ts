@@ -7,7 +7,7 @@ function* xsalsa20Stream(nonce: Uint8Array, key: Uint8Array): xsalsa20Generator 
   core_hsalsa20(s, nonce, key, SIGMA)
   for (let i = 0; i < 8; i++) z[i] = nonce[i + 16]
 
-  for (;;) {
+  while (true) {
     const output = new Uint8Array(64)
     core_salsa20(output, z, s, SIGMA)
     yield output
@@ -42,8 +42,8 @@ export default class XSalsa20 {
     const bufLength = this.buffer.length
     if (bufLength > 0) {
       if (length < bufLength) {
-        output = this.buffer.slice(0, length);
-        this.buffer = this.buffer.slice(length);
+        output = this.buffer.slice(0, length)
+        this.buffer = this.buffer.slice(length)
         return output
       } else if (length === bufLength) {
         output = this.buffer
