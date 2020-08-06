@@ -2,7 +2,8 @@
   "name": "xsalsa20",
   "version": "1.1.0",
   "description": "XSalsa20 implemented in Javascript and WebAssembly",
-  "main": "index.mjs",
+  "main": "index.js",
+  "type": "module",
   "devDependencies": {
     "mocha": "^8.1.1"
   },
