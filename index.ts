@@ -2,7 +2,7 @@ const SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 1
 
 type BufferLike = Uint8Array | Buffer
 
-type xsalsa20Generator = Generator<BufferLike, never, never>
+type xsalsa20Generator = Generator<Uint8Array, never, never>
 
 function* xsalsa20Generator(nonce: BufferLike, key: BufferLike): xsalsa20Generator {
   const s = new Uint8Array(32)
@@ -26,7 +26,7 @@ function* xsalsa20Generator(nonce: BufferLike, key: BufferLike): xsalsa20Generat
 
 export default class XSalsa20 {
   xsalsa: xsalsa20Generator
-  buffer: BufferLike
+  buffer: Uint8Array
 
   constructor(nonce: BufferLike, key: BufferLike) {
     // Check parameter
@@ -39,7 +39,7 @@ export default class XSalsa20 {
   }
 
   stream(length: number) {
-    let output: BufferLike
+    let output: Uint8Array
     let counter: number
 
     const bufLength = this.buffer.length
@@ -78,7 +78,7 @@ export default class XSalsa20 {
     return output
   }
 
-  update(input: BufferLike, output = new Uint8Array(input.length)) {
+  update(input: BufferLike, output: BufferLike = new Uint8Array(input.length)) {
     const stream = this.stream(input.length)
     for (let i = 0; i < input.length; ++i) output[i] = input[i] ^ stream[i]
 
@@ -88,7 +88,7 @@ export default class XSalsa20 {
 }
 
 // below methods are ported from tweet nacl
-function core_salsa20(o: BufferLike, p: BufferLike, k: BufferLike, c: BufferLike) {
+function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array) {
   const
       j0  = c[ 0] | c[ 1] << 8 | c[ 2] << 16 | c[ 3] << 24,
       j1  = k[ 0] | k[ 1] << 8 | k[ 2] << 16 | k[ 3] << 24,
@@ -282,7 +282,7 @@ function core_salsa20(o: BufferLike, p: BufferLike, k: BufferLike, c: BufferLike
   o[63] = x15 >>> 24 & 0xff
 }
 
-function core_hsalsa20(o: BufferLike, p: BufferLike, k: BufferLike, c: BufferLike) {
+function core_hsalsa20(o: Uint8Array, p: BufferLike, k: BufferLike, c: Uint8Array) {
   const
       j0  = c[ 0] | c[ 1] << 8 | c[ 2] << 16 | c[ 3] << 24,
       j1  = k[ 0] | k[ 1] << 8 | k[ 2] << 16 | k[ 3] << 24,
