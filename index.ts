@@ -1,6 +1,7 @@
 const SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107])
 
-function* xsalsa20Stream(nonce, key) {
+type xsalsa20Generator = Generator<Uint8Array, never, never>
+function* xsalsa20Stream(nonce: Uint8Array, key: Uint8Array): xsalsa20Generator {
   const s = new Uint8Array(32)
   const z = new Uint8Array(16)
   core_hsalsa20(s, nonce, key, SIGMA)
@@ -21,7 +22,10 @@ function* xsalsa20Stream(nonce, key) {
 }
 
 export default class XSalsa20 {
-  constructor(nonce, key) {
+  xsalsa: xsalsa20Generator
+  buffer: Uint8Array
+
+  constructor(nonce: Uint8Array, key: Uint8Array) {
     // Check parameter
     if (nonce.length !== 24) throw new Error('nonce must be 24 bytes')
     if (key.length !== 32) throw new Error('key must be 32 bytes')
@@ -31,9 +35,9 @@ export default class XSalsa20 {
     this.buffer = new Uint8Array(0)
   }
 
-  stream(length) {
-    let output
-    let counter
+  stream(length: number) {
+    let output: Uint8Array
+    let counter: number
 
     const bufLength = this.buffer.length
     if (bufLength > 0) {
@@ -71,7 +75,7 @@ export default class XSalsa20 {
     return output
   }
 
-  update(input, output = new Uint8Array(input.length)) {
+  update(input: Uint8Array, output = new Uint8Array(input.length)) {
     const stream = this.stream(input.length)
     for (let i = 0; i < input.length; ++i) output[i] = input[i] ^ stream[i]
 
@@ -81,7 +85,7 @@ export default class XSalsa20 {
 }
 
 // below methods are ported from tweet nacl
-function core_salsa20(o, p, k, c) {
+function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array) {
   const j0  = c[ 0] & 0xff | (c[ 1] & 0xff) << 8 | (c[ 2] & 0xff) << 16 | (c[ 3] & 0xff) << 24,
       j1  = k[ 0] & 0xff | (k[ 1] & 0xff) << 8 | (k[ 2] & 0xff) << 16 | (k[ 3] & 0xff) << 24,
       j2  = k[ 4] & 0xff | (k[ 5] & 0xff) << 8 | (k[ 6] & 0xff) << 16 | (k[ 7] & 0xff) << 24,
@@ -101,7 +105,7 @@ function core_salsa20(o, p, k, c) {
 
   let x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
       x8 = j8, x9 = j9, x10 = j10, x11 = j11, x12 = j12, x13 = j13, x14 = j14,
-      x15 = j15, u
+      x15 = j15, u: number
 
   for (let i = 0; i < 20; i += 2) {
     u = x0 + x12 | 0
@@ -274,7 +278,7 @@ function core_salsa20(o, p, k, c) {
   o[63] = x15 >>> 24 & 0xff
 }
 
-function core_hsalsa20(o,p,k,c) {
+function core_hsalsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array) {
   const j0  = c[ 0] & 0xff | (c[ 1] & 0xff) << 8 | (c[ 2] & 0xff) << 16 | (c[ 3] & 0xff) << 24,
       j1  = k[ 0] & 0xff | (k[ 1] & 0xff) << 8 | (k[ 2] & 0xff) << 16 | (k[ 3] & 0xff) << 24,
       j2  = k[ 4] & 0xff | (k[ 5] & 0xff) << 8 | (k[ 6] & 0xff) << 16 | (k[ 7] & 0xff) << 24,
@@ -294,7 +298,7 @@ function core_hsalsa20(o,p,k,c) {
 
   let x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
       x8 = j8, x9 = j9, x10 = j10, x11 = j11, x12 = j12, x13 = j13, x14 = j14,
-      x15 = j15, u
+      x15 = j15, u: number
 
   for (let i = 0; i < 20; i += 2) {
     u = x0 + x12 | 0
