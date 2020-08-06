@@ -89,28 +89,23 @@ export default class XSalsa20 {
 
 // below methods are ported from tweet nacl
 function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array) {
-  const O = new DataView(o.buffer, o.byteOffset, o.byteLength)
-  const P = new DataView(p.buffer, p.byteOffset, p.byteLength)
-  const K = new DataView(k.buffer, k.byteOffset, k.byteLength)
-  const C = new DataView(c.buffer, c.byteOffset, c.byteLength)
-
   const
-      j0  = C.getInt32( 0, true),
-      j1  = K.getInt32( 0, true),
-      j2  = K.getInt32( 4, true),
-      j3  = K.getInt32( 8, true),
-      j4  = K.getInt32(12, true),
-      j5  = C.getInt32( 4, true),
-      j6  = P.getInt32( 0, true),
-      j7  = P.getInt32( 4, true),
-      j8  = P.getInt32( 8, true),
-      j9  = P.getInt32(12, true),
-      j10 = C.getInt32( 8, true),
-      j11 = K.getInt32(16, true),
-      j12 = K.getInt32(20, true),
-      j13 = K.getInt32(24, true),
-      j14 = K.getInt32(28, true),
-      j15 = C.getInt32(12, true)
+      j0  = c[ 0] | c[ 1] << 8 | c[ 2] << 16 | c[ 3] << 24,
+      j1  = k[ 0] | k[ 1] << 8 | k[ 2] << 16 | k[ 3] << 24,
+      j2  = k[ 4] | k[ 5] << 8 | k[ 6] << 16 | k[ 7] << 24,
+      j3  = k[ 8] | k[ 9] << 8 | k[10] << 16 | k[11] << 24,
+      j4  = k[12] | k[13] << 8 | k[14] << 16 | k[15] << 24,
+      j5  = c[ 4] | c[ 5] << 8 | c[ 6] << 16 | c[ 7] << 24,
+      j6  = p[ 0] | p[ 1] << 8 | p[ 2] << 16 | p[ 3] << 24,
+      j7  = p[ 4] | p[ 5] << 8 | p[ 6] << 16 | p[ 7] << 24,
+      j8  = p[ 8] | p[ 9] << 8 | p[10] << 16 | p[11] << 24,
+      j9  = p[12] | p[13] << 8 | p[14] << 16 | p[15] << 24,
+      j10 = c[ 8] | c[ 9] << 8 | c[10] << 16 | c[11] << 24,
+      j11 = k[16] | k[17] << 8 | k[18] << 16 | k[19] << 24,
+      j12 = k[20] | k[21] << 8 | k[22] << 16 | k[23] << 24,
+      j13 = k[24] | k[25] << 8 | k[26] << 16 | k[27] << 24,
+      j14 = k[28] | k[29] << 8 | k[30] << 16 | k[31] << 24,
+      j15 = c[12] | c[13] << 8 | c[14] << 16 | c[15] << 24
 
   let x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
       x8 = j8, x9 = j9, x10 = j10, x11 = j11, x12 = j12, x13 = j13, x14 = j14,
@@ -206,48 +201,109 @@ function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array
   x14 = x14 + j14 | 0
   x15 = x15 + j15 | 0
 
-  O.setInt32( 0,  x0, true)
-  O.setInt32( 4,  x1, true)
-  O.setInt32( 8,  x2, true)
-  O.setInt32(12,  x3, true)
-  O.setInt32(16,  x4, true)
-  O.setInt32(20,  x5, true)
-  O.setInt32(24,  x6, true)
-  O.setInt32(28,  x7, true)
-  O.setInt32(32,  x8, true)
-  O.setInt32(36,  x9, true)
-  O.setInt32(40, x10, true)
-  O.setInt32(44, x11, true)
-  O.setInt32(48, x12, true)
-  O.setInt32(52, x13, true)
-  O.setInt32(56, x14, true)
-  O.setInt32(60, x15, true)
+  o[ 0] = x0 >>>  0 & 0xff
+  o[ 1] = x0 >>>  8 & 0xff
+  o[ 2] = x0 >>> 16 & 0xff
+  o[ 3] = x0 >>> 24 & 0xff
+
+  o[ 4] = x1 >>>  0 & 0xff
+  o[ 5] = x1 >>>  8 & 0xff
+  o[ 6] = x1 >>> 16 & 0xff
+  o[ 7] = x1 >>> 24 & 0xff
+
+  o[ 8] = x2 >>>  0 & 0xff
+  o[ 9] = x2 >>>  8 & 0xff
+  o[10] = x2 >>> 16 & 0xff
+  o[11] = x2 >>> 24 & 0xff
+
+  o[12] = x3 >>>  0 & 0xff
+  o[13] = x3 >>>  8 & 0xff
+  o[14] = x3 >>> 16 & 0xff
+  o[15] = x3 >>> 24 & 0xff
+
+  o[16] = x4 >>>  0 & 0xff
+  o[17] = x4 >>>  8 & 0xff
+  o[18] = x4 >>> 16 & 0xff
+  o[19] = x4 >>> 24 & 0xff
+
+  o[20] = x5 >>>  0 & 0xff
+  o[21] = x5 >>>  8 & 0xff
+  o[22] = x5 >>> 16 & 0xff
+  o[23] = x5 >>> 24 & 0xff
+
+  o[24] = x6 >>>  0 & 0xff
+  o[25] = x6 >>>  8 & 0xff
+  o[26] = x6 >>> 16 & 0xff
+  o[27] = x6 >>> 24 & 0xff
+
+  o[28] = x7 >>>  0 & 0xff
+  o[29] = x7 >>>  8 & 0xff
+  o[30] = x7 >>> 16 & 0xff
+  o[31] = x7 >>> 24 & 0xff
+
+  o[32] = x8 >>>  0 & 0xff
+  o[33] = x8 >>>  8 & 0xff
+  o[34] = x8 >>> 16 & 0xff
+  o[35] = x8 >>> 24 & 0xff
+
+  o[36] = x9 >>>  0 & 0xff
+  o[37] = x9 >>>  8 & 0xff
+  o[38] = x9 >>> 16 & 0xff
+  o[39] = x9 >>> 24 & 0xff
+
+  o[40] = x10 >>>  0 & 0xff
+  o[41] = x10 >>>  8 & 0xff
+  o[42] = x10 >>> 16 & 0xff
+  o[43] = x10 >>> 24 & 0xff
+
+  o[44] = x11 >>>  0 & 0xff
+  o[45] = x11 >>>  8 & 0xff
+  o[46] = x11 >>> 16 & 0xff
+  o[47] = x11 >>> 24 & 0xff
+
+  o[48] = x12 >>>  0 & 0xff
+  o[49] = x12 >>>  8 & 0xff
+  o[50] = x12 >>> 16 & 0xff
+  o[51] = x12 >>> 24 & 0xff
+
+  o[52] = x13 >>>  0 & 0xff
+  o[53] = x13 >>>  8 & 0xff
+  o[54] = x13 >>> 16 & 0xff
+  o[55] = x13 >>> 24 & 0xff
+
+  o[56] = x14 >>>  0 & 0xff
+  o[57] = x14 >>>  8 & 0xff
+  o[58] = x14 >>> 16 & 0xff
+  o[59] = x14 >>> 24 & 0xff
+
+  o[60] = x15 >>>  0 & 0xff
+  o[61] = x15 >>>  8 & 0xff
+  o[62] = x15 >>> 16 & 0xff
+  o[63] = x15 >>> 24 & 0xff
 }
 
 function core_hsalsa20(o: Uint8Array, p: BufferLike, k: BufferLike, c: Uint8Array) {
-  const O = new DataView(o.buffer, o.byteOffset, o.byteLength)
-  const P = new DataView(p.buffer, p.byteOffset, p.byteLength)
-  const K = new DataView(k.buffer, k.byteOffset, k.byteLength)
-  const C = new DataView(c.buffer, c.byteOffset, c.byteLength)
+  const
+      j0  = c[ 0] | c[ 1] << 8 | c[ 2] << 16 | c[ 3] << 24,
+      j1  = k[ 0] | k[ 1] << 8 | k[ 2] << 16 | k[ 3] << 24,
+      j2  = k[ 4] | k[ 5] << 8 | k[ 6] << 16 | k[ 7] << 24,
+      j3  = k[ 8] | k[ 9] << 8 | k[10] << 16 | k[11] << 24,
+      j4  = k[12] | k[13] << 8 | k[14] << 16 | k[15] << 24,
+      j5  = c[ 4] | c[ 5] << 8 | c[ 6] << 16 | c[ 7] << 24,
+      j6  = p[ 0] | p[ 1] << 8 | p[ 2] << 16 | p[ 3] << 24,
+      j7  = p[ 4] | p[ 5] << 8 | p[ 6] << 16 | p[ 7] << 24,
+      j8  = p[ 8] | p[ 9] << 8 | p[10] << 16 | p[11] << 24,
+      j9  = p[12] | p[13] << 8 | p[14] << 16 | p[15] << 24,
+      j10 = c[ 8] | c[ 9] << 8 | c[10] << 16 | c[11] << 24,
+      j11 = k[16] | k[17] << 8 | k[18] << 16 | k[19] << 24,
+      j12 = k[20] | k[21] << 8 | k[22] << 16 | k[23] << 24,
+      j13 = k[24] | k[25] << 8 | k[26] << 16 | k[27] << 24,
+      j14 = k[28] | k[29] << 8 | k[30] << 16 | k[31] << 24,
+      j15 = c[12] | c[13] << 8 | c[14] << 16 | c[15] << 24
 
-  let x0  = C.getInt32( 0, true),
-      x1  = K.getInt32( 0, true),
-      x2  = K.getInt32( 4, true),
-      x3  = K.getInt32( 8, true),
-      x4  = K.getInt32(12, true),
-      x5  = C.getInt32( 4, true),
-      x6  = P.getInt32( 0, true),
-      x7  = P.getInt32( 4, true),
-      x8  = P.getInt32( 8, true),
-      x9  = P.getInt32(12, true),
-      x10 = C.getInt32( 8, true),
-      x11 = K.getInt32(16, true),
-      x12 = K.getInt32(20, true),
-      x13 = K.getInt32(24, true),
-      x14 = K.getInt32(28, true),
-      x15 = C.getInt32(12, true)
-
-  let u: number
+  let x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
+      x8 = j8, x9 = j9, x10 = j10, x11 = j11, x12 = j12, x13 = j13, x14 = j14,
+      x15 = j15, u: number
 
   for (let i = 0; i < 20; i += 2) {
     u = x0 + x12 | 0
@@ -323,12 +379,43 @@ function core_hsalsa20(o: Uint8Array, p: BufferLike, k: BufferLike, c: Uint8Arra
     x15 ^= u << 18 | u >>> 14
   }
 
-  O.setInt32( 0,  x0, true)
-  O.setInt32( 4,  x5, true)
-  O.setInt32( 8, x10, true)
-  O.setInt32(12, x15, true)
-  O.setInt32(16,  x6, true)
-  O.setInt32(20,  x7, true)
-  O.setInt32(24,  x8, true)
-  O.setInt32(28,  x9, true)
+  o[ 0] = x0 >>>  0 & 0xff
+  o[ 1] = x0 >>>  8 & 0xff
+  o[ 2] = x0 >>> 16 & 0xff
+  o[ 3] = x0 >>> 24 & 0xff
+
+  o[ 4] = x5 >>>  0 & 0xff
+  o[ 5] = x5 >>>  8 & 0xff
+  o[ 6] = x5 >>> 16 & 0xff
+  o[ 7] = x5 >>> 24 & 0xff
+
+  o[ 8] = x10 >>>  0 & 0xff
+  o[ 9] = x10 >>>  8 & 0xff
+  o[10] = x10 >>> 16 & 0xff
+  o[11] = x10 >>> 24 & 0xff
+
+  o[12] = x15 >>>  0 & 0xff
+  o[13] = x15 >>>  8 & 0xff
+  o[14] = x15 >>> 16 & 0xff
+  o[15] = x15 >>> 24 & 0xff
+
+  o[16] = x6 >>>  0 & 0xff
+  o[17] = x6 >>>  8 & 0xff
+  o[18] = x6 >>> 16 & 0xff
+  o[19] = x6 >>> 24 & 0xff
+
+  o[20] = x7 >>>  0 & 0xff
+  o[21] = x7 >>>  8 & 0xff
+  o[22] = x7 >>> 16 & 0xff
+  o[23] = x7 >>> 24 & 0xff
+
+  o[24] = x8 >>>  0 & 0xff
+  o[25] = x8 >>>  8 & 0xff
+  o[26] = x8 >>> 16 & 0xff
+  o[27] = x8 >>> 24 & 0xff
+
+  o[28] = x9 >>>  0 & 0xff
+  o[29] = x9 >>>  8 & 0xff
+  o[30] = x9 >>> 16 & 0xff
+  o[31] = x9 >>> 24 & 0xff
 }
