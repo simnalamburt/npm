@@ -23,8 +23,8 @@ function* xsalsa20Stream(nonce, key) {
 export default class XSalsa20 {
   constructor(nonce, key) {
     // Check parameter
-    if (!nonce || nonce.length !== 24) throw new Error('nonce must be 24 bytes')
-    if (!key || key.length !== 32) throw new Error('key must be 32 bytes')
+    if (nonce.length !== 24) throw new Error('nonce must be 24 bytes')
+    if (key.length !== 32) throw new Error('key must be 32 bytes')
 
     // Initialize
     this.xsalsa = xsalsa20Stream(nonce, key)
@@ -72,9 +72,6 @@ export default class XSalsa20 {
   }
 
   update(input, output = new Uint8Array(input.length)) {
-    // Check parameter
-    if (!input || !input.length) throw new Error('input must be Uint8Array or Buffer')
-
     const stream = this.stream(input.length)
     for (let i = 0; i < input.length; ++i) output[i] = input[i] ^ stream[i]
 
