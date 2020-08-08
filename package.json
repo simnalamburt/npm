@@ -1,6 +1,6 @@
 {
   "name": "xsalsa20-csprng",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CSPRNG and crypto library powered by XSalsa20",
   "keywords": [
     "CSPRNG",
