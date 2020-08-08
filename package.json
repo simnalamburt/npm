@@ -1,6 +1,6 @@
 {
   "name": "xsalsa20-csprng",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CSPRNG and crypto library powered by XSalsa20",
   "keywords": [
     "CSPRNG",
@@ -19,6 +19,8 @@
   },
   "type": "module",
   "main": "index.js",
+  "browser": "index.js",
+  "module": "index.js",
   "files": [
     "index.js",
     "index.ts",
