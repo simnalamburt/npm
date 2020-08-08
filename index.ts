@@ -1,3 +1,18 @@
+// TODO: Web assembly is more advantageous for large inputs. Creating a web
+// assembly version.
+//
+// benchmark with 4B input, 300000 iterations:
+//   xsalsa20: 98.654ms
+//   wasm: 139.835ms
+//
+// benchmark with 4096B input, 30000 iterations:
+//   xsalsa20: 804.314ms
+//   wasm: 325.942ms
+//
+// benchmark with 41943040B input, 3 iterations:
+//   xsalsa20: 828.65ms
+//   wasm: 332.185ms
+
 const SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107])
 
 type XSalsa20Generator = Generator<Uint8Array, never, undefined>
