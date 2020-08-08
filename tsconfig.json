@@ -19,6 +19,7 @@
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true
   },
+  "exclude": ["node_modules", "docs"],
   "typedocOptions": {
     "inputFiles": ["./src"],
     "entryPoint": "\"index\"",
