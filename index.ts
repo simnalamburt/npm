@@ -67,7 +67,7 @@ function* chop(generator: XSalsa20Generator): XSalsa20GeneratorInt32 {
 }
 
 export class CSPRNG {
-  xsalsa: XSalsa20GeneratorInt32
+  private xsalsa: XSalsa20GeneratorInt32
 
   constructor(nonce: Uint8Array, key: Uint8Array) {
     this.xsalsa = chop(xsalsa20Generator(nonce, key))
@@ -114,8 +114,8 @@ export class CSPRNG {
 }
 
 export default class XSalsa20 {
-  xsalsa: XSalsa20Generator
-  buffer: Uint8Array
+  private xsalsa: XSalsa20Generator
+  private buffer: Uint8Array
 
   constructor(nonce: Uint8Array, key: Uint8Array) {
     // Check parameter
