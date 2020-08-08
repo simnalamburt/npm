@@ -18,5 +18,13 @@
     "moduleResolution": "node",
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true
+  },
+  "typedocOptions": {
+    "inputFiles": ["./src"],
+    "entryPoint": "\"index\"",
+    "excludeNotExported": true,
+    "excludePrivate:": true,
+    "mode": "module",
+    "out": "docs"
   }
 }

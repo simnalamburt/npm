@@ -9,3 +9,6 @@
 # Typescript
 *.js
 *.d.ts
+
+# Typedoc
+/docs
