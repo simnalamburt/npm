@@ -50,7 +50,7 @@ export default class XSalsa20 {
     this.buffer = new Uint8Array(0)
   }
 
-  stream(length: number) {
+  stream(length: number): Uint8Array {
     let output: Uint8Array
     let counter: number
 
@@ -90,7 +90,7 @@ export default class XSalsa20 {
     return output
   }
 
-  update(input: Uint8Array, output: Uint8Array = new Uint8Array(input.length)) {
+  update(input: Uint8Array, output: Uint8Array = new Uint8Array(input.length)): Uint8Array {
     const stream = this.stream(input.length)
     for (let i = 0; i < input.length; ++i) output[i] = input[i] ^ stream[i]
 
@@ -100,7 +100,7 @@ export default class XSalsa20 {
 }
 
 // below methods are ported from tweet nacl
-function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array) {
+function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array): void {
   const
       j0  = c[ 0] | c[ 1] << 8 | c[ 2] << 16 | c[ 3] << 24,
       j1  = k[ 0] | k[ 1] << 8 | k[ 2] << 16 | k[ 3] << 24,
@@ -294,7 +294,7 @@ function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array
   o[63] = x15 >>> 24 & 0xff
 }
 
-function core_hsalsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array) {
+function core_hsalsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array): void {
   const
       j0  = c[ 0] | c[ 1] << 8 | c[ 2] << 16 | c[ 3] << 24,
       j1  = k[ 0] | k[ 1] << 8 | k[ 2] << 16 | k[ 3] << 24,
