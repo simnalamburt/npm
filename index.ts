@@ -36,6 +36,78 @@ function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): XSalsa20Generat
   }
 }
 
+type XSalsa20GeneratorInt32 = Generator<number, never, undefined>
+function* chop(generator: XSalsa20Generator): XSalsa20GeneratorInt32 {
+  while (true) {
+    const { value: b } = generator.next()
+    yield* [
+      b[ 0] | b[ 1] << 8 | b[ 2] << 16 | b[ 3] << 24,
+      b[ 4] | b[ 5] << 8 | b[ 6] << 16 | b[ 7] << 24,
+      b[ 8] | b[ 9] << 8 | b[10] << 16 | b[11] << 24,
+      b[12] | b[13] << 8 | b[14] << 16 | b[15] << 24,
+      b[16] | b[17] << 8 | b[18] << 16 | b[19] << 24,
+      b[20] | b[21] << 8 | b[22] << 16 | b[23] << 24,
+      b[24] | b[25] << 8 | b[26] << 16 | b[27] << 24,
+      b[28] | b[29] << 8 | b[30] << 16 | b[31] << 24,
+      b[32] | b[33] << 8 | b[34] << 16 | b[35] << 24,
+      b[36] | b[37] << 8 | b[38] << 16 | b[39] << 24,
+      b[40] | b[41] << 8 | b[42] << 16 | b[43] << 24,
+      b[44] | b[45] << 8 | b[46] << 16 | b[47] << 24,
+      b[48] | b[49] << 8 | b[50] << 16 | b[51] << 24,
+      b[52] | b[53] << 8 | b[54] << 16 | b[55] << 24,
+      b[56] | b[57] << 8 | b[58] << 16 | b[59] << 24,
+      b[60] | b[61] << 8 | b[62] << 16 | b[63] << 24,
+    ]
+  }
+}
+
+export class CSPRNG {
+  xsalsa: XSalsa20GeneratorInt32
+
+  constructor(nonce: Uint8Array, key: Uint8Array) {
+    this.xsalsa = chop(xsalsa20Generator(nonce, key))
+  }
+
+  static fromBrowser(): CSPRNG {
+    const nonce = new Uint8Array(24)
+    const key = new Uint8Array(32)
+
+    window.crypto.getRandomValues(nonce)
+    window.crypto.getRandomValues(key)
+
+    return new CSPRNG(nonce, key)
+  }
+
+  static async fromNodeJS(): Promise<CSPRNG> {
+    const crypto = await import('crypto')
+    const buf = crypto.randomBytes(24 + 32)
+
+    const nonce = buf.slice(0, 24)
+    const key = buf.slice(24)
+
+    return new CSPRNG(nonce, key)
+  }
+
+  randomInt32(): number {
+    return this.xsalsa.next().value
+  }
+
+  randomUint32(): number {
+    return this.xsalsa.next().value + 2**31
+  }
+
+  uniformInt(exclusive_upper_bound: number): number {
+    if (exclusive_upper_bound < 2) return 0
+
+    const min = 2**32 % exclusive_upper_bound
+    let r: number;
+    do {
+      r = this.randomUint32()
+    } while (r < min)
+    return r % exclusive_upper_bound
+  }
+}
+
 export default class XSalsa20 {
   xsalsa: XSalsa20Generator
   buffer: Uint8Array

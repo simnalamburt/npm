@@ -7,5 +7,4 @@
 .pnp.*
 
 # Typescript
-/index.js
-/test/test.js
+*.js
