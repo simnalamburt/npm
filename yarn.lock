@@ -1786,9 +1786,9 @@ typescript@^3.9.7:
   languageName: node
   linkType: hard
 
-"xsalsa20@workspace:.":
+"xsalsa20-csprng@workspace:.":
   version: 0.0.0-use.local
-  resolution: "xsalsa20@workspace:."
+  resolution: "xsalsa20-csprng@workspace:."
   dependencies:
     "@types/mocha": ^8.0.1
     "@types/node": ^14.0.27
