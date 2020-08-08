@@ -1,13 +1,15 @@
 xsalsa20-csprng [![NPM Version]][NPM Link]
 ========
-CSPRNG and crypto library powered by XSalsa20. This library is designed to be
-small and optimized to be used as CSPRNG rather than encrypting large data.
-Thus, this library doesn't contain native code or webassembly binding to reduce
-FFI overhead.
+CSPRNG and crypto library powered by XSalsa20. Small, supports both browsers and
+Node.js, and optimized for CSPRNG usage.
 
 ```bash
 yarn add xsalsa20-csprng
 ```
+
+This library is optimized to be used as CSPRNG rather than encrypting large
+data. Thus, this library doesn't contain native code or webassembly binding to
+reduce FFI overhead.
 
 ### Usage
 #### [`class XSalsa20CSPRNG`][xsalsa20csprng]
