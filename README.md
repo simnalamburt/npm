@@ -1,7 +1,7 @@
 xsalsa20-csprng [![NPM Version]][NPM Link]
 ========
-CSPRNG and crypto library powered by XSalsa20. Small, supports both browsers and
-Node.js, and optimized for CSPRNG usage.
+CSPRNG and crypto library powered by XSalsa20. Small, fast, supports both
+browsers and Node.js, and optimized for CSPRNG usage.
 
 ```bash
 yarn add xsalsa20-csprng
@@ -20,7 +20,7 @@ import XSalsa20CSPRNG from 'xsalsa20-csprng'
 
 const rng = new XSalsa20CSPRNG()
 
-// Random 32bit int (-2147483648 ≤ x < 2147483648)
+// Random 32bit int (-2147483648 ≤ x < 2147483648), takes about 85ns per each call
 const i = rng.randomInt32()
 // Random 32bit unsigned int (0 ≤ x < 4294967296)
 const u = rng.randomUint32()
