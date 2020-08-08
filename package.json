@@ -24,6 +24,7 @@
     "index.ts",
     "index.d.ts"
   ],
+  "sideEffects": false,
   "devDependencies": {
     "@types/mocha": "^8.0.1",
     "@types/node": "^14.0.27",
