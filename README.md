@@ -24,7 +24,7 @@ const rng = new XSalsa20CSPRNG()
 const i = rng.randomInt32()
 // Random 32bit unsigned int (0 ≤ x < 4294967296)
 const u = rng.randomUint32()
-// Random int of desired range
+// Random int of desired range (0 ≤ x < 10)
 const n = rng.uniformInt(10)
 
 // You can use fixed nonce and key
