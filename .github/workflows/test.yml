@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: ['10', '12', '14']
+        node: ['14']
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -16,3 +16,19 @@ jobs:
       - run: yarn
       - run: yarn build
       - run: yarn test
+
+  testWithExperimentalFlag:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['12']
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: yarn
+      - run: yarn build
+      - run: yarn test
+        env:
+          NODE_OPTIONS: --experimental-modules
