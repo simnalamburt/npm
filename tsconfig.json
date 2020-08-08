@@ -4,6 +4,7 @@
     "lib": ["dom", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
+    "declaration": true,
 
     // Strict Typecheck
     "strict": true,

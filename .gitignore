@@ -8,3 +8,4 @@
 
 # Typescript
 *.js
+*.d.ts
