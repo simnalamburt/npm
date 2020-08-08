@@ -14,30 +14,30 @@ yarn add xsalsa20-csprng
 See [reference][csprng] for the further details.
 
 ```js
-import { CSPRNG } from 'xsalsa20-csprng'
+import CSPRNG from 'xsalsa20-csprng'
 
-// In browser
-const rng = CSPRNG.fromBrowser()
-// In Node.js
-const rng = await CSPRNG.fromNodeJS()
-// Fixed nonce and key
-const rng = new CSPRNG(nonce, key)
+const rng = new CSPRNG()
 
 // Random 32bit int (-2147483648 ≤ x < 2147483648)
 const i = rng.randomInt32()
-
 // Random 32bit unsigned int (0 ≤ x < 4294967296)
 const u = rng.randomUint32()
-
 // Random int of desired range
 const n = rng.uniformInt(10)
+
+// You can use fixed nonce and key
+const deterministic = CSPRNG.of(nonce, key)
+// Fixed nonce and key will result in deterministic output
+console.log(deterministic.randomInt32())
+console.log(deterministic.randomInt32())
+console.log(deterministic.randomInt32())
 ```
 
 #### [`class XSalsa20`][xsalsa20]
 See [reference][xsalsa20] for the further details.
 
 ```js
-import XSalsa20 from 'xsalsa20-csprng'
+import { XSalsa20 } from 'xsalsa20-csprng'
 
 const nonce = new Uint8Array([/* nonce with 24 bytes */])
 const key = new Uint8Array([/* key with 32 bytes */])
@@ -67,8 +67,8 @@ License (Version 2.0)] and the [MIT license]. See [COPYRIGHT] for details.
 [NPM Version]: https://badgen.net/npm/v/xsalsa20-csprng
 [NPM Link]: https://www.npmjs.com/package/xsalsa20-csprng
 
-[xsalsa20]: https://simnalamburt.github.io/xsalsa20-csprng/classes/_index_.xsalsa20.html
-[csprng]: https://simnalamburt.github.io/xsalsa20-csprng/classes/_index_.csprng.html
+[csprng]: https://simnalamburt.github.io/xsalsa20-csprng/classes/csprng.html
+[xsalsa20]: https://simnalamburt.github.io/xsalsa20-csprng/classes/xsalsa20.html
 
 [Apache License (Version 2.0)]: LICENSE-APACHE
 [MIT license]: LICENSE-MIT

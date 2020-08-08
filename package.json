@@ -18,9 +18,9 @@
     "url": "https://github.com/simnalamburt/xsalsa20-csprng.git"
   },
   "type": "module",
-  "main": "src/index.js",
-  "browser": "src/index.js",
-  "module": "src/index.js",
+  "main": "src/index.nodejs.js",
+  "browser": "src/index.browser.js",
+  "module": "src/index.nodejs.js",
   "files": [
     "src/index.js",
     "src/index.ts",
@@ -36,6 +36,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "mocha"
+    "test": "mocha",
+    "doc": "typedoc"
   }
 }

@@ -21,11 +21,10 @@
   },
   "exclude": ["node_modules", "docs"],
   "typedocOptions": {
-    "inputFiles": ["./src"],
-    "entryPoint": "\"index\"",
+    "inputFiles": ["./src/index.nodejs.ts"],
     "excludeNotExported": true,
     "excludePrivate:": true,
-    "mode": "module",
+    "mode": "file",
     "out": "docs"
   }
 }

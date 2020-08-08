@@ -41,8 +41,10 @@ function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): XSalsa20Generat
   }
 }
 
-type XSalsa20GeneratorInt32 = Generator<number, never, undefined>
-function* chop(generator: XSalsa20Generator): XSalsa20GeneratorInt32 {
+export type XSalsa20GeneratorInt32 = Generator<number, never, undefined>
+export function* xsalsa20GeneratorInt32(nonce: Uint8Array, key: Uint8Array): XSalsa20GeneratorInt32 {
+  const generator = xsalsa20Generator(nonce, key)
+
   while (true) {
     const { value: b } = generator.next()
     yield* [
@@ -66,54 +68,7 @@ function* chop(generator: XSalsa20Generator): XSalsa20GeneratorInt32 {
   }
 }
 
-export class CSPRNG {
-  private xsalsa: XSalsa20GeneratorInt32
-
-  constructor(nonce: Uint8Array, key: Uint8Array) {
-    this.xsalsa = chop(xsalsa20Generator(nonce, key))
-  }
-
-  static fromBrowser(): CSPRNG {
-    const nonce = new Uint8Array(24)
-    const key = new Uint8Array(32)
-
-    window.crypto.getRandomValues(nonce)
-    window.crypto.getRandomValues(key)
-
-    return new CSPRNG(nonce, key)
-  }
-
-  static async fromNodeJS(): Promise<CSPRNG> {
-    const crypto = await import('crypto')
-    const buf = crypto.randomBytes(24 + 32)
-
-    const nonce = buf.slice(0, 24)
-    const key = buf.slice(24)
-
-    return new CSPRNG(nonce, key)
-  }
-
-  randomInt32(): number {
-    return this.xsalsa.next().value
-  }
-
-  randomUint32(): number {
-    return this.xsalsa.next().value + 2**31
-  }
-
-  uniformInt(exclusive_upper_bound: number): number {
-    if (exclusive_upper_bound < 2) return 0
-
-    const min = 2**32 % exclusive_upper_bound
-    let r: number;
-    do {
-      r = this.randomUint32()
-    } while (r < min)
-    return r % exclusive_upper_bound
-  }
-}
-
-export default class XSalsa20 {
+export class XSalsa20 {
   private xsalsa: XSalsa20Generator
   private buffer: Uint8Array
 
