@@ -1,6 +1,6 @@
 import { xsalsa20GeneratorInt32, XSalsa20GeneratorInt32, XSalsa20 } from './common.js'
 
-export default class CSPRNG {
+export default class XSalsa20CSPRNG {
   private xsalsa: XSalsa20GeneratorInt32
 
   constructor() {
@@ -13,7 +13,7 @@ export default class CSPRNG {
   }
 
   static of(nonce: Uint8Array, key: Uint8Array) {
-    const self = Object.create(CSPRNG.prototype)
+    const self = Object.create(XSalsa20CSPRNG.prototype)
     self.xsalsa = xsalsa20GeneratorInt32(nonce, key)
     return self
   }

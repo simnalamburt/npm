@@ -1,12 +1,12 @@
 import assert from 'assert'
-import CSPRNG from '../src/index.nodejs.js'
+import XSalsa20CSPRNG from '../src/index.nodejs.js'
 
 const zero_nonce = new Uint8Array(24)
 const zero_key = new Uint8Array(32)
 
-describe('class CSPRNG', () => {
+describe('class XSalsa20CSPRNG', () => {
   it('randomInt32', () => {
-    const rng = CSPRNG.of(zero_nonce, zero_key)
+    const rng = XSalsa20CSPRNG.of(zero_nonce, zero_key)
 
     for (let i = 0; i < 10000; ++i) {
       const v = rng.randomInt32()
@@ -17,7 +17,7 @@ describe('class CSPRNG', () => {
   })
 
   it('randomUint32', () => {
-    const rng = CSPRNG.of(zero_nonce, zero_key)
+    const rng = XSalsa20CSPRNG.of(zero_nonce, zero_key)
 
     for (let i = 0; i < 10000; ++i) {
       const v = rng.randomUint32()
@@ -28,7 +28,7 @@ describe('class CSPRNG', () => {
   })
 
   it('randomUniform', () => {
-    const rng = CSPRNG.of(zero_nonce, zero_key)
+    const rng = XSalsa20CSPRNG.of(zero_nonce, zero_key)
 
     for (let i = 0; i < 10000; ++i) {
       const v = rng.uniformInt(10)
