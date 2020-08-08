@@ -13,12 +13,17 @@
 //   xsalsa20: 828.65ms
 //   wasm: 332.185ms
 
-const SIGMA = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107])
-
 type XSalsa20Generator = Generator<Uint8Array, never, undefined>
 function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): XSalsa20Generator {
   const s = new Uint8Array(32)
   const z = new Uint8Array(16)
+  const SIGMA = new Uint8Array([
+    0x65, 0x78, 0x70, 0x61,
+    0x6e, 0x64, 0x20, 0x33,
+    0x32, 0x2d, 0x62, 0x79,
+    0x74, 0x65, 0x20, 0x6b,
+  ])
+
   core_hsalsa20(s, nonce, key, SIGMA)
   for (let i = 0; i < 8; i++) z[i] = nonce[i + 16]
 
