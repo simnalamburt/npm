@@ -76,71 +76,73 @@ const LIBSODIUM_TEST_CIPHER_2 = Buffer.from([
   0x2d, 0x65, 0x1f, 0xa4, 0xc8, 0xcf, 0xf8, 0x80
 ])
 
-it('libsodium fixture', () => {
-  const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
-  const output = Buffer.alloc(LIBSODIUM_TEST_MESSAGE.length)
-  xor.update(LIBSODIUM_TEST_MESSAGE, output)
-  assert(output.slice(32).equals(LIBSODIUM_TEST_CIPHER))
-})
+describe('class XSalsa20', () => {
+  it('libsodium fixture', () => {
+    const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
+    const output = Buffer.alloc(LIBSODIUM_TEST_MESSAGE.length)
+    xor.update(LIBSODIUM_TEST_MESSAGE, output)
+    assert(output.slice(32).equals(LIBSODIUM_TEST_CIPHER))
+  })
 
-it('libsodium fixture partial', () => {
-  const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
-  const output = Buffer.alloc(LIBSODIUM_TEST_MESSAGE.length)
+  it('libsodium fixture partial', () => {
+    const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
+    const output = Buffer.alloc(LIBSODIUM_TEST_MESSAGE.length)
 
-  for (let i = 0; i < output.length; i++) {
-    xor.update(LIBSODIUM_TEST_MESSAGE.slice(i, i + 1), output.slice(i, i + 1))
-  }
+    for (let i = 0; i < output.length; i++) {
+      xor.update(LIBSODIUM_TEST_MESSAGE.slice(i, i + 1), output.slice(i, i + 1))
+    }
 
-  assert(output.slice(32).equals(LIBSODIUM_TEST_CIPHER))
-})
+    assert(output.slice(32).equals(LIBSODIUM_TEST_CIPHER))
+  })
 
-it('libsodium fixture partial (random chunks)', () => {
-  const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
-  const output = Buffer.alloc(LIBSODIUM_TEST_MESSAGE.length)
-  let i = 0
+  it('libsodium fixture partial (random chunks)', () => {
+    const xor = new XSalsa20(LIBSODIUM_TEST_NONCE, LIBSODIUM_TEST_KEY)
+    const output = Buffer.alloc(LIBSODIUM_TEST_MESSAGE.length)
+    let i = 0
 
-  while (i < output.length) {
-    const end = i + Math.floor(Math.random() * 128)
-    xor.update(LIBSODIUM_TEST_MESSAGE.slice(i, end), output.slice(i, end))
-    i = end
-  }
+    while (i < output.length) {
+      const end = i + Math.floor(Math.random() * 128)
+      xor.update(LIBSODIUM_TEST_MESSAGE.slice(i, end), output.slice(i, end))
+      i = end
+    }
 
-  assert(output.slice(32).equals(LIBSODIUM_TEST_CIPHER))
-})
+    assert(output.slice(32).equals(LIBSODIUM_TEST_CIPHER))
+  })
 
-it('libsodium crypto_stream fixture', () => {
-  const xor = new XSalsa20(LIBSODIUM_TEST_NONCE_2, LIBSODIUM_TEST_KEY_2)
-  const output = Buffer.alloc(LIBSODIUM_TEST_CIPHER_2.length)
-  output.fill(0)
-  xor.update(output, output)
-  assert(output.equals(LIBSODIUM_TEST_CIPHER_2))
-})
+  it('libsodium crypto_stream fixture', () => {
+    const xor = new XSalsa20(LIBSODIUM_TEST_NONCE_2, LIBSODIUM_TEST_KEY_2)
+    const output = Buffer.alloc(LIBSODIUM_TEST_CIPHER_2.length)
+    output.fill(0)
+    xor.update(output, output)
+    assert(output.equals(LIBSODIUM_TEST_CIPHER_2))
+  })
 
-it('encrypt and decrypt basic', () => {
-  const key = crypto.randomBytes(32)
-  const nonce = crypto.randomBytes(24)
-  const cipher = Buffer.from('hello world')
+  it('encrypt and decrypt basic', () => {
+    const key = crypto.randomBytes(32)
+    const nonce = crypto.randomBytes(24)
+    const cipher = Buffer.from('hello world')
 
-  const a = new XSalsa20(nonce, key)
-  a.update(cipher, cipher)
-  assert(!cipher.equals(Buffer.from('hello world')))
+    const a = new XSalsa20(nonce, key)
+    a.update(cipher, cipher)
+    assert(!cipher.equals(Buffer.from('hello world')))
 
-  const b = new XSalsa20(nonce, key)
-  b.update(cipher, cipher)
-  assert(cipher.equals(Buffer.from('hello world')))
-})
+    const b = new XSalsa20(nonce, key)
+    b.update(cipher, cipher)
+    assert(cipher.equals(Buffer.from('hello world')))
+  })
 
-it('encrypt and decrypt', () => {
-  const key = crypto.randomBytes(32)
-  const nonce = crypto.randomBytes(24)
-  const message = crypto.randomBytes(10000)
-  const cipher = Buffer.alloc(10000)
+  it('encrypt and decrypt', () => {
+    const key = crypto.randomBytes(32)
+    const nonce = crypto.randomBytes(24)
+    const message = crypto.randomBytes(10000)
+    const cipher = Buffer.alloc(10000)
 
-  let xor = new XSalsa20(nonce, key)
-  xor.update(cipher, message)
-  assert(!cipher.equals(message))
+    let xor = new XSalsa20(nonce, key)
+    xor.update(cipher, message)
+    assert(!cipher.equals(message))
 
-  xor = new XSalsa20(nonce, key)
-  xor.update(cipher, cipher)
-  assert(cipher.equals(message))
+    xor = new XSalsa20(nonce, key)
+    xor.update(cipher, cipher)
+    assert(cipher.equals(message))
+  })
 })
