@@ -1,3 +1,21 @@
 {
-  "license": "(APACHE-2.0 OR MIT)"
+  "name": "hangul-josa",
+  "version": "0.1.0",
+  "description": "Let's handle 은/는, 을/를, 이/가, 와/과 with ease using modern javascript syntax!",
+  "keywords": [
+    "Hangul",
+    "Korean",
+    "josa",
+    "postposition"
+  ],
+  "homepage": "https://github.com/simnalamburt/hangul-josa",
+  "bugs": {
+    "url": "https://github.com/simnalamburt/hangul-josa/issues"
+  },
+  "license": "(APACHE-2.0 OR MIT)",
+  "author": "Hyeon Kim <simnalamburt@gmail.com> (https://hyeon.me)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simnalamburt/hangul-josa.git"
+  }
 }
