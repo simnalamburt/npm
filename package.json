@@ -17,5 +17,17 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/simnalamburt/hangul-josa.git"
+  },
+  "source": "src/index.ts",
+  "main": "dist/hangul-josa.js",
+  "module": "dist/hangul-josa.modern.js",
+  "esmodule": "dist/hangul-josa.modern.js",
+  "unpkg": "dist/hangul-josa.umd.js",
+  "devDependencies": {
+    "microbundle": "^0.12.3"
+  },
+  "scripts": {
+    "build": "microbundle -f cjs,modern,umd",
+    "dev": "microbundle -f cjs,modern,umd watch"
   }
 }

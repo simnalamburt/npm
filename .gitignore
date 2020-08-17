@@ -5,3 +5,9 @@
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# microbundle
+/dist/
+
+# typescript
+/node_modules/
