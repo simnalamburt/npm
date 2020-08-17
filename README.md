@@ -4,6 +4,12 @@ hangul-josa
 
 Let's handle 은/는, 을/를, 이/가, 와/과 with ease using modern javascript syntax!
 
+### TODOs
+- [ ] Fast and lightweight (&lt;XX bytes)
+- [ ] Utilizes modern JS, easy and simple to use
+- [ ] Supports legacy browsers
+- [ ] Tree-shakeable, side-effect free, and no dependencies (Link to bundlephobia)
+
 &nbsp;
 
 --------
