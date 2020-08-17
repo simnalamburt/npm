@@ -28,10 +28,12 @@
   ],
   "sideEffects": false,
   "devDependencies": {
+    "ava": "^3.11.1",
     "microbundle": "^0.12.3"
   },
   "scripts": {
     "build": "microbundle -f cjs,modern,umd",
-    "dev": "microbundle -f cjs,modern,umd watch"
+    "dev": "microbundle -f cjs,modern,umd watch",
+    "test": "ava"
   }
 }
