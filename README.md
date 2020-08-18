@@ -48,7 +48,7 @@ gulp.task('slm', _ => {
 
 <br>
 
-### Developer manuel
+### Developer manual
 
 [![buildstat-i]][travis]
 [![coverage-i]][coveralls]
