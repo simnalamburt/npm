@@ -3415,6 +3415,7 @@ fsevents@~2.1.2:
   dependencies:
     ava: ^3.11.1
     microbundle: ^0.12.3
+    prettier: ^2.0.5
     sucrase: ^3.15.0
     typescript: ^3.9.7
   languageName: unknown
@@ -5493,6 +5494,15 @@ fsevents@~2.1.2:
   version: 2.0.0
   resolution: "prepend-http@npm:2.0.0"
   checksum: d39325775adce38e18213fd19656af4abd7672ef6b1e330437079bb237de011d49a70bfb56b35037603d30ef279cceddb33794f70168582d50845c2ade29968e
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "prettier@npm:2.0.5"
+  bin:
+    prettier: bin-prettier.js
+  checksum: d249d89361870a29b20e8b268cb09e908490b8c9e21f70393d12a213701f29ba7e95b7f9ce0ad63929c16ce475176742481911737ae3da4a498873e4a3b90990
   languageName: node
   linkType: hard
 
