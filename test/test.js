@@ -11,7 +11,7 @@ const gulp = require('gulp');
 const File = require('vinyl');
 const PluginError = require('plugin-error');
 
-const expect = require('chai').expect;
+const assert = require('assert');
 
 //
 // Absolute path of fixtures/helloworld.slm
@@ -47,9 +47,9 @@ function expectStream(options) {
   const ext = '.html';
 
   return through.obj((file, enc, cb) => {
-    expect(expected).to.be.eql(String(file.contents));
-    expect(extname(file.path)).to.be.eql(ext);
-    expect(extname(file.relative)).to.be.eql(file.relative ? ext : '');
+    assert.equal(expected, String(file.contents));
+    assert.equal(extname(file.path), ext);
+    assert.equal(extname(file.relative), file.relative ? ext : '');
 
     return cb();
   });
@@ -124,7 +124,7 @@ describe('gulp-slm', () => {
       .pipe(slm())
       .pipe(
         through.obj((file, enc, cb) => {
-          expect(file.contents).to.be.an.instanceOf(Buffer);
+          assert(file.contents instanceof Buffer);
           return cb();
         }),
       );
@@ -134,7 +134,7 @@ describe('gulp-slm', () => {
     const stream = slm();
 
     stream.on('error', err => {
-      expect(err).to.be.an.instanceOf(PluginError);
+      assert(err instanceof PluginError);
     });
     stream.write(
       new File({
