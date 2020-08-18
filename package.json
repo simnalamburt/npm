@@ -30,6 +30,7 @@
     "mocha": "^8.1.1",
     "prettier": "^2.0.5",
     "replace-ext": "^2.0.0",
+    "typescript": "^3.9.7",
     "vinyl": "^2.2.0"
   },
   "scripts": {
@@ -38,7 +39,7 @@
     "test": "mocha && prettier --check .",
     "fmt": "prettier --write ."
   },
-  "source": "src/index.js",
+  "source": "src/index.ts",
   "main": "dist/gulp-slm.js",
   "module": "dist/gulp-slm.modern.js",
   "files": [

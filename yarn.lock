@@ -3759,6 +3759,7 @@ fsevents@~2.1.2:
     replace-ext: ^2.0.0
     slm: ">=0.6.0"
     through2: ^4.0.2
+    typescript: ^3.9.7
     vinyl: ^2.2.0
   languageName: unknown
   linkType: soft
@@ -7825,7 +7826,7 @@ resolve@1.12.0:
   languageName: node
   linkType: hard
 
-typescript@^3.9.5:
+"typescript@^3.9.5, typescript@^3.9.7":
   version: 3.9.7
   resolution: "typescript@npm:3.9.7"
   bin:
@@ -7835,7 +7836,7 @@ typescript@^3.9.5:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^3.9.5#builtin<compat/typescript>":
+"typescript@patch:typescript@^3.9.5#builtin<compat/typescript>, typescript@patch:typescript@^3.9.7#builtin<compat/typescript>":
   version: 3.9.7
   resolution: "typescript@patch:typescript@npm%3A3.9.7#builtin<compat/typescript>::version=3.9.7&hash=5b02a2"
   bin:
