@@ -1,4 +1,8 @@
-import { xsalsa20GeneratorInt32, XSalsa20GeneratorInt32, XSalsa20 } from './common.js'
+import {
+  xsalsa20GeneratorInt32,
+  XSalsa20GeneratorInt32,
+  XSalsa20,
+} from './common.js'
 
 export default class XSalsa20CSPRNG {
   private xsalsa: XSalsa20GeneratorInt32
@@ -23,14 +27,14 @@ export default class XSalsa20CSPRNG {
   }
 
   randomUint32(): number {
-    return this.xsalsa.next().value + 2**31
+    return this.xsalsa.next().value + 2 ** 31
   }
 
   uniformInt(exclusive_upper_bound: number): number {
     if (exclusive_upper_bound < 2) return 0
 
-    const min = 2**32 % exclusive_upper_bound
-    let r: number;
+    const min = 2 ** 32 % exclusive_upper_bound
+    let r: number
     do {
       r = this.randomUint32()
     } while (r < min)

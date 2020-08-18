@@ -14,7 +14,10 @@
 //   wasm: 332.185ms
 
 type XSalsa20Generator = Generator<Uint8Array, never, undefined>
-function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): XSalsa20Generator {
+function* xsalsa20Generator(
+  nonce: Uint8Array,
+  key: Uint8Array
+): XSalsa20Generator {
   const s = new Uint8Array(32)
   const z = new Uint8Array(16)
   // prettier-ignore
@@ -41,7 +44,10 @@ function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): XSalsa20Generat
 }
 
 export type XSalsa20GeneratorInt32 = Generator<number, never, undefined>
-export function* xsalsa20GeneratorInt32(nonce: Uint8Array, key: Uint8Array): XSalsa20GeneratorInt32 {
+export function* xsalsa20GeneratorInt32(
+  nonce: Uint8Array,
+  key: Uint8Array
+): XSalsa20GeneratorInt32 {
   const generator = xsalsa20Generator(nonce, key)
 
   while (true) {
@@ -122,7 +128,10 @@ export class XSalsa20 {
     return output
   }
 
-  update(input: Uint8Array, output: Uint8Array = new Uint8Array(input.length)): Uint8Array {
+  update(
+    input: Uint8Array,
+    output: Uint8Array = new Uint8Array(input.length)
+  ): Uint8Array {
     const stream = this.stream(input.length)
     for (let i = 0; i < input.length; ++i) output[i] = input[i] ^ stream[i]
 
@@ -132,7 +141,12 @@ export class XSalsa20 {
 }
 
 // below methods are ported from tweet nacl
-function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array): void {
+function core_salsa20(
+  o: Uint8Array,
+  p: Uint8Array,
+  k: Uint8Array,
+  c: Uint8Array
+): void {
   // prettier-ignore
   const
     j0  = c[ 0] | (c[ 1] << 8) | (c[ 2] << 16) | (c[ 3] << 24),
@@ -158,177 +172,182 @@ function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array
       x15 = j15, u: number
 
   for (let i = 0; i < 20; i += 2) {
-    u = x0 + x12 | 0
-    x4 ^= u << 7 | u >>> 25
-    u = x4 + x0 | 0
-    x8 ^= u << 9 | u >>> 23
-    u = x8 + x4 | 0
-    x12 ^= u << 13 | u >>> 19
-    u = x12 + x8 | 0
-    x0 ^= u << 18 | u >>> 14
+    u = (x0 + x12) | 0
+    x4 ^= (u << 7) | (u >>> 25)
+    u = (x4 + x0) | 0
+    x8 ^= (u << 9) | (u >>> 23)
+    u = (x8 + x4) | 0
+    x12 ^= (u << 13) | (u >>> 19)
+    u = (x12 + x8) | 0
+    x0 ^= (u << 18) | (u >>> 14)
 
-    u = x5 + x1 | 0
-    x9 ^= u << 7 | u >>> 25
-    u = x9 + x5 | 0
-    x13 ^= u << 9 | u >>> 23
-    u = x13 + x9 | 0
-    x1 ^= u << 13 | u >>> 19
-    u = x1 + x13 | 0
-    x5 ^= u << 18 | u >>> 14
+    u = (x5 + x1) | 0
+    x9 ^= (u << 7) | (u >>> 25)
+    u = (x9 + x5) | 0
+    x13 ^= (u << 9) | (u >>> 23)
+    u = (x13 + x9) | 0
+    x1 ^= (u << 13) | (u >>> 19)
+    u = (x1 + x13) | 0
+    x5 ^= (u << 18) | (u >>> 14)
 
-    u = x10 + x6 | 0
-    x14 ^= u << 7 | u >>> 25
-    u = x14 + x10 | 0
-    x2 ^= u << 9 | u >>> 23
-    u = x2 + x14 | 0
-    x6 ^= u << 13 | u >>> 19
-    u = x6 + x2 | 0
-    x10 ^= u << 18 | u >>> 14
+    u = (x10 + x6) | 0
+    x14 ^= (u << 7) | (u >>> 25)
+    u = (x14 + x10) | 0
+    x2 ^= (u << 9) | (u >>> 23)
+    u = (x2 + x14) | 0
+    x6 ^= (u << 13) | (u >>> 19)
+    u = (x6 + x2) | 0
+    x10 ^= (u << 18) | (u >>> 14)
 
-    u = x15 + x11 | 0
-    x3 ^= u << 7 | u >>> 25
-    u = x3 + x15 | 0
-    x7 ^= u << 9 | u >>> 23
-    u = x7 + x3 | 0
-    x11 ^= u << 13 | u >>> 19
-    u = x11 + x7 | 0
-    x15 ^= u << 18 | u >>> 14
+    u = (x15 + x11) | 0
+    x3 ^= (u << 7) | (u >>> 25)
+    u = (x3 + x15) | 0
+    x7 ^= (u << 9) | (u >>> 23)
+    u = (x7 + x3) | 0
+    x11 ^= (u << 13) | (u >>> 19)
+    u = (x11 + x7) | 0
+    x15 ^= (u << 18) | (u >>> 14)
 
-    u = x0 + x3 | 0
-    x1 ^= u << 7 | u >>> 25
-    u = x1 + x0 | 0
-    x2 ^= u << 9 | u >>> 23
-    u = x2 + x1 | 0
-    x3 ^= u << 13 | u >>> 19
-    u = x3 + x2 | 0
-    x0 ^= u << 18 | u >>> 14
+    u = (x0 + x3) | 0
+    x1 ^= (u << 7) | (u >>> 25)
+    u = (x1 + x0) | 0
+    x2 ^= (u << 9) | (u >>> 23)
+    u = (x2 + x1) | 0
+    x3 ^= (u << 13) | (u >>> 19)
+    u = (x3 + x2) | 0
+    x0 ^= (u << 18) | (u >>> 14)
 
-    u = x5 + x4 | 0
-    x6 ^= u << 7 | u >>> 25
-    u = x6 + x5 | 0
-    x7 ^= u << 9 | u >>> 23
-    u = x7 + x6 | 0
-    x4 ^= u << 13 | u >>> 19
-    u = x4 + x7 | 0
-    x5 ^= u << 18 | u >>> 14
+    u = (x5 + x4) | 0
+    x6 ^= (u << 7) | (u >>> 25)
+    u = (x6 + x5) | 0
+    x7 ^= (u << 9) | (u >>> 23)
+    u = (x7 + x6) | 0
+    x4 ^= (u << 13) | (u >>> 19)
+    u = (x4 + x7) | 0
+    x5 ^= (u << 18) | (u >>> 14)
 
-    u = x10 + x9 | 0
-    x11 ^= u << 7 | u >>> 25
-    u = x11 + x10 | 0
-    x8 ^= u << 9 | u >>> 23
-    u = x8 + x11 | 0
-    x9 ^= u << 13 | u >>> 19
-    u = x9 + x8 | 0
-    x10 ^= u << 18 | u >>> 14
+    u = (x10 + x9) | 0
+    x11 ^= (u << 7) | (u >>> 25)
+    u = (x11 + x10) | 0
+    x8 ^= (u << 9) | (u >>> 23)
+    u = (x8 + x11) | 0
+    x9 ^= (u << 13) | (u >>> 19)
+    u = (x9 + x8) | 0
+    x10 ^= (u << 18) | (u >>> 14)
 
-    u = x15 + x14 | 0
-    x12 ^= u << 7 | u >>> 25
-    u = x12 + x15 | 0
-    x13 ^= u << 9 | u >>> 23
-    u = x13 + x12 | 0
-    x14 ^= u << 13 | u >>> 19
-    u = x14 + x13 | 0
-    x15 ^= u << 18 | u >>> 14
+    u = (x15 + x14) | 0
+    x12 ^= (u << 7) | (u >>> 25)
+    u = (x12 + x15) | 0
+    x13 ^= (u << 9) | (u >>> 23)
+    u = (x13 + x12) | 0
+    x14 ^= (u << 13) | (u >>> 19)
+    u = (x14 + x13) | 0
+    x15 ^= (u << 18) | (u >>> 14)
   }
-   x0 =  x0 +  j0 | 0
-   x1 =  x1 +  j1 | 0
-   x2 =  x2 +  j2 | 0
-   x3 =  x3 +  j3 | 0
-   x4 =  x4 +  j4 | 0
-   x5 =  x5 +  j5 | 0
-   x6 =  x6 +  j6 | 0
-   x7 =  x7 +  j7 | 0
-   x8 =  x8 +  j8 | 0
-   x9 =  x9 +  j9 | 0
-  x10 = x10 + j10 | 0
-  x11 = x11 + j11 | 0
-  x12 = x12 + j12 | 0
-  x13 = x13 + j13 | 0
-  x14 = x14 + j14 | 0
-  x15 = x15 + j15 | 0
+  x0 = (x0 + j0) | 0
+  x1 = (x1 + j1) | 0
+  x2 = (x2 + j2) | 0
+  x3 = (x3 + j3) | 0
+  x4 = (x4 + j4) | 0
+  x5 = (x5 + j5) | 0
+  x6 = (x6 + j6) | 0
+  x7 = (x7 + j7) | 0
+  x8 = (x8 + j8) | 0
+  x9 = (x9 + j9) | 0
+  x10 = (x10 + j10) | 0
+  x11 = (x11 + j11) | 0
+  x12 = (x12 + j12) | 0
+  x13 = (x13 + j13) | 0
+  x14 = (x14 + j14) | 0
+  x15 = (x15 + j15) | 0
 
-  o[ 0] = x0 >>>  0 & 0xff
-  o[ 1] = x0 >>>  8 & 0xff
-  o[ 2] = x0 >>> 16 & 0xff
-  o[ 3] = x0 >>> 24 & 0xff
+  o[0] = (x0 >>> 0) & 0xff
+  o[1] = (x0 >>> 8) & 0xff
+  o[2] = (x0 >>> 16) & 0xff
+  o[3] = (x0 >>> 24) & 0xff
 
-  o[ 4] = x1 >>>  0 & 0xff
-  o[ 5] = x1 >>>  8 & 0xff
-  o[ 6] = x1 >>> 16 & 0xff
-  o[ 7] = x1 >>> 24 & 0xff
+  o[4] = (x1 >>> 0) & 0xff
+  o[5] = (x1 >>> 8) & 0xff
+  o[6] = (x1 >>> 16) & 0xff
+  o[7] = (x1 >>> 24) & 0xff
 
-  o[ 8] = x2 >>>  0 & 0xff
-  o[ 9] = x2 >>>  8 & 0xff
-  o[10] = x2 >>> 16 & 0xff
-  o[11] = x2 >>> 24 & 0xff
+  o[8] = (x2 >>> 0) & 0xff
+  o[9] = (x2 >>> 8) & 0xff
+  o[10] = (x2 >>> 16) & 0xff
+  o[11] = (x2 >>> 24) & 0xff
 
-  o[12] = x3 >>>  0 & 0xff
-  o[13] = x3 >>>  8 & 0xff
-  o[14] = x3 >>> 16 & 0xff
-  o[15] = x3 >>> 24 & 0xff
+  o[12] = (x3 >>> 0) & 0xff
+  o[13] = (x3 >>> 8) & 0xff
+  o[14] = (x3 >>> 16) & 0xff
+  o[15] = (x3 >>> 24) & 0xff
 
-  o[16] = x4 >>>  0 & 0xff
-  o[17] = x4 >>>  8 & 0xff
-  o[18] = x4 >>> 16 & 0xff
-  o[19] = x4 >>> 24 & 0xff
+  o[16] = (x4 >>> 0) & 0xff
+  o[17] = (x4 >>> 8) & 0xff
+  o[18] = (x4 >>> 16) & 0xff
+  o[19] = (x4 >>> 24) & 0xff
 
-  o[20] = x5 >>>  0 & 0xff
-  o[21] = x5 >>>  8 & 0xff
-  o[22] = x5 >>> 16 & 0xff
-  o[23] = x5 >>> 24 & 0xff
+  o[20] = (x5 >>> 0) & 0xff
+  o[21] = (x5 >>> 8) & 0xff
+  o[22] = (x5 >>> 16) & 0xff
+  o[23] = (x5 >>> 24) & 0xff
 
-  o[24] = x6 >>>  0 & 0xff
-  o[25] = x6 >>>  8 & 0xff
-  o[26] = x6 >>> 16 & 0xff
-  o[27] = x6 >>> 24 & 0xff
+  o[24] = (x6 >>> 0) & 0xff
+  o[25] = (x6 >>> 8) & 0xff
+  o[26] = (x6 >>> 16) & 0xff
+  o[27] = (x6 >>> 24) & 0xff
 
-  o[28] = x7 >>>  0 & 0xff
-  o[29] = x7 >>>  8 & 0xff
-  o[30] = x7 >>> 16 & 0xff
-  o[31] = x7 >>> 24 & 0xff
+  o[28] = (x7 >>> 0) & 0xff
+  o[29] = (x7 >>> 8) & 0xff
+  o[30] = (x7 >>> 16) & 0xff
+  o[31] = (x7 >>> 24) & 0xff
 
-  o[32] = x8 >>>  0 & 0xff
-  o[33] = x8 >>>  8 & 0xff
-  o[34] = x8 >>> 16 & 0xff
-  o[35] = x8 >>> 24 & 0xff
+  o[32] = (x8 >>> 0) & 0xff
+  o[33] = (x8 >>> 8) & 0xff
+  o[34] = (x8 >>> 16) & 0xff
+  o[35] = (x8 >>> 24) & 0xff
 
-  o[36] = x9 >>>  0 & 0xff
-  o[37] = x9 >>>  8 & 0xff
-  o[38] = x9 >>> 16 & 0xff
-  o[39] = x9 >>> 24 & 0xff
+  o[36] = (x9 >>> 0) & 0xff
+  o[37] = (x9 >>> 8) & 0xff
+  o[38] = (x9 >>> 16) & 0xff
+  o[39] = (x9 >>> 24) & 0xff
 
-  o[40] = x10 >>>  0 & 0xff
-  o[41] = x10 >>>  8 & 0xff
-  o[42] = x10 >>> 16 & 0xff
-  o[43] = x10 >>> 24 & 0xff
+  o[40] = (x10 >>> 0) & 0xff
+  o[41] = (x10 >>> 8) & 0xff
+  o[42] = (x10 >>> 16) & 0xff
+  o[43] = (x10 >>> 24) & 0xff
 
-  o[44] = x11 >>>  0 & 0xff
-  o[45] = x11 >>>  8 & 0xff
-  o[46] = x11 >>> 16 & 0xff
-  o[47] = x11 >>> 24 & 0xff
+  o[44] = (x11 >>> 0) & 0xff
+  o[45] = (x11 >>> 8) & 0xff
+  o[46] = (x11 >>> 16) & 0xff
+  o[47] = (x11 >>> 24) & 0xff
 
-  o[48] = x12 >>>  0 & 0xff
-  o[49] = x12 >>>  8 & 0xff
-  o[50] = x12 >>> 16 & 0xff
-  o[51] = x12 >>> 24 & 0xff
+  o[48] = (x12 >>> 0) & 0xff
+  o[49] = (x12 >>> 8) & 0xff
+  o[50] = (x12 >>> 16) & 0xff
+  o[51] = (x12 >>> 24) & 0xff
 
-  o[52] = x13 >>>  0 & 0xff
-  o[53] = x13 >>>  8 & 0xff
-  o[54] = x13 >>> 16 & 0xff
-  o[55] = x13 >>> 24 & 0xff
+  o[52] = (x13 >>> 0) & 0xff
+  o[53] = (x13 >>> 8) & 0xff
+  o[54] = (x13 >>> 16) & 0xff
+  o[55] = (x13 >>> 24) & 0xff
 
-  o[56] = x14 >>>  0 & 0xff
-  o[57] = x14 >>>  8 & 0xff
-  o[58] = x14 >>> 16 & 0xff
-  o[59] = x14 >>> 24 & 0xff
+  o[56] = (x14 >>> 0) & 0xff
+  o[57] = (x14 >>> 8) & 0xff
+  o[58] = (x14 >>> 16) & 0xff
+  o[59] = (x14 >>> 24) & 0xff
 
-  o[60] = x15 >>>  0 & 0xff
-  o[61] = x15 >>>  8 & 0xff
-  o[62] = x15 >>> 16 & 0xff
-  o[63] = x15 >>> 24 & 0xff
+  o[60] = (x15 >>> 0) & 0xff
+  o[61] = (x15 >>> 8) & 0xff
+  o[62] = (x15 >>> 16) & 0xff
+  o[63] = (x15 >>> 24) & 0xff
 }
 
-function core_hsalsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array): void {
+function core_hsalsa20(
+  o: Uint8Array,
+  p: Uint8Array,
+  k: Uint8Array,
+  c: Uint8Array
+): void {
   // prettier-ignore
   const
     j0  = c[ 0] | (c[ 1] << 8) | (c[ 2] << 16) | (c[ 3] << 24),
@@ -354,116 +373,116 @@ function core_hsalsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Arra
       x15 = j15, u: number
 
   for (let i = 0; i < 20; i += 2) {
-    u = x0 + x12 | 0
-    x4 ^= u << 7 | u >>> 25
-    u = x4 + x0 | 0
-    x8 ^= u << 9 | u >>> 23
-    u = x8 + x4 | 0
-    x12 ^= u << 13 | u >>> 19
-    u = x12 + x8 | 0
-    x0 ^= u << 18 | u >>> 14
+    u = (x0 + x12) | 0
+    x4 ^= (u << 7) | (u >>> 25)
+    u = (x4 + x0) | 0
+    x8 ^= (u << 9) | (u >>> 23)
+    u = (x8 + x4) | 0
+    x12 ^= (u << 13) | (u >>> 19)
+    u = (x12 + x8) | 0
+    x0 ^= (u << 18) | (u >>> 14)
 
-    u = x5 + x1 | 0
-    x9 ^= u << 7 | u >>> 25
-    u = x9 + x5 | 0
-    x13 ^= u << 9 | u >>> 23
-    u = x13 + x9 | 0
-    x1 ^= u << 13 | u >>> 19
-    u = x1 + x13 | 0
-    x5 ^= u << 18 | u >>> 14
+    u = (x5 + x1) | 0
+    x9 ^= (u << 7) | (u >>> 25)
+    u = (x9 + x5) | 0
+    x13 ^= (u << 9) | (u >>> 23)
+    u = (x13 + x9) | 0
+    x1 ^= (u << 13) | (u >>> 19)
+    u = (x1 + x13) | 0
+    x5 ^= (u << 18) | (u >>> 14)
 
-    u = x10 + x6 | 0
-    x14 ^= u << 7 | u >>> 25
-    u = x14 + x10 | 0
-    x2 ^= u << 9 | u >>> 23
-    u = x2 + x14 | 0
-    x6 ^= u << 13 | u >>> 19
-    u = x6 + x2 | 0
-    x10 ^= u << 18 | u >>> 14
+    u = (x10 + x6) | 0
+    x14 ^= (u << 7) | (u >>> 25)
+    u = (x14 + x10) | 0
+    x2 ^= (u << 9) | (u >>> 23)
+    u = (x2 + x14) | 0
+    x6 ^= (u << 13) | (u >>> 19)
+    u = (x6 + x2) | 0
+    x10 ^= (u << 18) | (u >>> 14)
 
-    u = x15 + x11 | 0
-    x3 ^= u << 7 | u >>> 25
-    u = x3 + x15 | 0
-    x7 ^= u << 9 | u >>> 23
-    u = x7 + x3 | 0
-    x11 ^= u << 13 | u >>> 19
-    u = x11 + x7 | 0
-    x15 ^= u << 18 | u >>> 14
+    u = (x15 + x11) | 0
+    x3 ^= (u << 7) | (u >>> 25)
+    u = (x3 + x15) | 0
+    x7 ^= (u << 9) | (u >>> 23)
+    u = (x7 + x3) | 0
+    x11 ^= (u << 13) | (u >>> 19)
+    u = (x11 + x7) | 0
+    x15 ^= (u << 18) | (u >>> 14)
 
-    u = x0 + x3 | 0
-    x1 ^= u << 7 | u >>> 25
-    u = x1 + x0 | 0
-    x2 ^= u << 9 | u >>> 23
-    u = x2 + x1 | 0
-    x3 ^= u << 13 | u >>> 19
-    u = x3 + x2 | 0
-    x0 ^= u << 18 | u >>> 14
+    u = (x0 + x3) | 0
+    x1 ^= (u << 7) | (u >>> 25)
+    u = (x1 + x0) | 0
+    x2 ^= (u << 9) | (u >>> 23)
+    u = (x2 + x1) | 0
+    x3 ^= (u << 13) | (u >>> 19)
+    u = (x3 + x2) | 0
+    x0 ^= (u << 18) | (u >>> 14)
 
-    u = x5 + x4 | 0
-    x6 ^= u << 7 | u >>> 25
-    u = x6 + x5 | 0
-    x7 ^= u << 9 | u >>> 23
-    u = x7 + x6 | 0
-    x4 ^= u << 13 | u >>> 19
-    u = x4 + x7 | 0
-    x5 ^= u << 18 | u >>> 14
+    u = (x5 + x4) | 0
+    x6 ^= (u << 7) | (u >>> 25)
+    u = (x6 + x5) | 0
+    x7 ^= (u << 9) | (u >>> 23)
+    u = (x7 + x6) | 0
+    x4 ^= (u << 13) | (u >>> 19)
+    u = (x4 + x7) | 0
+    x5 ^= (u << 18) | (u >>> 14)
 
-    u = x10 + x9 | 0
-    x11 ^= u << 7 | u >>> 25
-    u = x11 + x10 | 0
-    x8 ^= u << 9 | u >>> 23
-    u = x8 + x11 | 0
-    x9 ^= u << 13 | u >>> 19
-    u = x9 + x8 | 0
-    x10 ^= u << 18 | u >>> 14
+    u = (x10 + x9) | 0
+    x11 ^= (u << 7) | (u >>> 25)
+    u = (x11 + x10) | 0
+    x8 ^= (u << 9) | (u >>> 23)
+    u = (x8 + x11) | 0
+    x9 ^= (u << 13) | (u >>> 19)
+    u = (x9 + x8) | 0
+    x10 ^= (u << 18) | (u >>> 14)
 
-    u = x15 + x14 | 0
-    x12 ^= u << 7 | u >>> 25
-    u = x12 + x15 | 0
-    x13 ^= u << 9 | u >>> 23
-    u = x13 + x12 | 0
-    x14 ^= u << 13 | u >>> 19
-    u = x14 + x13 | 0
-    x15 ^= u << 18 | u >>> 14
+    u = (x15 + x14) | 0
+    x12 ^= (u << 7) | (u >>> 25)
+    u = (x12 + x15) | 0
+    x13 ^= (u << 9) | (u >>> 23)
+    u = (x13 + x12) | 0
+    x14 ^= (u << 13) | (u >>> 19)
+    u = (x14 + x13) | 0
+    x15 ^= (u << 18) | (u >>> 14)
   }
 
-  o[ 0] = x0 >>>  0 & 0xff
-  o[ 1] = x0 >>>  8 & 0xff
-  o[ 2] = x0 >>> 16 & 0xff
-  o[ 3] = x0 >>> 24 & 0xff
+  o[0] = (x0 >>> 0) & 0xff
+  o[1] = (x0 >>> 8) & 0xff
+  o[2] = (x0 >>> 16) & 0xff
+  o[3] = (x0 >>> 24) & 0xff
 
-  o[ 4] = x5 >>>  0 & 0xff
-  o[ 5] = x5 >>>  8 & 0xff
-  o[ 6] = x5 >>> 16 & 0xff
-  o[ 7] = x5 >>> 24 & 0xff
+  o[4] = (x5 >>> 0) & 0xff
+  o[5] = (x5 >>> 8) & 0xff
+  o[6] = (x5 >>> 16) & 0xff
+  o[7] = (x5 >>> 24) & 0xff
 
-  o[ 8] = x10 >>>  0 & 0xff
-  o[ 9] = x10 >>>  8 & 0xff
-  o[10] = x10 >>> 16 & 0xff
-  o[11] = x10 >>> 24 & 0xff
+  o[8] = (x10 >>> 0) & 0xff
+  o[9] = (x10 >>> 8) & 0xff
+  o[10] = (x10 >>> 16) & 0xff
+  o[11] = (x10 >>> 24) & 0xff
 
-  o[12] = x15 >>>  0 & 0xff
-  o[13] = x15 >>>  8 & 0xff
-  o[14] = x15 >>> 16 & 0xff
-  o[15] = x15 >>> 24 & 0xff
+  o[12] = (x15 >>> 0) & 0xff
+  o[13] = (x15 >>> 8) & 0xff
+  o[14] = (x15 >>> 16) & 0xff
+  o[15] = (x15 >>> 24) & 0xff
 
-  o[16] = x6 >>>  0 & 0xff
-  o[17] = x6 >>>  8 & 0xff
-  o[18] = x6 >>> 16 & 0xff
-  o[19] = x6 >>> 24 & 0xff
+  o[16] = (x6 >>> 0) & 0xff
+  o[17] = (x6 >>> 8) & 0xff
+  o[18] = (x6 >>> 16) & 0xff
+  o[19] = (x6 >>> 24) & 0xff
 
-  o[20] = x7 >>>  0 & 0xff
-  o[21] = x7 >>>  8 & 0xff
-  o[22] = x7 >>> 16 & 0xff
-  o[23] = x7 >>> 24 & 0xff
+  o[20] = (x7 >>> 0) & 0xff
+  o[21] = (x7 >>> 8) & 0xff
+  o[22] = (x7 >>> 16) & 0xff
+  o[23] = (x7 >>> 24) & 0xff
 
-  o[24] = x8 >>>  0 & 0xff
-  o[25] = x8 >>>  8 & 0xff
-  o[26] = x8 >>> 16 & 0xff
-  o[27] = x8 >>> 24 & 0xff
+  o[24] = (x8 >>> 0) & 0xff
+  o[25] = (x8 >>> 8) & 0xff
+  o[26] = (x8 >>> 16) & 0xff
+  o[27] = (x8 >>> 24) & 0xff
 
-  o[28] = x9 >>>  0 & 0xff
-  o[29] = x9 >>>  8 & 0xff
-  o[30] = x9 >>> 16 & 0xff
-  o[31] = x9 >>> 24 & 0xff
+  o[28] = (x9 >>> 0) & 0xff
+  o[29] = (x9 >>> 8) & 0xff
+  o[30] = (x9 >>> 16) & 0xff
+  o[31] = (x9 >>> 24) & 0xff
 }

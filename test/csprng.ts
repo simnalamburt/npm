@@ -10,8 +10,8 @@ describe('class XSalsa20CSPRNG', () => {
 
     for (let i = 0; i < 10000; ++i) {
       const v = rng.randomInt32()
-      assert(-(2**31) <= v)
-      assert(v < 2**31)
+      assert(-(2 ** 31) <= v)
+      assert(v < 2 ** 31)
       assert(Number.isInteger(v))
     }
   })
@@ -22,7 +22,7 @@ describe('class XSalsa20CSPRNG', () => {
     for (let i = 0; i < 10000; ++i) {
       const v = rng.randomUint32()
       assert(0 <= v)
-      assert(v < 2**32)
+      assert(v < 2 ** 32)
       assert(Number.isInteger(v))
     }
   })
