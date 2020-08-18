@@ -28,14 +28,20 @@
   "devDependencies": {
     "gulp": "^4.0.2",
     "mocha": "^6.1.4",
+    "prettier": "^2.0.5",
     "vinyl": "^2.2.0"
   },
   "scripts": {
     "build": "echo 'Nothing to do!'",
-    "test": "mocha"
+    "test": "mocha && prettier --check .",
+    "fmt": "prettier --write ."
   },
   "main": "src/index.js",
   "files": [
     "src/index.js"
-  ]
+  ],
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
 }
