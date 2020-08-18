@@ -26,6 +26,7 @@
     "src/index.js"
   ],
   "scripts": {
+    "build": "echo 'Nothing to do!'",
     "test": "mocha"
   },
   "dependencies": {
