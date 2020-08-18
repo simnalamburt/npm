@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "lib": ["dom", "es2017"],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
     "declaration": true,
 
     // Strict Typecheck
     "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
 
     // Module
     "esModuleInterop": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true
