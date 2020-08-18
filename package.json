@@ -26,8 +26,8 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
-    "build": "tsc",
-    "test": "mocha && prettier --check .",
+    "build": "echo 'Nothing to do!'",
+    "test": "tsc && mocha && prettier --check .",
     "fmt": "prettier --write .",
     "doc": "typedoc"
   },
