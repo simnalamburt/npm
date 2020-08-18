@@ -131,7 +131,12 @@ describe('gulp-slm', () => {
     const stream = slm()
 
     stream.on('error', (err) => {
-      assert(err instanceof PluginError)
+      assert.equal(
+        err.toString(),
+        `\x1B[31mError\x1B[39m in plugin "\x1B[36mgulp-slm\x1B[39m"
+Message:
+    Streaming not supported`
+      )
     })
     stream.write(
       new File({
