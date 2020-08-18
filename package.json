@@ -27,7 +27,7 @@
   "scripts": {
     "build": "microbundle -f cjs,modern,umd",
     "dev": "microbundle -f cjs,modern,umd watch",
-    "test": "ava"
+    "test": "tsc && ava"
   },
   "source": "src/index.ts",
   "main": "dist/hangul-josa.js",
