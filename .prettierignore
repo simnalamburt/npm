@@ -1,0 +1,10 @@
+# Yarn 2
+/.yarn/
+/.pnp.*
+
+# Docs
+/README.md
+
+# Typescript build results
+*.d.ts
+*.js

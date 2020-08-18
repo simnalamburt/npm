@@ -1407,6 +1407,15 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"prettier@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "prettier@npm:2.0.5"
+  bin:
+    prettier: bin-prettier.js
+  checksum: d249d89361870a29b20e8b268cb09e908490b8c9e21f70393d12a213701f29ba7e95b7f9ce0ad63929c16ce475176742481911737ae3da4a498873e4a3b90990
+  languageName: node
+  linkType: hard
+
 "process-nextick-args@npm:~2.0.0":
   version: 2.0.1
   resolution: "process-nextick-args@npm:2.0.1"
@@ -2000,6 +2009,7 @@ typescript@^3.9.7:
     "@types/mocha": ^8.0.1
     "@types/node": ^14.0.27
     mocha: ^8.1.1
+    prettier: ^2.0.5
     typedoc: ^0.17.8
     typescript: ^3.9.7
   languageName: unknown
