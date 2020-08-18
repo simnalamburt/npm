@@ -50,7 +50,6 @@ gulp.task('slm', _ => {
 
 ### Developer manual
 
-[![buildstat-i]][travis]
 [![coverage-i]][coveralls]
 [![depstat-i]][david]
 [![devdepstat-i]][david]
@@ -73,13 +72,11 @@ and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
 [Slm]:          https://github.com/slm-lang/slm
 [Gulp]:         https://gulpjs.com/
 [npm]:          https://npmjs.org/package/gulp-slm
-[travis]:       https://travis-ci.org/simnalamburt/gulp-slm
 [coveralls]:    https://coveralls.io/r/simnalamburt/gulp-slm
 [david]:        https://david-dm.org/simnalamburt/gulp-slm
 
 [version-i]:    https://badgen.net/npm/v/gulp-slm
 [download-i]:   https://badgen.net/npm/dt/gulp-slm
-[buildstat-i]:  https://badgen.net/travis/simnalamburt/gulp-slm/master
 [coverage-i]:   https://badgen.net/coveralls/c/github/simnalamburt/gulp-slm/master
 [depstat-i]:    https://badgen.net/david/dep/simnalamburt/gulp-slm
 [devdepstat-i]: https://badgen.net/david/dev/simnalamburt/gulp-slm
