@@ -1,6 +1,5 @@
-gulp-slm [![version-i] ![download-i]][npm]
+gulp-slm [![version] ![downloads]][npm]
 ========
-
 Let's use [Slm] with [Gulp]!
 
 ```slim
@@ -46,40 +45,19 @@ gulp.task('slm', _ => {
 </html>
 ```
 
-<br>
-
-### Developer manual
-
-[![coverage-i]][coveralls]
-[![depstat-i]][david]
-[![devdepstat-i]][david]
-
-```bash
-# Install dependencies
-yarn
-
-# Install dependencies
-yarn test
-```
-
-<br>
+&nbsp;
 
 --------
 
-*gulp-slm* is primarily distributed under the terms of both the [MIT license]
-and the [Apache License (Version 2.0)]. See [COPYRIGHT] for details.
+*gulp-slm* is primarily distributed under the terms of both the [Apache License
+(Version 2.0)] and the [MIT license]. See [COPYRIGHT] for details.
 
-[Slm]:          https://github.com/slm-lang/slm
-[Gulp]:         https://gulpjs.com/
-[npm]:          https://npmjs.org/package/gulp-slm
-[coveralls]:    https://coveralls.io/r/simnalamburt/gulp-slm
-[david]:        https://david-dm.org/simnalamburt/gulp-slm
+[version]: https://badgen.net/npm/v/gulp-slm
+[downloads]: https://badgen.net/npm/dt/gulp-slm
+[npm]: https://npmjs.org/package/gulp-slm
 
-[version-i]:    https://badgen.net/npm/v/gulp-slm
-[download-i]:   https://badgen.net/npm/dt/gulp-slm
-[coverage-i]:   https://badgen.net/coveralls/c/github/simnalamburt/gulp-slm/master
-[depstat-i]:    https://badgen.net/david/dep/simnalamburt/gulp-slm
-[devdepstat-i]: https://badgen.net/david/dev/simnalamburt/gulp-slm
+[Slm]: https://github.com/slm-lang/slm
+[Gulp]: https://gulpjs.com/
 
 [MIT license]: LICENSE-MIT
 [Apache License (Version 2.0)]: LICENSE-APACHE
