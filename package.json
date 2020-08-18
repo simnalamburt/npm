@@ -18,15 +18,6 @@
     "type": "git",
     "url": "https://github.com/simnalamburt/hangul-josa.git"
   },
-  "source": "src/index.ts",
-  "main": "dist/hangul-josa.js",
-  "module": "dist/hangul-josa.modern.js",
-  "esmodule": "dist/hangul-josa.modern.js",
-  "unpkg": "dist/hangul-josa.umd.js",
-  "files": [
-    "dist/*"
-  ],
-  "sideEffects": false,
   "devDependencies": {
     "ava": "^3.11.1",
     "microbundle": "^0.12.3",
@@ -37,6 +28,15 @@
     "dev": "microbundle -f cjs,modern,umd watch",
     "test": "ava"
   },
+  "source": "src/index.ts",
+  "main": "dist/hangul-josa.js",
+  "module": "dist/hangul-josa.modern.js",
+  "esmodule": "dist/hangul-josa.modern.js",
+  "unpkg": "dist/hangul-josa.umd.js",
+  "files": [
+    "dist/*"
+  ],
+  "sideEffects": false,
   "ava": {
     "extensions": [
       "ts"
