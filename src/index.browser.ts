@@ -1,3 +1,4 @@
+/// <reference lib="dom"/>
 import {
   xsalsa20GeneratorInt32,
   XSalsa20GeneratorInt32,
