@@ -1,6 +1,6 @@
 import assert from 'assert'
 import crypto from 'crypto'
-import { XSalsa20 } from '../src/index.nodejs.js'
+import { XSalsa20 } from '..'
 
 // prettier-ignore
 const LIBSODIUM_TEST_KEY = Buffer.from([

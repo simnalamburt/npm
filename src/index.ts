@@ -13,6 +13,44 @@
 //   xsalsa20: 828.65ms
 //   wasm: 332.185ms
 
+import randomBytes from './random'
+
+export default class XSalsa20CSPRNG {
+  private xsalsa: XSalsa20GeneratorInt32
+
+  constructor() {
+    const buf = randomBytes(24 + 32)
+    const nonce = buf.slice(0, 24)
+    const key = buf.slice(24)
+    this.xsalsa = xsalsa20GeneratorInt32(nonce, key)
+  }
+
+  static of(nonce: Uint8Array, key: Uint8Array) {
+    const self = Object.create(XSalsa20CSPRNG.prototype)
+    self.xsalsa = xsalsa20GeneratorInt32(nonce, key)
+    return self
+  }
+
+  randomInt32(): number {
+    return this.xsalsa.next().value
+  }
+
+  randomUint32(): number {
+    return this.xsalsa.next().value + 2 ** 31
+  }
+
+  uniformInt(exclusive_upper_bound: number): number {
+    if (exclusive_upper_bound < 2) return 0
+
+    const min = 2 ** 32 % exclusive_upper_bound
+    let r: number
+    do {
+      r = this.randomUint32()
+    } while (r < min)
+    return r % exclusive_upper_bound
+  }
+}
+
 type XSalsa20Generator = Generator<Uint8Array, never, undefined>
 function* xsalsa20Generator(
   nonce: Uint8Array,
@@ -43,8 +81,8 @@ function* xsalsa20Generator(
   }
 }
 
-export type XSalsa20GeneratorInt32 = Generator<number, never, undefined>
-export function* xsalsa20GeneratorInt32(
+type XSalsa20GeneratorInt32 = Generator<number, never, undefined>
+function* xsalsa20GeneratorInt32(
   nonce: Uint8Array,
   key: Uint8Array
 ): XSalsa20GeneratorInt32 {

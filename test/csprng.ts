@@ -1,5 +1,5 @@
 import assert from 'assert'
-import XSalsa20CSPRNG from '../src/index.nodejs.js'
+import XSalsa20CSPRNG from '..'
 
 const zero_nonce = new Uint8Array(24)
 const zero_key = new Uint8Array(32)

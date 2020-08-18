@@ -6,9 +6,11 @@
 !.yarn/versions
 .pnp.*
 
-# Typescript
-*.js
-*.d.ts
+# microbundle
+/dist/
+
+# typescript
+/node_modules/
 
 # Typedoc
 /docs

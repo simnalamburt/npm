@@ -16,14 +16,13 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+
+    // Advanced
+    "baseUrl": ".",
+    "paths": {
+      "./random": ["src/random.node.ts"]
+    }
   },
-  "exclude": ["dist", "docs"],
-  "typedocOptions": {
-    "inputFiles": ["./src/index.nodejs.ts"],
-    "excludeNotExported": true,
-    "excludePrivate:": true,
-    "mode": "file",
-    "out": "docs"
-  }
+  "exclude": ["dist", "docs"]
 }

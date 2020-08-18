@@ -20,24 +20,28 @@
   "devDependencies": {
     "@types/mocha": "^8.0.1",
     "@types/node": "^14.0.27",
+    "microbundle": "^0.12.3",
     "mocha": "^8.1.1",
     "prettier": "^2.0.5",
     "typedoc": "^0.17.8",
     "typescript": "^3.9.7"
   },
   "scripts": {
-    "build": "echo 'Nothing to do!'",
+    "build": "yarn build:browser && yarn build:node",
+    "build:browser": "microbundle -f modern,umd",
+    "build:node": "microbundle -f cjs --target=node --tsconfig tsconfig.node.json",
     "test": "tsc && mocha && prettier --check .",
     "fmt": "prettier --write .",
     "doc": "typedoc"
   },
-  "type": "module",
-  "main": "src/index.nodejs.js",
-  "browser": "src/index.browser.js",
-  "module": "src/index.nodejs.js",
+  "source": "src/index.ts",
+  "main": "dist/xsalsa20-csprng.js",
+  "browser": "dist/xsalsa20-csprng.modern.js",
+  "module": "dist/xsalsa20-csprng.modern.js",
+  "unpkg": "dist/xsalsa20-csprng.umd.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "src/*.js",
-    "src/*.d.ts"
+    "dist/*"
   ],
   "sideEffects": false,
   "prettier": {

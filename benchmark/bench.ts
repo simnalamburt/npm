@@ -1,5 +1,5 @@
 import process from 'process'
-import XSalsa20CSPRNG from '../src/index.nodejs.js'
+import XSalsa20CSPRNG from '..'
 
 const rng = new XSalsa20CSPRNG()
 
