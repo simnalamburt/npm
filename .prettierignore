@@ -4,3 +4,6 @@
 
 # Markdowns
 *.md
+
+# Build results
+/dist/

@@ -27,18 +27,22 @@
   },
   "devDependencies": {
     "gulp": "^4.0.2",
+    "microbundle": "^0.12.3",
     "mocha": "^8.1.1",
     "prettier": "^2.0.5",
     "vinyl": "^2.2.0"
   },
   "scripts": {
-    "build": "echo 'Nothing to do!'",
+    "build": "microbundle -f cjs,modern --target node --compress",
+    "dev": "microbundle -f cjs,modern --target node --compress watch",
     "test": "mocha && prettier --check .",
     "fmt": "prettier --write ."
   },
-  "main": "src/index.js",
+  "source": "src/index.js",
+  "main": "dist/gulp-slm.js",
+  "module": "dist/gulp-slm.modern.js",
   "files": [
-    "src/index.js"
+    "dist/*"
   ],
   "prettier": {
     "semi": false,
