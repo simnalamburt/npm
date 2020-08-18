@@ -1375,12 +1375,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/replace-ext@npm:^0.0.27":
+  version: 0.0.27
+  resolution: "@types/replace-ext@npm:0.0.27"
+  checksum: 8b4c5729a3200ea74924194a609ba396a6b7b10f635dcbb6d905743414ae15e285e5475c6ea1ab4a97be88a8f61277af08a9e4ca945b4b9b345079a3c2e36c72
+  languageName: node
+  linkType: hard
+
 "@types/resolve@npm:0.0.8":
   version: 0.0.8
   resolution: "@types/resolve@npm:0.0.8"
   dependencies:
     "@types/node": "*"
   checksum: f54f13e4b6ac46a6c7bde9e609cd730f4369b434aa59c5230478b9262bb75e7349c3247fd2cdb917e98d053a57f5609dd552379c612a720b59a8714914d324ed
+  languageName: node
+  linkType: hard
+
+"@types/through2@npm:^2.0.36":
+  version: 2.0.36
+  resolution: "@types/through2@npm:2.0.36"
+  dependencies:
+    "@types/node": "*"
+  checksum: 62b47565966bf35a4bbb5553dd4bcdabc932a57fb2222734ae2c266e120f135f2a5e84f5876ebbadba8b43a9355f9f8cfcd2f8591636388b1e6d4a5c097a0ee6
   languageName: node
   linkType: hard
 
@@ -3751,6 +3767,8 @@ fsevents@~2.1.2:
   version: 0.0.0-use.local
   resolution: "gulp-slm@workspace:."
   dependencies:
+    "@types/replace-ext": ^0.0.27
+    "@types/through2": ^2.0.36
     gulp: ^4.0.2
     microbundle: ^0.12.3
     mocha: ^8.1.1

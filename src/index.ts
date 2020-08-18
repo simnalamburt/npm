@@ -3,8 +3,15 @@ import slm from 'slm'
 import PluginError from 'plugin-error'
 import replaceExt from 'replace-ext'
 
-export default (opts = {}) =>
-  through.obj((file, enc, cb) => {
+type Options = {
+  filename?: string
+  extension?: string
+  data?: any
+  locals?: any
+}
+
+export default (opts: Options = {}) =>
+  through.obj((file, _enc, cb) => {
     opts.filename = file.path
 
     if (file.data) {

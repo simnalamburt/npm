@@ -25,6 +25,8 @@
     "through2": "^4.0.2"
   },
   "devDependencies": {
+    "@types/replace-ext": "^0.0.27",
+    "@types/through2": "^2.0.36",
     "gulp": "^4.0.2",
     "microbundle": "^0.12.3",
     "mocha": "^8.1.1",
@@ -36,7 +38,7 @@
   "scripts": {
     "build": "microbundle -f cjs,modern --target node --compress",
     "dev": "microbundle -f cjs,modern --target node --compress watch",
-    "test": "mocha && prettier --check .",
+    "test": "tsc && mocha && prettier --check .",
     "fmt": "prettier --write ."
   },
   "source": "src/index.ts",

@@ -16,7 +16,13 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+
+    // Advanced
+    "baseUrl": ".",
+    "paths": {
+      "slm": ["types/slm.d.ts"]
+    }
   },
   "exclude": ["dist"]
 }
