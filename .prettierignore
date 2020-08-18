@@ -2,9 +2,9 @@
 /.yarn/
 /.pnp.*
 
-# Docs
-/README.md
+# Markdowns
+*.md
 
-# Typescript build results
+# Build results
 *.d.ts
 *.js
