@@ -17,15 +17,6 @@
     "type": "git",
     "url": "https://github.com/simnalamburt/xsalsa20-csprng.git"
   },
-  "type": "module",
-  "main": "src/index.nodejs.js",
-  "browser": "src/index.browser.js",
-  "module": "src/index.nodejs.js",
-  "files": [
-    "src/*.js",
-    "src/*.d.ts"
-  ],
-  "sideEffects": false,
   "devDependencies": {
     "@types/mocha": "^8.0.1",
     "@types/node": "^14.0.27",
@@ -39,5 +30,14 @@
     "test": "mocha && prettier --check .",
     "fmt": "prettier --write .",
     "doc": "typedoc"
-  }
+  },
+  "type": "module",
+  "main": "src/index.nodejs.js",
+  "browser": "src/index.browser.js",
+  "module": "src/index.nodejs.js",
+  "files": [
+    "src/*.js",
+    "src/*.d.ts"
+  ],
+  "sideEffects": false
 }
