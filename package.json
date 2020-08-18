@@ -25,13 +25,18 @@
     "through2": "^4.0.2"
   },
   "devDependencies": {
+    "@types/gulp": "^4.0.6",
+    "@types/mocha": "^8.0.3",
+    "@types/node": "^14.6.0",
     "@types/replace-ext": "^0.0.27",
     "@types/through2": "^2.0.36",
+    "@types/vinyl": "^2.0.4",
     "gulp": "^4.0.2",
     "microbundle": "^0.12.3",
     "mocha": "^8.1.1",
     "prettier": "^2.0.5",
     "replace-ext": "^2.0.0",
+    "sucrase": "^3.15.0",
     "typescript": "^3.9.7",
     "vinyl": "^2.2.0"
   },
@@ -44,9 +49,16 @@
   "source": "src/index.ts",
   "main": "dist/gulp-slm.js",
   "module": "dist/gulp-slm.modern.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist/*"
   ],
+  "mocha": {
+    "extension": [
+      "ts"
+    ],
+    "require": "sucrase/register"
+  },
   "prettier": {
     "semi": false,
     "singleQuote": true

@@ -3,7 +3,7 @@ import slm from 'slm'
 import PluginError from 'plugin-error'
 import replaceExt from 'replace-ext'
 
-type Options = {
+export type Options = {
   filename?: string
   extension?: string
   data?: any

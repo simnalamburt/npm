@@ -1354,7 +1354,59 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/expect@npm:^1.20.4":
+  version: 1.20.4
+  resolution: "@types/expect@npm:1.20.4"
+  checksum: 426f19a8b25374c6647c78392bde02ad687e750519911ef43a25b25bde641c91aac89bbe6a2c6325a36b44eff4e062610e5e2de71827aa9d60a4e650e486b6e6
+  languageName: node
+  linkType: hard
+
+"@types/glob-stream@npm:*":
+  version: 6.1.0
+  resolution: "@types/glob-stream@npm:6.1.0"
+  dependencies:
+    "@types/glob": "*"
+    "@types/node": "*"
+  checksum: 9b71924d3de8d2064b4ce76decb4f1d368e910c269dfb5c793d9d0cf9230c391e5290b532347a666d420986b00908a2ac7bb0d46810cdfec32e373504bd577a6
+  languageName: node
+  linkType: hard
+
+"@types/glob@npm:*":
+  version: 7.1.3
+  resolution: "@types/glob@npm:7.1.3"
+  dependencies:
+    "@types/minimatch": "*"
+    "@types/node": "*"
+  checksum: 633bf1dda9a30899b233ed6b97c75cdd59f2ee856a12240c85474ce6889e26b3b3520b62de56f6bb61824af0ef51b311a0cae305f27ba0de8ddc4898a3673d42
+  languageName: node
+  linkType: hard
+
+"@types/gulp@npm:^4.0.6":
+  version: 4.0.6
+  resolution: "@types/gulp@npm:4.0.6"
+  dependencies:
+    "@types/undertaker": "*"
+    "@types/vinyl-fs": "*"
+    chokidar: ^2.1.2
+  checksum: b60126f25b815e1d617d17f454595158a03d5bb120860cd513bae6ca72b27c6c2f1296accc492592a4a3d1be5410c07a6af7a3d977570bf376ef64e02ef1805f
+  languageName: node
+  linkType: hard
+
+"@types/minimatch@npm:*":
+  version: 3.0.3
+  resolution: "@types/minimatch@npm:3.0.3"
+  checksum: 672ccdac197e8176eed1a9441d0caf8a29a90eb139b1cefdd4c9e71b1c48f5c749f5d101a2d85da15c6259214ebda95072835021407d60330a731a2672964b82
+  languageName: node
+  linkType: hard
+
+"@types/mocha@npm:^8.0.3":
+  version: 8.0.3
+  resolution: "@types/mocha@npm:8.0.3"
+  checksum: 36a4429f508c46224f8dfa3e7a8318ff90d9e6c8e0da35b48b0e61ba5ccce07dff7ec1af79c1423ff2beb77f703ee58e820c3ca8f895c134d02fb827fae6abc2
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:*, @types/node@npm:^14.6.0":
   version: 14.6.0
   resolution: "@types/node@npm:14.6.0"
   checksum: ff23553ab77516d0f90b6710a041a49723fc1b1ca33a5379d5746068cac8b9ddbec428d3a4913afaee50bcdc69b9583843740a18a3519ae997982694f5287c6b
@@ -1397,6 +1449,44 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 62b47565966bf35a4bbb5553dd4bcdabc932a57fb2222734ae2c266e120f135f2a5e84f5876ebbadba8b43a9355f9f8cfcd2f8591636388b1e6d4a5c097a0ee6
+  languageName: node
+  linkType: hard
+
+"@types/undertaker-registry@npm:*":
+  version: 1.0.1
+  resolution: "@types/undertaker-registry@npm:1.0.1"
+  checksum: 7b1d6a0d6410bbdc419ec248e99c2575d638925a75a36783ee28985fe37b3bf4c6dc7f7841460103e410e6a8921fcbae8219ec92c188bf934d8674a091bc1342
+  languageName: node
+  linkType: hard
+
+"@types/undertaker@npm:*":
+  version: 1.2.3
+  resolution: "@types/undertaker@npm:1.2.3"
+  dependencies:
+    "@types/node": "*"
+    "@types/undertaker-registry": "*"
+  checksum: 518a891ea72b036f57f3ccd606c6eba1ecf4c7e53690d7162675dad491b667a6700b5e1b41402c9b99edee707a378a9456474c733620f24d1a533b4a24a257ac
+  languageName: node
+  linkType: hard
+
+"@types/vinyl-fs@npm:*":
+  version: 2.4.11
+  resolution: "@types/vinyl-fs@npm:2.4.11"
+  dependencies:
+    "@types/glob-stream": "*"
+    "@types/node": "*"
+    "@types/vinyl": "*"
+  checksum: 6e97c6403cbd50b016f75daaf057189c0528baba1229aa5832284cf862edd5ab59f341f518ce0ca26d27ea87a88fd3a8891e1e1fa3fbc7973b0a1e5c558c0eca
+  languageName: node
+  linkType: hard
+
+"@types/vinyl@npm:*, @types/vinyl@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "@types/vinyl@npm:2.0.4"
+  dependencies:
+    "@types/expect": ^1.20.4
+    "@types/node": "*"
+  checksum: 276311ea721697b0d42878ec256b08027d95836544ab5d04452f56661c4d775f290f3d412078523708d41b0dfcc72d33788ad7ac0afb3cdfaf7b57e40cdfcbf2
   languageName: node
   linkType: hard
 
@@ -1511,6 +1601,13 @@ __metadata:
   version: 0.1.0
   resolution: "ansi-wrap@npm:0.1.0"
   checksum: f9d05b4d83bb5af5908e84ba62cec55a62bb480d9611a384355b809129eb30d678c30453206a12eb9702069c91d78a1ed9e9433e0063d00fe07a89253bc4c848
+  languageName: node
+  linkType: hard
+
+"any-promise@npm:^1.0.0":
+  version: 1.3.0
+  resolution: "any-promise@npm:1.3.0"
+  checksum: e829425e4aef532fb9063c638de4693feaf285dae8ba84bcabd9c6d49446264650d1e16b73af8a25ae1e4480f9a4dc7cae364b4c4d4753b57dd1900cdfab8183
   languageName: node
   linkType: hard
 
@@ -2136,7 +2233,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:^2.0.0":
+"chokidar@npm:^2.0.0, chokidar@npm:^2.1.2":
   version: 2.1.8
   resolution: "chokidar@npm:2.1.8"
   dependencies:
@@ -2359,6 +2456,13 @@ __metadata:
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: b73428e97de7624323f81ba13f8ed9271de487017432d18b4da3f07cfc528ad754bbd199004bd5d14e0ccd67d1fdfe0ec8dbbd4c438b401df3c4cc387bfd1daa
+  languageName: node
+  linkType: hard
+
+"commander@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "commander@npm:4.1.1"
+  checksum: 448585071bf8fb4c0bf9dd52abaee43dea086f801334caec2c8e8c9f456f8abc224c1614ccbbdbf7da5ac2524d230f13cf1fc86c233cf8a041ebecea7df106e9
   languageName: node
   linkType: hard
 
@@ -3767,8 +3871,12 @@ fsevents@~2.1.2:
   version: 0.0.0-use.local
   resolution: "gulp-slm@workspace:."
   dependencies:
+    "@types/gulp": ^4.0.6
+    "@types/mocha": ^8.0.3
+    "@types/node": ^14.6.0
     "@types/replace-ext": ^0.0.27
     "@types/through2": ^2.0.36
+    "@types/vinyl": ^2.0.4
     gulp: ^4.0.2
     microbundle: ^0.12.3
     mocha: ^8.1.1
@@ -3776,6 +3884,7 @@ fsevents@~2.1.2:
     prettier: ^2.0.5
     replace-ext: ^2.0.0
     slm: ">=0.6.0"
+    sucrase: ^3.15.0
     through2: ^4.0.2
     typescript: ^3.9.7
     vinyl: ^2.2.0
@@ -5289,6 +5398,17 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"mz@npm:^2.7.0":
+  version: 2.7.0
+  resolution: "mz@npm:2.7.0"
+  dependencies:
+    any-promise: ^1.0.0
+    object-assign: ^4.0.1
+    thenify-all: ^1.0.0
+  checksum: 063966dd8e05dfe952038e88d14fb0a3816d9fa391b5afc75d19e2247b7471fd98ca85ffca45d950b9aab4f8f7536aecf63509af031e1785549468b6400eeda5
+  languageName: node
+  linkType: hard
+
 "nan@npm:^2.12.1":
   version: 2.14.0
   resolution: "nan@npm:2.14.0"
@@ -5354,6 +5474,13 @@ fsevents@~2.1.2:
   bin:
     node-gyp: bin/node-gyp.js
   checksum: 78518a89047fdacb14c41586ce038584e21993f5c7ad31834c78cf06de0514fe4ef84a9034461695a10667bc81ee9ad8bc7d725cf951d4dfe1c0c175d763da59
+  languageName: node
+  linkType: hard
+
+"node-modules-regexp@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "node-modules-regexp@npm:1.0.0"
+  checksum: 90f928a1dbc3c98d39b3d133f8c910e6bd8e45416f8e15151a31c41550cffe4e3022a39c38c20ae4ceca56b6e63741def4f3a2018080d13f5be245f4b060a9b1
   languageName: node
   linkType: hard
 
@@ -5516,7 +5643,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"object-assign@npm:^4.1.0":
+"object-assign@npm:^4.0.1, object-assign@npm:^4.1.0":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: 66cf021898fc1b13ea573ea8635fbd5a76533f50cecbc2fcd5eee1e8029af41bcebe7023788b6d0e06cbe4401ecea075d972f78ec74467cdc571a0f1a4d1a081
@@ -5950,6 +6077,15 @@ fsevents@~2.1.2:
   version: 2.0.4
   resolution: "pinkie@npm:2.0.4"
   checksum: 2cb484c9da47b2f420fddffe7cbfeac950106a848343d147c2b2668d12b71aa3d09297bfe37ec32539a27c6dc7db414414f5ee166d6b2ca0d95f6dfe9dde60d7
+  languageName: node
+  linkType: hard
+
+"pirates@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "pirates@npm:4.0.1"
+  dependencies:
+    node-modules-regexp: ^1.0.0
+  checksum: 21604008c36ab6e14ac458e1a267dd7322cfd36b9e1042e9e277dd064582717e30b9aba8c0a47d738bf004ee7946ed27f6b982d30968534f2c6b5b168a52b555
   languageName: node
   linkType: hard
 
@@ -7546,6 +7682,23 @@ resolve@1.12.0:
   languageName: node
   linkType: hard
 
+"sucrase@npm:^3.15.0":
+  version: 3.15.0
+  resolution: "sucrase@npm:3.15.0"
+  dependencies:
+    commander: ^4.0.0
+    glob: 7.1.6
+    lines-and-columns: ^1.1.6
+    mz: ^2.7.0
+    pirates: ^4.0.1
+    ts-interface-checker: ^0.1.9
+  bin:
+    sucrase: ./bin/sucrase
+    sucrase-node: ./bin/sucrase-node
+  checksum: 7ebbe2ab7230e57310bf6864270b3e412edfe9e1d89d05e067f167a63d191195a0d4dada4486723ce8d043eca6a4809c848072c22a4bbecace0d9f267ae652cd
+  languageName: node
+  linkType: hard
+
 "supports-color@npm:7.1.0, supports-color@npm:^7.1.0":
   version: 7.1.0
   resolution: "supports-color@npm:7.1.0"
@@ -7661,6 +7814,24 @@ resolve@1.12.0:
   bin:
     terser: bin/terser
   checksum: d7ab95898b40e2aa3513b02fc74f520f8e65072a19d7f687b8224af01512ad4d2227bc1375c22cd050f67eb1ca3e440b4f09652c5f48f13ed9ee81c0c26015a3
+  languageName: node
+  linkType: hard
+
+"thenify-all@npm:^1.0.0":
+  version: 1.6.0
+  resolution: "thenify-all@npm:1.6.0"
+  dependencies:
+    thenify: ">= 3.1.0 < 4"
+  checksum: 22775c13a183d349b58e0236ba9b28dd75ec5f000c55bc893958a04585b712d32d1878022bee4eb89a7c5a85485cf837732dbeed2d6ed860eff217d54a63e581
+  languageName: node
+  linkType: hard
+
+"thenify@npm:>= 3.1.0 < 4":
+  version: 3.3.1
+  resolution: "thenify@npm:3.3.1"
+  dependencies:
+    any-promise: ^1.0.0
+  checksum: c3cbda4f5f0ee82d6a282b3a2ed3f890fad65b5c855d61f8f1946c6daf7e0d7a1e84377ded30b16ae2bedd13f02ba35266af3ca018272b08629c85753b1cd682
   languageName: node
   linkType: hard
 
@@ -7790,6 +7961,13 @@ resolve@1.12.0:
     psl: ^1.1.28
     punycode: ^2.1.1
   checksum: bf5d6fac5ce0bebc5876cb9b9a79d3d9ea21c9e4099f3d3e64701d6ba170a052cb88cece6737ec2473bac4f0a4f6c75d46ec17985be8587c6bbdd38d91625cb4
+  languageName: node
+  linkType: hard
+
+"ts-interface-checker@npm:^0.1.9":
+  version: 0.1.13
+  resolution: "ts-interface-checker@npm:0.1.13"
+  checksum: df3e240963951b9fdcb6c89fe7cbbf3facac2f8202dec7d6854f136ac50ddbee8f4783bc233940a7c033eed0f1fec8272ed4a12ec505b333d69b58388267d37a
   languageName: node
   linkType: hard
 

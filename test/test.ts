@@ -1,17 +1,14 @@
-'use strict'
+import slm, { Options } from '../'
+import { compile } from 'slm'
 
-const slm = require('../')
-const compile = require('slm').compile
+import through from 'through2'
+import path from 'path'
+import fs from 'fs'
+import { extname } from 'path'
+import gulp from 'gulp'
+import File from 'vinyl'
 
-const through = require('through2')
-const path = require('path')
-const fs = require('fs')
-const extname = require('path').extname
-const gulp = require('gulp')
-const File = require('vinyl')
-const PluginError = require('plugin-error')
-
-const assert = require('assert')
+import assert from 'assert'
 
 //
 // Absolute path of fixtures/helloworld.slm
@@ -24,7 +21,7 @@ const filename = path.join(__dirname, 'fixtures', 'helloworld.slm')
 //   from file.data
 //
 function setData() {
-  return through.obj(function (file, enc, cb) {
+  return through.obj(function (file, _enc, cb) {
     file.data = {
       title: 'Greetings!',
     }
@@ -38,15 +35,15 @@ function setData() {
 // Mockup plugin to check if the build result with gulp is same with the compile
 //   result with require('slm').compile
 //
-function expectStream(options) {
+function expectStream(options: Options) {
   options = options || {}
 
   options.filename = filename
-  const compiled = compile(fs.readFileSync(filename, 'UTF-8'), options)
+  const compiled = compile(fs.readFileSync(filename, 'utf8'), options)
   const expected = compiled(options.data || options.locals)
   const ext = '.html'
 
-  return through.obj((file, enc, cb) => {
+  return through.obj((file, _enc, cb) => {
     assert.equal(expected, String(file.contents))
     assert.equal(extname(file.path), ext)
     assert.equal(extname(file.relative), file.relative ? ext : '')
@@ -60,7 +57,7 @@ function expectStream(options) {
 //
 describe('gulp-slm', () => {
   it('should compile my slm files into HTML', () => {
-    gulp.src(filename).pipe(slm()).pipe(expectStream())
+    gulp.src(filename).pipe(slm()).pipe(expectStream({}))
   })
 
   it('should compile my slm files into HTML with locals passed in', () => {
@@ -120,7 +117,7 @@ describe('gulp-slm', () => {
       .src(filename)
       .pipe(slm())
       .pipe(
-        through.obj((file, enc, cb) => {
+        through.obj((file, _enc, cb) => {
           assert(file.contents instanceof Buffer)
           return cb()
         })
