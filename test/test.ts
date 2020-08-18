@@ -1,14 +1,17 @@
+import assert from 'assert'
+import fs from 'fs'
+import path from 'path'
+import { promisify } from 'util'
+
 import slm, { Options } from '../'
 import { compile } from 'slm'
 
 import through from 'through2'
-import path from 'path'
-import fs from 'fs'
 import { extname } from 'path'
 import gulp from 'gulp'
 import File from 'vinyl'
 
-import assert from 'assert'
+const readFile = promisify(fs.readFile)
 
 //
 // Absolute path of fixtures/helloworld.slm
@@ -20,8 +23,8 @@ const filename = path.join(__dirname, 'fixtures', 'helloworld.slm')
 // Not testing the gulp-data plugin options, just that gulp-slm can get its data
 //   from file.data
 //
-function setData() {
-  return through.obj(function (file, _enc, cb) {
+const setData = () =>
+  through.obj(function (file, _enc, cb) {
     file.data = {
       title: 'Greetings!',
     }
@@ -29,17 +32,14 @@ function setData() {
 
     return cb()
   })
-}
 
 //
 // Mockup plugin to check if the build result with gulp is same with the compile
 //   result with require('slm').compile
 //
-function expectStream(options: Options) {
-  options = options || {}
-
+async function expectStream(options: Options) {
   options.filename = filename
-  const compiled = compile(fs.readFileSync(filename, 'utf8'), options)
+  const compiled = compile(await readFile(filename, 'utf8'), options)
   const expected = compiled(options.data || options.locals)
   const ext = '.html'
 
@@ -56,11 +56,14 @@ function expectStream(options: Options) {
 // Tests
 //
 describe('gulp-slm', () => {
-  it('should compile my slm files into HTML', () => {
-    gulp.src(filename).pipe(slm()).pipe(expectStream({}))
+  it('should compile my slm files into HTML', async () => {
+    gulp
+      .src(filename)
+      .pipe(slm())
+      .pipe(await expectStream({}))
   })
 
-  it('should compile my slm files into HTML with locals passed in', () => {
+  it('should compile my slm files into HTML with locals passed in', async () => {
     gulp
       .src(filename)
       .pipe(
@@ -71,7 +74,7 @@ describe('gulp-slm', () => {
         })
       )
       .pipe(
-        expectStream({
+        await expectStream({
           locals: {
             title: 'Yellow Curled',
           },
@@ -79,7 +82,7 @@ describe('gulp-slm', () => {
       )
   })
 
-  it('should compile my slm files into HTML with data passed in', () => {
+  it('should compile my slm files into HTML with data passed in', async () => {
     gulp
       .src(filename)
       .pipe(
@@ -90,7 +93,7 @@ describe('gulp-slm', () => {
         })
       )
       .pipe(
-        expectStream({
+        await expectStream({
           data: {
             title: 'Yellow Curled',
           },
@@ -98,13 +101,13 @@ describe('gulp-slm', () => {
       )
   })
 
-  it('should compile my slm files into HTML with data property', () => {
+  it('should compile my slm files into HTML with data property', async () => {
     gulp
       .src(filename)
       .pipe(setData())
       .pipe(slm())
       .pipe(
-        expectStream({
+        await expectStream({
           data: {
             title: 'Greetings!',
           },
