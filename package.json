@@ -48,5 +48,9 @@
       "ts"
     ],
     "require": "sucrase/register"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   }
 }
