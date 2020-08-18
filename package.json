@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "plugin-error": "^1.0.1",
-    "replace-ext": "^2.0.0",
     "slm": ">=0.6.0",
     "through2": "^4.0.2"
   },
@@ -30,6 +29,7 @@
     "microbundle": "^0.12.3",
     "mocha": "^8.1.1",
     "prettier": "^2.0.5",
+    "replace-ext": "^2.0.0",
     "vinyl": "^2.2.0"
   },
   "scripts": {

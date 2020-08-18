@@ -1,11 +1,9 @@
-'use strict'
+import through from 'through2'
+import slm from 'slm'
+import PluginError from 'plugin-error'
+import replaceExt from 'replace-ext'
 
-const through = require('through2')
-const slm = require('slm')
-const PluginError = require('plugin-error')
-const replaceExt = require('replace-ext')
-
-module.exports = (opts = {}) =>
+export default (opts = {}) =>
   through.obj((file, enc, cb) => {
     opts.filename = file.path
 
