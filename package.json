@@ -36,7 +36,6 @@
   "source": "src/index.ts",
   "main": "dist/hangul-josa.js",
   "module": "dist/hangul-josa.modern.js",
-  "esmodule": "dist/hangul-josa.modern.js",
   "unpkg": "dist/hangul-josa.umd.js",
   "types": "dist/index.d.ts",
   "files": [
