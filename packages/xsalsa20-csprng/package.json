@@ -22,7 +22,6 @@
     "@types/node": "^14.0.27",
     "microbundle": "patch:microbundle@0.12.3#./microbundle.patch",
     "mocha": "^8.1.1",
-    "prettier": "^2.0.5",
     "sucrase": "^3.15.0",
     "typedoc": "^0.17.8",
     "typescript": "^3.9.7"
@@ -31,8 +30,7 @@
     "build": "yarn build:browser && yarn build:node",
     "build:browser": "microbundle -f modern,umd",
     "build:node": "microbundle -f cjs --target=node --tsconfig tsconfig.node.json",
-    "test": "tsc && mocha && prettier --check .",
-    "fmt": "prettier --write .",
+    "test": "tsc && mocha",
     "doc": "typedoc"
   },
   "source": "src/index.ts",
@@ -50,9 +48,5 @@
       "ts"
     ],
     "require": "sucrase/register"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
   }
 }

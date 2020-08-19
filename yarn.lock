@@ -3846,7 +3846,6 @@ fsevents@~2.1.2:
     microbundle: ^0.12.3
     mocha: ^8.1.1
     plugin-error: ^1.0.1
-    prettier: ^2.0.5
     replace-ext: ^2.0.0
     slm: ">=0.6.0"
     sucrase: ^3.15.0
@@ -3924,7 +3923,6 @@ fsevents@~2.1.2:
     "@types/node": ^14.6.0
     microbundle: ^0.12.3
     mocha: ^8.1.1
-    prettier: ^2.0.5
     sucrase: ^3.15.0
     typescript: ^3.9.7
   languageName: unknown
@@ -7111,6 +7109,7 @@ resolve@1.12.0:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    prettier: ^2.0.5
     typescript: ^3.9.7
   languageName: unknown
   linkType: soft
@@ -8398,7 +8397,6 @@ resolve@1.12.0:
     "@types/node": ^14.0.27
     microbundle: "patch:microbundle@0.12.3#./microbundle.patch"
     mocha: ^8.1.1
-    prettier: ^2.0.5
     sucrase: ^3.15.0
     typedoc: ^0.17.8
     typescript: ^3.9.7

@@ -34,7 +34,6 @@
     "gulp": "^4.0.2",
     "microbundle": "^0.12.3",
     "mocha": "^8.1.1",
-    "prettier": "^2.0.5",
     "replace-ext": "^2.0.0",
     "sucrase": "^3.15.0",
     "typescript": "^3.9.7",
@@ -43,8 +42,7 @@
   "scripts": {
     "build": "microbundle -f cjs,modern --target node --compress",
     "dev": "microbundle -f cjs,modern --target node --compress watch",
-    "test": "tsc && mocha && prettier --check .",
-    "fmt": "prettier --write ."
+    "test": "tsc && mocha"
   },
   "source": "src/index.ts",
   "main": "dist/gulp-slm.js",
@@ -58,9 +56,5 @@
       "ts"
     ],
     "require": "sucrase/register"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
   }
 }

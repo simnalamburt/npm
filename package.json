@@ -4,6 +4,11 @@
     "packages/*"
   ],
   "devDependencies": {
+    "prettier": "^2.0.5",
     "typescript": "^3.9.7"
+  },
+  "scripts": {
+    "test:fmt": "prettier --check .",
+    "fmt": "prettier --write ."
   }
 }
