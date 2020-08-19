@@ -15,7 +15,8 @@
   "author": "Hyeon Kim <simnalamburt@gmail.com> (https://hyeon.me)",
   "repository": {
     "type": "git",
-    "url": "git@github.com:simnalamburt/npm.git"
+    "url": "git@github.com:simnalamburt/npm.git",
+    "directory": "packages/xsalsa20-csprng"
   },
   "devDependencies": {
     "@types/jest": "^26.0.10",

@@ -17,7 +17,8 @@
   "author": "Hyeon Kim <simnalamburt@gmail.com> (https://hyeon.me/)",
   "repository": {
     "type": "git",
-    "url": "git@github.com:simnalamburt/npm.git"
+    "url": "git@github.com:simnalamburt/npm.git",
+    "directory": "packages/gulp-slm"
   },
   "dependencies": {
     "plugin-error": "^1.0.1",
