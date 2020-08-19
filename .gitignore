@@ -7,7 +7,7 @@
 .pnp.*
 
 # microbundle
-/dist/
+dist/
 
 # typescript
-/node_modules/
+node_modules/
