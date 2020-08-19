@@ -11,3 +11,6 @@ dist/
 
 # typescript
 node_modules/
+
+# Jest coverage results
+/coverage/

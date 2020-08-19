@@ -6,6 +6,9 @@ simnalamburt/npm
 yarn
 yarn build
 yarn test
+
+# Advanced
+yarn coverage
 ```
 
 &nbsp;

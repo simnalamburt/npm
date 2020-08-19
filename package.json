@@ -17,6 +17,7 @@
   "scripts": {
     "build": "yarn workspaces foreach -pt run build",
     "test": "yarn workspaces foreach -pt run test && jest && prettier --check .",
+    "coverage": "jest --coverage",
     "fmt": "prettier --write ."
   },
   "prettier": {
