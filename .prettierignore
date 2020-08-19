@@ -6,5 +6,5 @@
 *.md
 
 # Build results
-*.d.ts
-*.js
+/dist/
+/docs/
