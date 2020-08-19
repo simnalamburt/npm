@@ -1,9 +1,7 @@
 {
   "private": true,
   "workspaces": [
-    "gulp-slm",
-    "hangul-josa",
-    "xsalsa20-csprng"
+    "packages/*"
   ],
   "devDependencies": {
     "typescript": "^3.9.7"

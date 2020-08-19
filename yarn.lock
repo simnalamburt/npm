@@ -3832,9 +3832,9 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"gulp-slm@workspace:gulp-slm":
+"gulp-slm@workspace:packages/gulp-slm":
   version: 0.0.0-use.local
-  resolution: "gulp-slm@workspace:gulp-slm"
+  resolution: "gulp-slm@workspace:packages/gulp-slm"
   dependencies:
     "@types/gulp": ^4.0.6
     "@types/mocha": ^8.0.3
@@ -3916,9 +3916,9 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"hangul-josa@workspace:hangul-josa":
+"hangul-josa@workspace:packages/hangul-josa":
   version: 0.0.0-use.local
-  resolution: "hangul-josa@workspace:hangul-josa"
+  resolution: "hangul-josa@workspace:packages/hangul-josa"
   dependencies:
     "@types/mocha": ^8.0.3
     "@types/node": ^14.6.0
@@ -5197,9 +5197,9 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"microbundle@patch:microbundle@0.12.3#./microbundle.patch::locator=xsalsa20-csprng%40workspace%3Axsalsa20-csprng":
+"microbundle@patch:microbundle@0.12.3#./microbundle.patch::locator=xsalsa20-csprng%40workspace%3Apackages%2Fxsalsa20-csprng":
   version: 0.12.3
-  resolution: "microbundle@patch:microbundle@npm%3A0.12.3#./microbundle.patch::version=0.12.3&hash=c4086f&locator=xsalsa20-csprng%40workspace%3Axsalsa20-csprng"
+  resolution: "microbundle@patch:microbundle@npm%3A0.12.3#./microbundle.patch::version=0.12.3&hash=c4086f&locator=xsalsa20-csprng%40workspace%3Apackages%2Fxsalsa20-csprng"
   dependencies:
     "@babel/core": ^7.10.2
     "@babel/plugin-proposal-class-properties": 7.7.4
@@ -8390,9 +8390,9 @@ resolve@1.12.0:
   languageName: node
   linkType: hard
 
-"xsalsa20-csprng@workspace:xsalsa20-csprng":
+"xsalsa20-csprng@workspace:packages/xsalsa20-csprng":
   version: 0.0.0-use.local
-  resolution: "xsalsa20-csprng@workspace:xsalsa20-csprng"
+  resolution: "xsalsa20-csprng@workspace:packages/xsalsa20-csprng"
   dependencies:
     "@types/mocha": ^8.0.1
     "@types/node": ^14.0.27

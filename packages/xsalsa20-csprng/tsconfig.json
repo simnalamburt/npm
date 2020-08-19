@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../../tsconfig.json",
   "exclude": ["dist", "docs"],
   "typedocOptions": {
     "inputFiles": ["./src/index.ts"],
