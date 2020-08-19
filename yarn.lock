@@ -3651,7 +3651,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"microbundle@npm:^0.12.3":
+microbundle@0.12.3:
   version: 0.12.3
   resolution: "microbundle@npm:0.12.3"
   dependencies:
@@ -3699,6 +3699,57 @@ fsevents@~2.1.2:
   bin:
     microbundle: dist/cli.js
   checksum: de2a4b1f840171a670ea2829c44bc5b15aeaa53720a1ce7f9a74eda5f7385f63e1379c46baec024ebd6048f5daa84aa1aa1966234af3c443291aee56e7dc0aa7
+  languageName: node
+  linkType: hard
+
+"microbundle@patch:microbundle@0.12.3#./microbundle.patch::locator=xsalsa20-csprng%40workspace%3A.":
+  version: 0.12.3
+  resolution: "microbundle@patch:microbundle@npm%3A0.12.3#./microbundle.patch::version=0.12.3&hash=91cec0&locator=xsalsa20-csprng%40workspace%3A."
+  dependencies:
+    "@babel/core": ^7.10.2
+    "@babel/plugin-proposal-class-properties": 7.7.4
+    "@babel/plugin-syntax-import-meta": ^7.10.1
+    "@babel/plugin-syntax-jsx": ^7.10.1
+    "@babel/plugin-transform-flow-strip-types": ^7.10.1
+    "@babel/plugin-transform-react-jsx": ^7.10.1
+    "@babel/plugin-transform-regenerator": ^7.10.1
+    "@babel/preset-env": ^7.10.2
+    "@babel/preset-flow": ^7.10.1
+    "@babel/preset-modules": ^0.1.3
+    "@rollup/plugin-alias": ^3.1.1
+    "@rollup/plugin-babel": ^5.0.3
+    "@rollup/plugin-commonjs": ^13.0.0
+    "@rollup/plugin-json": ^4.1.0
+    "@rollup/plugin-node-resolve": ^6.1.0
+    asyncro: ^3.0.0
+    autoprefixer: ^9.8.0
+    babel-plugin-macros: ^2.8.0
+    babel-plugin-transform-async-to-promises: ^0.8.15
+    babel-plugin-transform-replace-expressions: ^0.2.0
+    brotli-size: ^4.0.0
+    camelcase: ^5.3.1
+    cssnano: ^4.1.10
+    es6-promisify: ^6.1.1
+    escape-string-regexp: ^4.0.0
+    filesize: ^6.1.0
+    gzip-size: ^5.1.1
+    kleur: ^3.0.3
+    lodash.merge: ^4.6.2
+    module-details-from-path: ^1.0.3
+    pretty-bytes: ^5.3.0
+    rollup: ^1.32.1
+    rollup-plugin-bundle-size: ^1.0.1
+    rollup-plugin-es3: ^1.1.0
+    rollup-plugin-postcss: ^2.9.0
+    rollup-plugin-terser: ^5.3.0
+    rollup-plugin-typescript2: ^0.25.3
+    sade: ^1.7.3
+    tiny-glob: ^0.2.6
+    tslib: ^1.13.0
+    typescript: ^3.9.5
+  bin:
+    microbundle: dist/cli.js
+  checksum: a1f5760a79c697ff09a7e53c3a37a52e8de45d598098623391d712e8ece8ad06d96e239fb365ab6bf6cbfd34d100a035faa120d3b4d3e2c8f598293aeaa7cc1a
   languageName: node
   linkType: hard
 
@@ -5837,7 +5888,7 @@ resolve@1.12.0:
   dependencies:
     "@types/mocha": ^8.0.1
     "@types/node": ^14.0.27
-    microbundle: ^0.12.3
+    microbundle: "patch:microbundle@0.12.3#./microbundle.patch"
     mocha: ^8.1.1
     prettier: ^2.0.5
     sucrase: ^3.15.0
