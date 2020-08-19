@@ -7,15 +7,15 @@
     "crypto",
     "XSalsa20"
   ],
-  "homepage": "https://github.com/simnalamburt/xsalsa20-csprng",
+  "homepage": "https://github.com/simnalamburt/npm/tree/master/packages/xsalsa20-csprng",
   "bugs": {
-    "url": "https://github.com/simnalamburt/xsalsa20-csprng/issues"
+    "url": "https://github.com/simnalamburt/npm/issues"
   },
   "license": "(APACHE-2.0 OR MIT)",
   "author": "Hyeon Kim <simnalamburt@gmail.com> (https://hyeon.me)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/simnalamburt/xsalsa20-csprng.git"
+    "url": "git@github.com:simnalamburt/npm.git"
   },
   "devDependencies": {
     "@types/mocha": "^8.0.1",

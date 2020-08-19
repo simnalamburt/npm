@@ -9,15 +9,15 @@
     "gulpplugin",
     "compile"
   ],
-  "homepage": "https://github.com/simnalamburt/gulp-slm",
+  "homepage": "https://github.com/simnalamburt/npm/tree/master/packages/gulp-slm",
   "bugs": {
-    "url": "https://github.com/simnalamburt/gulp-slm/issues"
+    "url": "https://github.com/simnalamburt/npm/issues"
   },
   "license": "(Apache-2.0 OR MIT)",
   "author": "Hyeon Kim <simnalamburt@gmail.com> (https://hyeon.me/)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/simnalamburt/gulp-slm.git"
+    "url": "git@github.com:simnalamburt/npm.git"
   },
   "dependencies": {
     "plugin-error": "^1.0.1",

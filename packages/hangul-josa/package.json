@@ -8,15 +8,15 @@
     "josa",
     "postposition"
   ],
-  "homepage": "https://github.com/simnalamburt/hangul-josa",
+  "homepage": "https://github.com/simnalamburt/npm/tree/master/packages/hangul-josa",
   "bugs": {
-    "url": "https://github.com/simnalamburt/hangul-josa/issues"
+    "url": "https://github.com/simnalamburt/npm/issues"
   },
   "license": "(APACHE-2.0 OR MIT)",
   "author": "Hyeon Kim <simnalamburt@gmail.com> (https://hyeon.me)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/simnalamburt/hangul-josa.git"
+    "url": "git@github.com:simnalamburt/npm.git"
   },
   "devDependencies": {
     "@types/mocha": "^8.0.3",
