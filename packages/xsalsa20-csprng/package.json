@@ -18,6 +18,8 @@
     "url": "git@github.com:simnalamburt/npm.git"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/node": "^14.6.0",
     "microbundle": "patch:microbundle@0.12.3#./microbundle.patch",
     "typedoc": "^0.17.8",
     "typescript": "^3.9.7"
