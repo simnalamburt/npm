@@ -1,9 +1,9 @@
 # Yarn 2
-/.yarn/
-/.pnp.*
+.yarn/
+.pnp.*
 
 # Markdowns
 *.md
 
 # Build results
-/dist/
+dist/
