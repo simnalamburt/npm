@@ -1,0 +1,66 @@
+{
+  "name": "gulp-slm",
+  "version": "1.2.1",
+  "description": "Compile Slm to HTML for Gulp",
+  "keywords": [
+    "slm",
+    "gulp",
+    "plugin",
+    "gulpplugin",
+    "compile"
+  ],
+  "homepage": "https://github.com/simnalamburt/gulp-slm",
+  "bugs": {
+    "url": "https://github.com/simnalamburt/gulp-slm/issues"
+  },
+  "license": "(Apache-2.0 OR MIT)",
+  "author": "Hyeon Kim <simnalamburt@gmail.com> (https://hyeon.me/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simnalamburt/gulp-slm.git"
+  },
+  "dependencies": {
+    "plugin-error": "^1.0.1",
+    "slm": ">=0.6.0",
+    "through2": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/gulp": "^4.0.6",
+    "@types/mocha": "^8.0.3",
+    "@types/node": "^14.6.0",
+    "@types/replace-ext": "^0.0.27",
+    "@types/through2": "^2.0.36",
+    "@types/vinyl": "^2.0.4",
+    "gulp": "^4.0.2",
+    "microbundle": "^0.12.3",
+    "mocha": "^8.1.1",
+    "prettier": "^2.0.5",
+    "replace-ext": "^2.0.0",
+    "sucrase": "^3.15.0",
+    "typescript": "^3.9.7",
+    "vinyl": "^2.2.0"
+  },
+  "scripts": {
+    "build": "microbundle -f cjs,modern --target node --compress",
+    "dev": "microbundle -f cjs,modern --target node --compress watch",
+    "test": "tsc && mocha && prettier --check .",
+    "fmt": "prettier --write ."
+  },
+  "source": "src/index.ts",
+  "main": "dist/gulp-slm.js",
+  "module": "dist/gulp-slm.modern.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "mocha": {
+    "extension": [
+      "ts"
+    ],
+    "require": "sucrase/register"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
+}
