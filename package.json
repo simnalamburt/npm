@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "yarn workspaces foreach -pt run build",
-    "test:fmt": "prettier --check .",
+    "test": "yarn workspaces foreach -pt run test && jest && prettier --check .",
     "fmt": "prettier --write ."
   },
   "prettier": {

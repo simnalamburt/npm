@@ -5,6 +5,7 @@ simnalamburt/npm
 ```
 yarn
 yarn build
+yarn test
 ```
 
 &nbsp;
