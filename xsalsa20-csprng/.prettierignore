@@ -1,0 +1,10 @@
+# Yarn 2
+/.yarn/
+/.pnp.*
+
+# Markdowns
+*.md
+
+# Build results
+/dist/
+/docs/

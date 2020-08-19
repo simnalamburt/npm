@@ -1,0 +1,58 @@
+{
+  "name": "xsalsa20-csprng",
+  "version": "2.0.2",
+  "description": "CSPRNG and crypto library powered by XSalsa20",
+  "keywords": [
+    "CSPRNG",
+    "crypto",
+    "XSalsa20"
+  ],
+  "homepage": "https://github.com/simnalamburt/xsalsa20-csprng",
+  "bugs": {
+    "url": "https://github.com/simnalamburt/xsalsa20-csprng/issues"
+  },
+  "license": "(APACHE-2.0 OR MIT)",
+  "author": "Hyeon Kim <simnalamburt@gmail.com> (https://hyeon.me)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simnalamburt/xsalsa20-csprng.git"
+  },
+  "devDependencies": {
+    "@types/mocha": "^8.0.1",
+    "@types/node": "^14.0.27",
+    "microbundle": "patch:microbundle@0.12.3#./microbundle.patch",
+    "mocha": "^8.1.1",
+    "prettier": "^2.0.5",
+    "sucrase": "^3.15.0",
+    "typedoc": "^0.17.8",
+    "typescript": "^3.9.7"
+  },
+  "scripts": {
+    "build": "yarn build:browser && yarn build:node",
+    "build:browser": "microbundle -f modern,umd",
+    "build:node": "microbundle -f cjs --target=node --tsconfig tsconfig.node.json",
+    "test": "tsc && mocha && prettier --check .",
+    "fmt": "prettier --write .",
+    "doc": "typedoc"
+  },
+  "source": "src/index.ts",
+  "main": "dist/xsalsa20-csprng.js",
+  "browser": "dist/xsalsa20-csprng.modern.js",
+  "module": "dist/xsalsa20-csprng.modern.js",
+  "unpkg": "dist/xsalsa20-csprng.umd.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "sideEffects": false,
+  "mocha": {
+    "extension": [
+      "ts"
+    ],
+    "require": "sucrase/register"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
+}
