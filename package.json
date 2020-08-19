@@ -13,5 +13,9 @@
     "build": "yarn workspaces foreach -pt run build",
     "test:fmt": "prettier --check .",
     "fmt": "prettier --write ."
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   }
 }
