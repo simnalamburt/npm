@@ -2297,6 +2297,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"at-least-node@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "at-least-node@npm:1.0.0"
+  checksum: 8f33efc16287ed39766065c718a2d36a469f702c66c6eb41fa460c0c62bca395301a6a02946e315ae4a84c9cc7f44c94ec73a556bc2a1049350da98d0b013afe
+  languageName: node
+  linkType: hard
+
 "atob@npm:^2.1.2":
   version: 2.1.2
   resolution: "atob@npm:2.1.2"
@@ -4256,7 +4263,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:8.1.0, fs-extra@npm:^8.1.0":
+"fs-extra@npm:8.1.0":
   version: 8.1.0
   resolution: "fs-extra@npm:8.1.0"
   dependencies:
@@ -4264,6 +4271,18 @@ __metadata:
     jsonfile: ^4.0.0
     universalify: ^0.1.0
   checksum: 056a96d4f55ab8728b021e251175a4a6440d1edb5845e6c2e8e010019bde3e63de188a0eb99386c21c71804ca1a571cd6e08f507971f10a2bc4f4f7667720fa4
+  languageName: node
+  linkType: hard
+
+"fs-extra@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "fs-extra@npm:9.0.1"
+  dependencies:
+    at-least-node: ^1.0.0
+    graceful-fs: ^4.2.0
+    jsonfile: ^6.0.1
+    universalify: ^1.0.0
+  checksum: b7374cb05819bd95fa15bf74a30fbec3d2b64a0c00d2df67d6e1d6a901a9a7582a1243fe652d27a6cd042b38a2c1cd9ae3b3d100bc98dd041cc2f3e29964884f
   languageName: node
   linkType: hard
 
@@ -6127,6 +6146,19 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"jsonfile@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "jsonfile@npm:6.0.1"
+  dependencies:
+    graceful-fs: ^4.1.6
+    universalify: ^1.0.0
+  dependenciesMeta:
+    graceful-fs:
+      optional: true
+  checksum: ebd6932424db468226b0b525b5b8acefd97e46f4fc5f36232c94e928b405716b47b2d7c2342025ecd7a0219f2146ae613d33878b917505698b7dc36ebe082c11
+  languageName: node
+  linkType: hard
+
 "jsprim@npm:^1.2.2":
   version: 1.4.1
   resolution: "jsprim@npm:1.4.1"
@@ -6425,12 +6457,12 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"marked@npm:1.0.0":
-  version: 1.0.0
-  resolution: "marked@npm:1.0.0"
+"marked@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "marked@npm:1.1.1"
   bin:
     marked: bin/marked
-  checksum: 4121f2f5cb7130e57571780181cddac9e3a8692486045f760baad14c6d896c9481180ad8ab8a36fb9476375ddaa860dbc7d29ecf386b2bfa47d4450a9f866cd4
+  checksum: 4fb077a99ca6a6a4f389bbe2f27620509a332da6fac019560fc25e0e9636226cc86420ddbcfc6e8956920cbca68d64cd11d03954d22123a95ffc63c2e6c4e0ae
   languageName: node
   linkType: hard
 
@@ -9645,16 +9677,16 @@ resolve@1.12.0:
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.17.8":
-  version: 0.17.8
-  resolution: "typedoc@npm:0.17.8"
+"typedoc@npm:^0.18.0":
+  version: 0.18.0
+  resolution: "typedoc@npm:0.18.0"
   dependencies:
-    fs-extra: ^8.1.0
+    fs-extra: ^9.0.1
     handlebars: ^4.7.6
     highlight.js: ^10.0.0
     lodash: ^4.17.15
     lunr: ^2.3.8
-    marked: 1.0.0
+    marked: ^1.1.1
     minimatch: ^3.0.0
     progress: ^2.0.3
     shelljs: ^0.8.4
@@ -9663,7 +9695,7 @@ resolve@1.12.0:
     typescript: ">=3.8.3"
   bin:
     typedoc: bin/typedoc
-  checksum: 5c8d869a85c0fa71b69299ffbcf542278bb0f17672ee2fb23f65f696f5d520e66b0e29634589c71db9f0d4f059f9982ddfb0a29b733755071b1779e98537da1f
+  checksum: 74abaec6601e823c29805cb0edf709329cf6ffe8189be50eab5b939bff502de535f1dc0be60f425000cf8d9246cdec65c5cde898b240a97bcb10461f37430393
   languageName: node
   linkType: hard
 
@@ -9799,6 +9831,13 @@ resolve@1.12.0:
   version: 0.1.2
   resolution: "universalify@npm:0.1.2"
   checksum: 420fc6547357782c700d53e9a92506a8e95345b13e97684c8f9ab75237912ec2ebb6af8ac10d4f7406b7b6bd21c58f6c5c0811414fb0b4091b78b4743fa6806e
+  languageName: node
+  linkType: hard
+
+"universalify@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "universalify@npm:1.0.0"
+  checksum: d74303a8d9ff18598804f3e9f261c9376cad55b81a92346f086e59261803ae75bef347044dd6a25549eb3b1490c0dd106dc07154cd7ccad8f037fdae947c125d
   languageName: node
   linkType: hard
 
@@ -10205,7 +10244,7 @@ resolve@1.12.0:
     "@types/jest": ^26.0.10
     "@types/node": ^14.6.0
     microbundle: "patch:microbundle@0.12.3#./microbundle.patch"
-    typedoc: ^0.17.8
+    typedoc: ^0.18.0
     typescript: ^3.9.7
   languageName: unknown
   linkType: soft
