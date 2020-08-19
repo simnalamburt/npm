@@ -19,17 +19,13 @@
     "url": "git@github.com:simnalamburt/npm.git"
   },
   "devDependencies": {
-    "@types/mocha": "^8.0.3",
-    "@types/node": "^14.6.0",
     "microbundle": "^0.12.3",
-    "mocha": "^8.1.1",
-    "sucrase": "^3.15.0",
     "typescript": "^3.9.7"
   },
   "scripts": {
     "build": "microbundle -f cjs,modern,umd",
     "dev": "microbundle -f cjs,modern,umd watch",
-    "test": "tsc && mocha"
+    "test": "tsc"
   },
   "source": "src/index.ts",
   "main": "dist/hangul-josa.js",
@@ -39,11 +35,5 @@
   "files": [
     "dist/*"
   ],
-  "sideEffects": false,
-  "mocha": {
-    "extension": [
-      "ts"
-    ],
-    "require": "sucrase/register"
-  }
+  "sideEffects": false
 }
