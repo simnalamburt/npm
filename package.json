@@ -44,6 +44,12 @@
     "dist/*"
   ],
   "sideEffects": false,
+  "mocha": {
+    "extension": [
+      "ts"
+    ],
+    "require": "sucrase/register"
+  },
   "prettier": {
     "semi": false,
     "singleQuote": true
