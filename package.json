@@ -10,6 +10,7 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
+    "build": "yarn workspaces foreach -pt run build",
     "test:fmt": "prettier --check .",
     "fmt": "prettier --write ."
   }

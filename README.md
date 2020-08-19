@@ -1,5 +1,11 @@
 simnalamburt/npm
 ========
+📦 Monorepo for my NPM packages.
+
+```
+yarn
+yarn build
+```
 
 &nbsp;
 
