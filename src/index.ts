@@ -89,7 +89,7 @@ function* xsalsa20GeneratorInt32(
   const generator = xsalsa20Generator(nonce, key)
 
   while (true) {
-    const { value: b } = generator.next()
+    const b = generator.next().value
     // prettier-ignore
     yield* [
       b[ 0] | b[ 1] << 8 | b[ 2] << 16 | b[ 3] << 24,
