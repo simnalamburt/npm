@@ -20,7 +20,7 @@
   },
   "exclude": ["dist", "docs"],
   "typedocOptions": {
-    "inputFiles": ["./src/index.nodejs.ts"],
+    "inputFiles": ["./src/index.ts"],
     "excludeNotExported": true,
     "excludePrivate:": true,
     "mode": "file",
