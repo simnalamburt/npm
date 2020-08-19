@@ -1333,6 +1333,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@simnalamburt/monorepo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@simnalamburt/monorepo@workspace:."
+  dependencies:
+    prettier: ^2.0.5
+    typescript: ^3.9.7
+  languageName: unknown
+  linkType: soft
+
 "@types/color-name@npm:^1.1.1":
   version: 1.1.1
   resolution: "@types/color-name@npm:1.1.1"
@@ -1399,7 +1408,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^14.0.27, @types/node@npm:^14.6.0":
+"@types/node@npm:*":
   version: 14.6.0
   resolution: "@types/node@npm:14.6.0"
   checksum: ff23553ab77516d0f90b6710a041a49723fc1b1ca33a5379d5746068cac8b9ddbec428d3a4913afaee50bcdc69b9583843740a18a3519ae997982694f5287c6b
@@ -3612,7 +3621,6 @@ fsevents@^1.2.7:
   resolution: "gulp-slm@workspace:packages/gulp-slm"
   dependencies:
     "@types/gulp": ^4.0.6
-    "@types/node": ^14.6.0
     "@types/replace-ext": ^0.0.27
     "@types/through2": ^2.0.36
     "@types/vinyl": ^2.0.4
@@ -3691,7 +3699,6 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "hangul-josa@workspace:packages/hangul-josa"
   dependencies:
-    "@types/node": ^14.6.0
     microbundle: ^0.12.3
     typescript: ^3.9.7
   languageName: unknown
@@ -6647,15 +6654,6 @@ resolve@1.12.0:
   languageName: node
   linkType: hard
 
-"root-workspace-0b6124@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "root-workspace-0b6124@workspace:."
-  dependencies:
-    prettier: ^2.0.5
-    typescript: ^3.9.7
-  languageName: unknown
-  linkType: soft
-
 "sade@npm:^1.7.3":
   version: 1.7.3
   resolution: "sade@npm:1.7.3"
@@ -7823,7 +7821,6 @@ resolve@1.12.0:
   version: 0.0.0-use.local
   resolution: "xsalsa20-csprng@workspace:packages/xsalsa20-csprng"
   dependencies:
-    "@types/node": ^14.0.27
     microbundle: "patch:microbundle@0.12.3#./microbundle.patch"
     typedoc: ^0.17.8
     typescript: ^3.9.7

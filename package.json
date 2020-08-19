@@ -1,5 +1,7 @@
 {
+  "name": "@simnalamburt/monorepo",
   "private": true,
+  "license": "(Apache-2.0 OR MIT)",
   "workspaces": [
     "packages/*"
   ],
