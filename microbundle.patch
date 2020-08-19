@@ -1,5 +1,5 @@
 diff --git a/dist/cli.js b/dist/cli.js
-index 5672733813ad0999e4f12d05d751951bc9a472a5..dd92b95369baa5fb67cfb019544dbbce14a450a1 100644
+index 5672733813ad0999e4f12d05d751951bc9a472a5..2f92c1cb3f3e417e89ed95254c189557fbd1db6f 100644
 --- a/dist/cli.js
 +++ b/dist/cli.js
 @@ -237,9 +237,6 @@ var customBabel = (() => {
@@ -12,8 +12,18 @@ index 5672733813ad0999e4f12d05d751951bc9a472a5..dd92b95369baa5fb67cfb019544dbbce
          }, {
            name: 'babel-plugin-macros'
          }].filter(Boolean));
+@@ -1089,7 +1086,8 @@ function createConfig(options, entry, format, writeMeta) {
+       globals,
+       strict: options.strict === true,
+       freeze: false,
+-      esModule: false,
++      esModule: true,
++      exports: 'named',
+       sourcemap: options.sourcemap,
+ 
+       get banner() {
 diff --git a/dist/microbundle.js b/dist/microbundle.js
-index 91fd66a0e8da2f8e961c0f6fd43f00a926f0fc45..7b6bc7cb53688b5660156b1cd8b5ba65020b3bdf 100644
+index 91fd66a0e8da2f8e961c0f6fd43f00a926f0fc45..b45c371d6d030239a50bf6cf4f334b0f04a32e90 100644
 --- a/dist/microbundle.js
 +++ b/dist/microbundle.js
 @@ -236,9 +236,6 @@ var customBabel = (() => {
@@ -26,3 +36,13 @@ index 91fd66a0e8da2f8e961c0f6fd43f00a926f0fc45..7b6bc7cb53688b5660156b1cd8b5ba65
          }, {
            name: 'babel-plugin-macros'
          }].filter(Boolean));
+@@ -1088,7 +1085,8 @@ function createConfig(options, entry, format, writeMeta) {
+       globals,
+       strict: options.strict === true,
+       freeze: false,
+-      esModule: false,
++      esModule: true,
++      exports: 'named',
+       sourcemap: options.sourcemap,
+ 
+       get banner() {

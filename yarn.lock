@@ -3704,7 +3704,7 @@ microbundle@0.12.3:
 
 "microbundle@patch:microbundle@0.12.3#./microbundle.patch::locator=xsalsa20-csprng%40workspace%3A.":
   version: 0.12.3
-  resolution: "microbundle@patch:microbundle@npm%3A0.12.3#./microbundle.patch::version=0.12.3&hash=91cec0&locator=xsalsa20-csprng%40workspace%3A."
+  resolution: "microbundle@patch:microbundle@npm%3A0.12.3#./microbundle.patch::version=0.12.3&hash=c4086f&locator=xsalsa20-csprng%40workspace%3A."
   dependencies:
     "@babel/core": ^7.10.2
     "@babel/plugin-proposal-class-properties": 7.7.4
@@ -3749,7 +3749,7 @@ microbundle@0.12.3:
     typescript: ^3.9.5
   bin:
     microbundle: dist/cli.js
-  checksum: a1f5760a79c697ff09a7e53c3a37a52e8de45d598098623391d712e8ece8ad06d96e239fb365ab6bf6cbfd34d100a035faa120d3b4d3e2c8f598293aeaa7cc1a
+  checksum: 617b3f837e9fc4c8fcb0093855cfd6b4ab7d7bf61a6506090a6fe81eec817dafc861dcd122382d1d79cc489218e80de48396a7de2cfc22aba78ae7fe766f546f
   languageName: node
   linkType: hard
 
