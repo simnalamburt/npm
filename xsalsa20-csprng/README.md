@@ -62,18 +62,8 @@ console.log(gen.stream(64))
 console.log(gen.stream(64))
 ```
 
-&nbsp;
-
---------
-*xsalsa20-csprng* is primarily distributed under the terms of both the [Apache
-License (Version 2.0)] and the [MIT license]. See [COPYRIGHT] for details.
-
 [NPM Version]: https://badgen.net/npm/v/xsalsa20-csprng
 [NPM Link]: https://www.npmjs.com/package/xsalsa20-csprng
 
 [xsalsa20csprng]: https://simnalamburt.github.io/xsalsa20-csprng/classes/xsalsa20csprng.html
 [xsalsa20]: https://simnalamburt.github.io/xsalsa20-csprng/classes/xsalsa20.html
-
-[Apache License (Version 2.0)]: LICENSE-APACHE
-[MIT license]: LICENSE-MIT
-[COPYRIGHT]: COPYRIGHT

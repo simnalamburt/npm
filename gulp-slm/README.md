@@ -45,20 +45,9 @@ gulp.task('slm', _ => {
 </html>
 ```
 
-&nbsp;
-
---------
-
-*gulp-slm* is primarily distributed under the terms of both the [Apache License
-(Version 2.0)] and the [MIT license]. See [COPYRIGHT] for details.
-
 [version]: https://badgen.net/npm/v/gulp-slm
 [downloads]: https://badgen.net/npm/dt/gulp-slm
 [npm]: https://npmjs.org/package/gulp-slm
 
 [Slm]: https://github.com/slm-lang/slm
 [Gulp]: https://gulpjs.com/
-
-[MIT license]: LICENSE-MIT
-[Apache License (Version 2.0)]: LICENSE-APACHE
-[COPYRIGHT]: COPYRIGHT
