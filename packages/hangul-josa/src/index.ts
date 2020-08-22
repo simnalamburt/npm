@@ -30,7 +30,7 @@ export { 와_과 as 와, 와_과 as 과 }
  *              be replaced with `exp.toString()`.
  * @returns     Result string
  */
-export function josa(tpl: TemplateStringsArray, ...keys: any[]): string {
+export function josa(tpl: TemplateStringsArray, ...keys: unknown[]): string {
   let buf = ''
 
   for (let i = 0; i < keys.length; ++i) {
@@ -57,9 +57,7 @@ export function josa(tpl: TemplateStringsArray, ...keys: any[]): string {
         buf += haveJong ? '과' : '와'
         break
       default:
-        // In this position, key's type is "All types except null or undefined",
-        // which makes safe to call `key.toString()`.
-        buf += key.toString()
+        buf += String(key)
     }
   }
 
