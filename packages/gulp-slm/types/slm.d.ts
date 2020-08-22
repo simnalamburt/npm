@@ -3,5 +3,5 @@ declare module 'slm' {
     src: string,
     options: object,
     vm?: any
-  ): (model: object) => any
+  ): (model: object) => string
 }
