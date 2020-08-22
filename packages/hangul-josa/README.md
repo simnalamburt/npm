@@ -18,8 +18,8 @@ console.log(josa`${player}${는} ${skill}${을} 사용했다!`)
 ### Features
 - Fast and lightweight (Gzipped size &lt; 500B)
 - Utilizes modern JS, easy and simple to use
-- Tree-shakeable, side-effect free, and no dependencies. Check [bundlephobia]
-  for more details.
+- [Tree-shakeable, side-effect free, and no dependencies][bundlephobia]
+- IE11 support
 
 ### Prior works
 - [josa-js](https://github.com/e-/Josa.js), best implementation so far

@@ -1,4 +1,5 @@
-// TODO: "Supports legacy browsers"
+// IE11's Symbol support is incomplete, but calling the Symbol constructor and
+// comparing symbols is supported.
 const 은_는 = Symbol()
 const 을_를 = Symbol()
 const 이_가 = Symbol()
