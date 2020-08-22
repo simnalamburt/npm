@@ -4,11 +4,21 @@ hangul-josa
 
 Let's handle 은/는, 을/를, 이/가, 와/과 with ease using modern javascript syntax!
 
+```javascript
+import { josa, 는, 을 } from 'hangul-josa'
+
+const player = '지현'
+const skill = '구르기'
+
+console.log(josa`${player}${는} ${skill}${을} 사용했다!`)
+// 지현은 구르기를 사용했다!
+```
+
 ### TODOs
-- [ ] Fast and lightweight (&lt;XX bytes)
-- [ ] Utilizes modern JS, easy and simple to use
+- [x] Fast and lightweight (Gzipped size &lt; 350 bytes)
+- [x] Utilizes modern JS, easy and simple to use
+- [x] Tree-shakeable, side-effect free, and no dependencies (Link to bundlephobia)
 - [ ] Supports legacy browsers
-- [ ] Tree-shakeable, side-effect free, and no dependencies (Link to bundlephobia)
 
 ### Prior works
 - [josa-js](https://github.com/e-/Josa.js), best implementation so far
