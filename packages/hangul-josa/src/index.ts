@@ -27,7 +27,7 @@ export { 와_과 as 와, 와_과 as 과 }
  * @param keys  Expression parts of tagged template. If one of {@link 은_는},
  *              {@link 이_가} and others is given, it'll be replaced into one of
  *              "은", "는", "이", "가", and etc appropriately. If undefined or
- *              null is geven, it'll be ignore. For all the other types, it'll
+ *              null is given, it'll be ignore. For all the other types, it'll
  *              be replaced with `exp.toString()`.
  * @returns     Result string
  */
