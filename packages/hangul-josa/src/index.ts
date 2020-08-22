@@ -7,7 +7,7 @@ const 와_과 = Symbol()
 const 로_으로 = Symbol()
 
 /**
- * Tagged template for {@link 은_는} {@link 이_가} handling.
+ * Tagged template for {@link 은}, {@link 는}, {@link 이}, {@link 가} handling.
  *
  * ### Example
  * ```javascript
@@ -19,11 +19,12 @@ const 로_으로 = Symbol()
  * ```
  *
  * @param tpl   String parts of tagged template.
- * @param keys  Expression parts of tagged template. If one of {@link 은_는},
- *              {@link 이_가} and others is given, it'll be replaced into one of
- *              "은", "는", "이", "가", and etc appropriately. If undefined or
- *              null is given, it'll be ignore. For all the other types, it'll
- *              be replaced with `exp.toString()`.
+ * @param keys  Expression parts of tagged template. If one of {@link 은},
+ *              {@link 는}, {@link 이}, {@link 가} and others is given, it'll be
+ *              replaced into one of "은", "는", "이", "가", and etc
+ *              appropriately. If undefined or null is given, it'll be ignore.
+ *              For all the other types, it'll be replaced with
+ *              `exp.toString()`.
  * @returns     Result string
  */
 export function josa(tpl: TemplateStringsArray, ...keys: unknown[]): string {
