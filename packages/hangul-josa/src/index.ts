@@ -1,18 +1,9 @@
 // TODO: "Supports legacy browsers"
-export const 은_는 = Symbol()
-export { 은_는 as 은, 은_는 as 는 }
-
-export const 을_를 = Symbol()
-export { 을_를 as 을, 을_를 as 를 }
-
-export const 이_가 = Symbol()
-export { 이_가 as 이, 이_가 as 가 }
-
-export const 와_과 = Symbol()
-export { 와_과 as 와, 와_과 as 과 }
-
-export const 로_으로 = Symbol()
-export { 로_으로 as 로, 로_으로 as 으로 }
+const 은_는 = Symbol()
+const 을_를 = Symbol()
+const 이_가 = Symbol()
+const 와_과 = Symbol()
+const 로_으로 = Symbol()
 
 /**
  * Tagged template for {@link 은_는} {@link 이_가} handling.
@@ -69,3 +60,9 @@ export function josa(tpl: TemplateStringsArray, ...keys: unknown[]): string {
 
   return buf + tpl[keys.length]
 }
+
+export { 은_는 as 은, 은_는 as 는 }
+export { 을_를 as 을, 을_를 as 를 }
+export { 이_가 as 이, 이_가 as 가 }
+export { 와_과 as 와, 와_과 as 과 }
+export { 로_으로 as 로, 로_으로 as 으로 }
