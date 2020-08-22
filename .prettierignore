@@ -3,8 +3,11 @@
 /.yarn/
 /.pnp.*
 
+# microbundle
+/packages/*/dist/
+
+# typedoc
+/packages/*/docs/
+
 # Markdowns
 *.md
-
-# Build results
-/packages/*/dist/

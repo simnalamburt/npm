@@ -9,6 +9,9 @@
 # microbundle
 /packages/*/dist/
 
+# typedoc
+/packages/*/docs/
+
 # typescript
 /node_modules/
 /packages/*/node_modules/

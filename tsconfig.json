@@ -18,5 +18,12 @@
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["dist"]
+  "exclude": ["dist", "docs"],
+  "typedocOptions": {
+    "inputFiles": ["./src/index.ts"],
+    "excludeNotExported": true,
+    "excludePrivate:": true,
+    "mode": "file",
+    "out": "docs"
+  }
 }
