@@ -23,12 +23,14 @@
     "@types/jest": "^26.0.10",
     "@types/node": "^14.6.0",
     "microbundle": "^0.12.3",
+    "typedoc": "^0.18.0",
     "typescript": "^3.9.7"
   },
   "scripts": {
     "build": "microbundle -f cjs,modern,umd",
     "dev": "microbundle -f cjs,modern,umd watch",
-    "test": "tsc"
+    "test": "tsc",
+    "doc": "typedoc"
   },
   "source": "src/index.ts",
   "main": "dist/hangul-josa.js",
