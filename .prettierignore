@@ -1,10 +1,10 @@
 # Yarn 2
-.yarnrc.yml
-.yarn/
-.pnp.*
+/.yarnrc.yml
+/.yarn/
+/.pnp.*
 
 # Markdowns
 *.md
 
 # Build results
-dist/
+/packages/*/dist/

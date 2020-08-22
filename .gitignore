@@ -1,16 +1,17 @@
 # Yarn 2
-.yarn/*
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
+/.yarn/*
+!/.yarn/releases
+!/.yarn/plugins
+!/.yarn/sdks
+!/.yarn/versions
+/.pnp.*
 
 # microbundle
-dist/
+/packages/*/dist/
 
 # typescript
-node_modules/
+/node_modules/
+/packages/*/node_modules/
 
 # Jest coverage results
 /coverage/
