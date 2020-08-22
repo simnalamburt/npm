@@ -1,6 +1,6 @@
 import assert from 'assert'
 
-import { josa, 은, 는, 을, 를, 와, 과, 이, 가 } from '..'
+import { josa, 은, 는, 을, 를, 와, 과, 이, 가, 로, 으로 } from '..'
 
 it('basic tests', () => {
   const player = '지현'
@@ -29,6 +29,21 @@ it('basic tests', () => {
   assert.equal(
     josa`${christian}${과} ${buddhist}${가} 화합하는 사회`,
     '기독교도와 불교인이 화합하는 사회'
+  )
+
+  const language = '파이썬'
+  const spring = '스프링 프레임워크'
+  assert.equal(
+    josa`${language}${로} 헬로월드 짤 줄 안다고 ${spring}${으로}도 서비스를 개발할 줄 아는건 아니다`,
+    '파이썬으로 헬로월드 짤 줄 안다고 스프링 프레임워크로도 서비스를 개발할 줄 아는건 아니다'
+  )
+})
+
+it('-ㄹ로', () => {
+  const skill = '스킬'
+  assert.equal(
+    josa`${skill}${로} 적을 공격하세요`,
+    '스킬로 적을 공격하세요'
   )
 })
 

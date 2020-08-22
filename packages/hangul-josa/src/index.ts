@@ -11,6 +11,9 @@ export { 이_가 as 이, 이_가 as 가 }
 export const 와_과 = Symbol()
 export { 와_과 as 와, 와_과 as 과 }
 
+export const 로_으로 = Symbol()
+export { 로_으로 as 로, 로_으로 as 으로 }
+
 /**
  * Tagged template for {@link 은_는} {@link 이_가} handling.
  *
@@ -37,28 +40,30 @@ export function josa(tpl: TemplateStringsArray, ...keys: unknown[]): string {
   for (let i = 0; i < keys.length; ++i) {
     buf += tpl[i]
 
-    const key = keys[i]
-    if (key == null) {
+    if (keys[i] == null) {
       continue
     }
 
     // This code can handle zero-length stringn with NaN propagation
-    const haveJong = (buf.charCodeAt(buf.length - 1) - 0xac00) % 28 > 0
-    switch (key) {
+    const jong = (buf.charCodeAt(buf.length - 1) - 0xac00) % 28
+    switch (keys[i]) {
       case 은_는:
-        buf += haveJong ? '은' : '는'
+        buf += jong > 0 ? '은' : '는'
         break
       case 을_를:
-        buf += haveJong ? '을' : '를'
+        buf += jong > 0 ? '을' : '를'
         break
       case 이_가:
-        buf += haveJong ? '이' : '가'
+        buf += jong > 0 ? '이' : '가'
         break
       case 와_과:
-        buf += haveJong ? '과' : '와'
+        buf += jong > 0 ? '과' : '와'
+        break
+      case 로_으로:
+        buf += jong > 0 && jong != 8 ? '으로' : '로'
         break
       default:
-        buf += String(key)
+        buf += String(keys[i])
     }
   }
 
