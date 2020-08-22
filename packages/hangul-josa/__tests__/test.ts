@@ -41,10 +41,7 @@ it('basic tests', () => {
 
 it('-ㄹ로', () => {
   const skill = '스킬'
-  assert.equal(
-    josa`${skill}${로} 적을 공격하세요`,
-    '스킬로 적을 공격하세요'
-  )
+  assert.equal(josa`${skill}${로} 적을 공격하세요`, '스킬로 적을 공격하세요')
 })
 
 it('ignore null input', () => {
