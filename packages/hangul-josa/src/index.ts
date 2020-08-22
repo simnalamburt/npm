@@ -1,3 +1,4 @@
+// TODO: "Supports legacy browsers"
 export const 은_는 = Symbol()
 export { 은_는 as 은, 은_는 as 는 }
 

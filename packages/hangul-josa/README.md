@@ -1,4 +1,4 @@
-hangul-josa
+hangul-josa [![NPM Version]][NPM Link]
 ========
 은/는, 을/를, 이/가, 와/과 처리를 현대적인 javascript 문법으로 편하게 해보아요.
 
@@ -14,14 +14,19 @@ console.log(josa`${player}${는} ${skill}${을} 사용했다!`)
 // 지현은 구르기를 사용했다!
 ```
 
-### TODOs
-- [x] Fast and lightweight (Gzipped size &lt; 350 bytes)
-- [x] Utilizes modern JS, easy and simple to use
-- [x] Tree-shakeable, side-effect free, and no dependencies (Link to bundlephobia)
-- [ ] Supports legacy browsers
+### Features
+- Fast and lightweight (Gzipped size &lt; 500B)
+- Utilizes modern JS, easy and simple to use
+- Tree-shakeable, side-effect free, and no dependencies. Check [bundlephobia]
+  for more details.
 
 ### Prior works
 - [josa-js](https://github.com/e-/Josa.js), best implementation so far
 - [flyskyne/Josa.js](https://github.com/flyskyne/Josa.js), added 로/으로 support to the josa-js
 - [emptydream/JoLib](https://github.com/emptydream/JoLib), it works but too big (5.53KiB)
 - [naradesign/hangul.josa.js](https://github.com/naradesign/hangul.josa.js), jQuery Plugin
+
+[NPM Version]: https://badgen.net/npm/v/hangul-josa
+[NPM Link]: https://www.npmjs.com/package/hangul-josa
+
+[bundlephobia]: https://bundlephobia.com/result?p=hangul-josa
