@@ -16,7 +16,10 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+
+    // Advanced
+    "newLine": "lf"
   },
   "exclude": ["dist", "docs"],
   "typedocOptions": {
