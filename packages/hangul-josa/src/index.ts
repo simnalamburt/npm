@@ -37,7 +37,7 @@ export function josa(tpl: TemplateStringsArray, ...keys: unknown[]): string {
       continue
     }
 
-    // This code can handle zero-length stringn with NaN propagation
+    // This code can handle zero-length string with NaN propagation
     const jong = (buf.charCodeAt(buf.length - 1) - 0xac00) % 28
     switch (keys[i]) {
       case 은_는:
