@@ -1,6 +1,6 @@
-/client/.yarn/releases/** binary linguist-generated
-/client/.yarn/plugins/**  binary linguist-generated
-/client/.yarn/cache/**    linguist-vendored
-/client/.yarn/sdks/**     binary linguist-generated
-/client/.yarn/pnpify/**   binary linguist-generated
-/client/.pnp.js           binary linguist-generated
+/.yarn/releases/** binary linguist-generated
+/.yarn/plugins/**  binary linguist-generated
+/.yarn/cache/**    linguist-vendored
+/.yarn/sdks/**     binary linguist-generated
+/.yarn/pnpify/**   binary linguist-generated
+/.pnp.js           binary linguist-generated
