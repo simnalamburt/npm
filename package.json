@@ -15,8 +15,8 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
-    "build": "yarn workspaces foreach -pt run build",
-    "test": "yarn workspaces foreach -pt run test && jest && prettier --check .",
+    "build": "yarn workspaces foreach -Apt run build",
+    "test": "yarn workspaces foreach -Apt run test && jest && prettier --check .",
     "coverage": "jest --coverage",
     "fmt": "prettier --write ."
   },
@@ -24,5 +24,5 @@
     "semi": false,
     "singleQuote": true
   },
-  "packageManager": "yarn@3.0.2"
+  "packageManager": "yarn@4.6.0"
 }
