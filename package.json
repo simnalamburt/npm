@@ -2,9 +2,6 @@
   "name": "@simnalamburt/monorepo",
   "private": true,
   "license": "(Apache-2.0 OR MIT)",
-  "workspaces": [
-    "packages/*"
-  ],
   "dependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
@@ -15,8 +12,8 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
-    "build": "yarn workspaces foreach -Apt run build",
-    "test": "yarn workspaces foreach -Apt run test && jest && prettier --check .",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test && jest && prettier --check .",
     "coverage": "jest --coverage",
     "fmt": "prettier --write ."
   },
@@ -24,5 +21,10 @@
     "semi": false,
     "singleQuote": true
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "pnpm@10.2.0",
+  "pnpm": {
+    "patchedDependencies": {
+      "microbundle@0.12.3": "patches/microbundle@0.12.3.patch"
+    }
+  }
 }

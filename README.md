@@ -3,12 +3,12 @@ simnalamburt/npm
 📦 Monorepo for my NPM packages.
 
 ```
-yarn
-yarn build
-yarn test
+pnpm
+pnpm build
+pnpm test
 
 # Advanced
-yarn coverage
+pnpm coverage
 ```
 
 &nbsp;

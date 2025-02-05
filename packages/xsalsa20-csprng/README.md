@@ -4,7 +4,7 @@ CSPRNG and crypto library powered by XSalsa20. Small, fast, supports both
 browsers and Node.js, and optimized for CSPRNG usage.
 
 ```bash
-yarn add xsalsa20-csprng
+pnpm add xsalsa20-csprng
 ```
 
 This library is optimized to be used as CSPRNG rather than encrypting large
