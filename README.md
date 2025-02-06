@@ -2,7 +2,7 @@ simnalamburt/npm
 ========
 📦 Monorepo for my NPM packages.
 
-```
+```bash
 pnpm i
 pnpm build
 pnpm test
