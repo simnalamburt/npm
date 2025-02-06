@@ -26,7 +26,7 @@
     "@types/through2": "^2.0.36",
     "@types/vinyl": "^2.0.4",
     "gulp": "^4.0.2",
-    "microbundle": "^0.12.3",
+    "microbundle": "catalog:",
     "replace-ext": "^2.0.0",
     "typescript": "catalog:",
     "vinyl": "^2.2.0"

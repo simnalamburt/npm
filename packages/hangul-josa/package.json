@@ -16,8 +16,8 @@
   },
   "devDependencies": {
     "@types/node": "catalog:",
-    "microbundle": "^0.12.3",
-    "typedoc": "^0.18.0",
+    "microbundle": "catalog:",
+    "typedoc": "catalog:",
     "typescript": "catalog:"
   },
   "scripts": {
