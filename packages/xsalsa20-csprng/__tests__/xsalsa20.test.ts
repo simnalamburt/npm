@@ -1,5 +1,6 @@
-import assert from 'assert'
-import crypto from 'crypto'
+import crypto from 'node:crypto'
+import { assert, describe, it } from 'vitest'
+
 import { XSalsa20 } from '..'
 
 // biome-ignore format: binary

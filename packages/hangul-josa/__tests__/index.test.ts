@@ -1,4 +1,4 @@
-import assert from 'assert'
+import { assert, it } from 'vitest'
 
 import { josa, 은, 는, 을, 를, 와, 과, 이, 가, 로, 으로 } from '..'
 

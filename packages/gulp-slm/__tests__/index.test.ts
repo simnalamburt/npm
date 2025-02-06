@@ -1,13 +1,14 @@
-import assert from 'assert'
-import fs from 'fs'
-import path from 'path'
-import { promisify } from 'util'
+import fs from 'node:fs'
+import path from 'node:path'
+import { promisify } from 'node:util'
+import { extname } from 'node:path'
+
+import { assert, describe, it } from 'vitest'
 
 import slm, { Options } from '../'
 import { compile } from 'slm'
 
 import through from 'through2'
-import { extname } from 'path'
 import gulp from 'gulp'
 import File from 'vinyl'
 
