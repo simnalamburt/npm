@@ -2,6 +2,6 @@ declare module 'slm' {
   function compile(
     src: string,
     options: object,
-    vm?: any
+    vm?: any,
   ): (model: object) => string
 }

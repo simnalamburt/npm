@@ -54,7 +54,7 @@ export default class XSalsa20CSPRNG {
 type XSalsa20Generator = Generator<Uint8Array, never, undefined>
 function* xsalsa20Generator(
   nonce: Uint8Array,
-  key: Uint8Array
+  key: Uint8Array,
 ): XSalsa20Generator {
   const s = new Uint8Array(32)
   const z = new Uint8Array(16)
@@ -84,7 +84,7 @@ function* xsalsa20Generator(
 type XSalsa20GeneratorInt32 = Generator<number, never, undefined>
 function* xsalsa20GeneratorInt32(
   nonce: Uint8Array,
-  key: Uint8Array
+  key: Uint8Array,
 ): XSalsa20GeneratorInt32 {
   const generator = xsalsa20Generator(nonce, key)
 
@@ -168,7 +168,7 @@ export class XSalsa20 {
 
   update(
     input: Uint8Array,
-    output: Uint8Array = new Uint8Array(input.length)
+    output: Uint8Array = new Uint8Array(input.length),
   ): Uint8Array {
     const stream = this.stream(input.length)
     for (let i = 0; i < input.length; ++i) output[i] = input[i] ^ stream[i]
@@ -183,7 +183,7 @@ function core_salsa20(
   o: Uint8Array,
   p: Uint8Array,
   k: Uint8Array,
-  c: Uint8Array
+  c: Uint8Array,
 ): void {
   // biome-ignore format: vertically aligned
   const
@@ -384,7 +384,7 @@ function core_hsalsa20(
   o: Uint8Array,
   p: Uint8Array,
   k: Uint8Array,
-  c: Uint8Array
+  c: Uint8Array,
 ): void {
   // biome-ignore format: vertically aligned
   const

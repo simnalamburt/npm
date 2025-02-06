@@ -71,14 +71,14 @@ describe('gulp-slm', () => {
           locals: {
             title: 'Yellow Curled',
           },
-        })
+        }),
       )
       .pipe(
         await expectStream({
           locals: {
             title: 'Yellow Curled',
           },
-        })
+        }),
       )
   })
 
@@ -90,14 +90,14 @@ describe('gulp-slm', () => {
           data: {
             title: 'Yellow Curled',
           },
-        })
+        }),
       )
       .pipe(
         await expectStream({
           data: {
             title: 'Yellow Curled',
           },
-        })
+        }),
       )
   })
 
@@ -111,7 +111,7 @@ describe('gulp-slm', () => {
           data: {
             title: 'Greetings!',
           },
-        })
+        }),
       )
   })
 
@@ -123,7 +123,7 @@ describe('gulp-slm', () => {
         through.obj((file, _enc, cb) => {
           assert(file.contents instanceof Buffer)
           return cb()
-        })
+        }),
       )
   })
 
@@ -135,7 +135,7 @@ describe('gulp-slm', () => {
         err.toString(),
         `\x1B[31mError\x1B[39m in plugin "\x1B[36mgulp-slm\x1B[39m"
 Message:
-    Streaming not supported`
+    Streaming not supported`,
       )
     })
     stream.write(
@@ -144,7 +144,7 @@ Message:
         base: path.join(__dirname, 'fixtures'),
         cwd: __dirname,
         contents: fs.createReadStream(filename),
-      })
+      }),
     )
     stream.end()
   })

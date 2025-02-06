@@ -2,11 +2,7 @@
   "name": "xsalsa20-csprng",
   "version": "2.0.4",
   "description": "CSPRNG and crypto library powered by XSalsa20",
-  "keywords": [
-    "CSPRNG",
-    "crypto",
-    "XSalsa20"
-  ],
+  "keywords": ["CSPRNG", "crypto", "XSalsa20"],
   "homepage": "https://github.com/simnalamburt/npm/tree/master/packages/xsalsa20-csprng",
   "bugs": {
     "url": "https://github.com/simnalamburt/npm/issues"
@@ -38,8 +34,6 @@
   "module": "dist/xsalsa20-csprng.modern.js",
   "unpkg": "dist/xsalsa20-csprng.umd.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist/*"
-  ],
+  "files": ["dist/*"],
   "sideEffects": false
 }

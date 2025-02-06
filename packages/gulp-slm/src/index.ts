@@ -20,7 +20,7 @@ export default (opts: Options = {}) =>
 
     file.path = replaceExt(
       file.path,
-      opts.extension !== undefined ? opts.extension : '.html'
+      opts.extension !== undefined ? opts.extension : '.html',
     )
 
     if (file.isStream()) {
