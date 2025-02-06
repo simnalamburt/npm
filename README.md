@@ -3,7 +3,7 @@ simnalamburt/npm
 📦 Monorepo for my NPM packages.
 
 ```
-pnpm
+pnpm i
 pnpm build
 pnpm test
 
