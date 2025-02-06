@@ -15,10 +15,10 @@
     "directory": "packages/xsalsa20-csprng"
   },
   "devDependencies": {
-    "@types/node": "^14.6.0",
+    "@types/node": "catalog:",
     "microbundle": "=0.12.3",
     "typedoc": "^0.18.0",
-    "typescript": "^3.9.7"
+    "typescript": "catalog:"
   },
   "scripts": {
     "build": "pnpm build:browser && pnpm build:node",

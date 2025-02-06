@@ -21,14 +21,14 @@
   },
   "devDependencies": {
     "@types/gulp": "^4.0.6",
-    "@types/node": "^14.6.0",
+    "@types/node": "catalog:",
     "@types/replace-ext": "^0.0.27",
     "@types/through2": "^2.0.36",
     "@types/vinyl": "^2.0.4",
     "gulp": "^4.0.2",
     "microbundle": "^0.12.3",
     "replace-ext": "^2.0.0",
-    "typescript": "^3.9.7",
+    "typescript": "catalog:",
     "vinyl": "^2.2.0"
   },
   "scripts": {

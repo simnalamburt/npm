@@ -33,7 +33,7 @@ export default (opts: Options = {}) =>
         const compiled = slm.compile(contents, opts)(opts.locals || opts.data)
         file.contents = Buffer.from(compiled)
       } catch (e) {
-        return cb(new PluginError('gulp-slm', e))
+        return cb(new PluginError('gulp-slm', e as any))
       }
     }
 
