@@ -5,9 +5,8 @@ simnalamburt/npm
 ```bash
 pnpm i
 pnpm build
+pnpm doc
 pnpm test
-
-# Advanced
 pnpm coverage
 ```
 
