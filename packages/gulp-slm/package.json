@@ -28,13 +28,15 @@
     "gulp": "^4.0.2",
     "microbundle": "catalog:",
     "replace-ext": "^2.0.0",
+    "typedoc": "catalog:",
     "typescript": "catalog:",
     "vinyl": "^2.2.0"
   },
   "scripts": {
     "build": "microbundle -f cjs,modern --target node --compress",
     "dev": "microbundle -f cjs,modern --target node --compress watch",
-    "test": "tsc"
+    "test": "tsc",
+    "doc": "typedoc"
   },
   "source": "src/index.ts",
   "main": "dist/gulp-slm.js",
