@@ -23,10 +23,7 @@
   },
   "exclude": ["dist", "docs"],
   "typedocOptions": {
-    "inputFiles": ["./src/index.ts"],
-    "excludeNotExported": true,
-    "excludePrivate:": true,
-    "mode": "file",
+    "entryPoints": ["./src/index.ts"],
     "out": "docs"
   }
 }
