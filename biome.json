@@ -1,6 +1,6 @@
 {
   "files": {
-    "ignore": ["packages/*/dist/*", "packages/*/docs/*"]
+    "ignore": ["coverage/", "packages/*/dist/*", "packages/*/docs/*"]
   },
   "formatter": {
     "indentStyle": "space"
