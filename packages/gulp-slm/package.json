@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@types/gulp": "^4.0.6",
-    "@types/jest": "^26.0.10",
     "@types/node": "^14.6.0",
     "@types/replace-ext": "^0.0.27",
     "@types/through2": "^2.0.36",
