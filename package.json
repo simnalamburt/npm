@@ -6,20 +6,16 @@
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-typescript": "^7.10.4",
+    "@biomejs/biome": "^1.9.4",
     "babel-jest": "^26.3.0",
     "jest": "^26.4.0",
-    "prettier": "^2.0.5",
     "typescript": "^3.9.7"
   },
   "scripts": {
     "build": "pnpm -r build",
-    "test": "pnpm -r test && jest && prettier --check .",
+    "test": "pnpm -r test && jest && biome format",
     "coverage": "jest --coverage",
-    "fmt": "prettier --write ."
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
+    "fmt": "biome format --write"
   },
   "packageManager": "pnpm@10.2.0",
   "pnpm": {

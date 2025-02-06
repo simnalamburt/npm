@@ -1,0 +1,14 @@
+{
+  "files": {
+    "ignore": ["packages/*/dist/", "packages/*/docs/"]
+  },
+  "formatter": {
+    "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded"
+    }
+  }
+}
