@@ -31,6 +31,6 @@
   "module": "dist/hangul-josa.modern.js",
   "unpkg": "dist/hangul-josa.umd.js",
   "types": "dist/index.d.ts",
-  "files": ["dist/*"],
+  "files": ["src", "dist"],
   "sideEffects": false
 }

@@ -33,6 +33,6 @@
   "module": "dist/xsalsa20-csprng.modern.js",
   "unpkg": "dist/xsalsa20-csprng.umd.js",
   "types": "dist/index.d.ts",
-  "files": ["dist/*"],
+  "files": ["src", "dist"],
   "sideEffects": false
 }

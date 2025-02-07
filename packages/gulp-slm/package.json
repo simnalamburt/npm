@@ -42,5 +42,5 @@
   "main": "dist/gulp-slm.js",
   "module": "dist/gulp-slm.modern.js",
   "types": "dist/index.d.ts",
-  "files": ["dist/*"]
+  "files": ["src", "dist"]
 }
