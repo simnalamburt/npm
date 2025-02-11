@@ -15,7 +15,7 @@
     "coverage": "vitest run --coverage",
     "fmt": "biome format --write"
   },
-  "packageManager": "pnpm@10.2.0",
+  "packageManager": "pnpm@10.3.0",
   "pnpm": {
     "patchedDependencies": {
       "microbundle@0.12.3": "patches/microbundle@0.12.3.patch"
