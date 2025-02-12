@@ -1,10 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "slm": ["types/slm.d.ts"]
-    },
     "isolatedDeclarations": true,
     "declaration": true
   }
