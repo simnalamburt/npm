@@ -6,7 +6,7 @@ const config: Config = defineConfig({
   minify: true,
   sourcemap: true,
   dts: true,
-  format: ['cjs', 'esm'],
+  format: ['cjs', 'es'],
   outputOptions(options, format) {
     switch (format) {
       case 'cjs':
