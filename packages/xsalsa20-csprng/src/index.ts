@@ -25,7 +25,7 @@ export default class XSalsa20CSPRNG {
     this.xsalsa = xsalsa20GeneratorInt32(nonce, key)
   }
 
-  static of(nonce: Uint8Array, key: Uint8Array) {
+  static of(nonce: Uint8Array, key: Uint8Array): XSalsa20CSPRNG {
     const self = Object.create(XSalsa20CSPRNG.prototype)
     self.xsalsa = xsalsa20GeneratorInt32(nonce, key)
     return self

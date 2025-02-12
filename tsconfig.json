@@ -22,7 +22,8 @@
     "verbatimModuleSyntax": true,
 
     // Advanced
-    "newLine": "lf"
+    "declaration": true,
+    "isolatedDeclarations": true
   },
   "exclude": ["dist", "docs"],
   "typedocOptions": {

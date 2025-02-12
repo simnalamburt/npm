@@ -1,10 +1,10 @@
 // IE11's Symbol support is incomplete, but calling the Symbol constructor and
 // comparing symbols is supported.
-const 은_는 = Symbol()
-const 을_를 = Symbol()
-const 이_가 = Symbol()
-const 와_과 = Symbol()
-const 로_으로 = Symbol()
+const 은_는: unique symbol = Symbol()
+const 을_를: unique symbol = Symbol()
+const 이_가: unique symbol = Symbol()
+const 와_과: unique symbol = Symbol()
+const 로_으로: unique symbol = Symbol()
 
 /**
  * Tagged template for {@link 은}, {@link 는}, {@link 이}, {@link 가} handling.
