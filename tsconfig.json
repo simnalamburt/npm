@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
+    "module": "preserve",
     "lib": ["esnext", "dom"],
     "noEmit": true,
     "skipLibCheck": true,
@@ -12,6 +12,8 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
 
     // Module
     "esModuleInterop": true,
