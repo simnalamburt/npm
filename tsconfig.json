@@ -17,7 +17,7 @@
     "esModuleInterop": true,
     "moduleResolution": "bundler",
     "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
 
     // Advanced
     "newLine": "lf"
