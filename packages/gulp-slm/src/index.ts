@@ -2,6 +2,7 @@ import through from 'through2'
 import slm from 'slm'
 import PluginError from 'plugin-error'
 import replaceExt from 'replace-ext'
+import type { Transform } from 'node:stream'
 
 export type Options = {
   filename?: string
@@ -10,7 +11,7 @@ export type Options = {
   locals?: any
 }
 
-export default (opts: Options = {}) =>
+const gulpSlm: (opts?: Options) => Transform = (opts: Options = {}) =>
   through.obj((file, _enc, cb) => {
     opts.filename = file.path
 
@@ -39,3 +40,5 @@ export default (opts: Options = {}) =>
 
     cb(null, file)
   })
+
+export default gulpSlm
