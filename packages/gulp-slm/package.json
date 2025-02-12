@@ -37,6 +37,12 @@
     "test": "tsc",
     "doc": "typedoc"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/gulp-slm.modern.js",
+      "require": "./dist/gulp-slm.js"
+    }
+  },
   "source": "src/index.ts",
   "main": "dist/gulp-slm.js",
   "module": "dist/gulp-slm.modern.js",
