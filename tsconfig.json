@@ -4,6 +4,7 @@
     "module": "esnext",
     "lib": ["esnext", "dom"],
     "noEmit": true,
+    "skipLibCheck": true,
 
     // Strict Typecheck
     "strict": true,
