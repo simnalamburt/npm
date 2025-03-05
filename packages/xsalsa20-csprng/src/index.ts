@@ -13,12 +13,23 @@
 //   xsalsa20: 828.65ms
 //   wasm: 332.185ms
 
+// IE11 support
+declare global {
+  interface WindowOrWorkerGlobalScope {
+    readonly msCrypto: Crypto
+  }
+}
+
 export default class XSalsa20CSPRNG {
   private xsalsa: XSalsa20GeneratorInt32
 
   constructor() {
     const buf = new Uint8Array(24 + 32)
+
+    // IE11 support
+    const crypto = globalThis.crypto || window.msCrypto
     crypto.getRandomValues(buf)
+
     const nonce = buf.slice(0, 24)
     const key = buf.slice(24)
     this.xsalsa = xsalsa20GeneratorInt32(nonce, key)
