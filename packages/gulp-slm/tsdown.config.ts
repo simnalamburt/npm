@@ -1,6 +1,6 @@
-import { defineConfig, type Config } from 'tsdown'
+import { defineConfig, type UserConfig } from 'tsdown'
 
-const config: Config = defineConfig({
+const config: UserConfig = defineConfig({
   entry: 'src/index.ts',
   clean: true,
   minify: true,
