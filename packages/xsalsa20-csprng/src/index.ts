@@ -28,7 +28,10 @@ export default class XSalsa20CSPRNG {
 
     // IE11 does support web workers but Web Crypto API is not available inside
     // Web Workers. So we just use window.crypto instead of globalThis.crypto
-    const crypto = globalThis.crypto || window.msCrypto
+    //
+    // IE11 does not support `globalThis`. So `window.msCrypto` should come
+    // first.
+    const crypto = window.msCrypto || globalThis.crypto
     crypto.getRandomValues(buf)
 
     const nonce = buf.slice(0, 24)
