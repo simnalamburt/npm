@@ -16,12 +16,12 @@
   },
   "devDependencies": {
     "@types/node": "catalog:",
-    "microbundle": "=0.12.3",
+    "tsdown": "catalog:",
     "typedoc": "catalog:",
     "typescript": "catalog:"
   },
   "scripts": {
-    "build": "microbundle -f cjs,modern,umd",
+    "build": "tsdown",
     "test": "tsc",
     "doc": "typedoc"
   },
