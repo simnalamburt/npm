@@ -1,5 +1,7 @@
 // IE11's Symbol support is incomplete, but calling the Symbol constructor and
 // comparing symbols is supported.
+//
+// IE11 does support the `const` keyword, except in for-in and for-of loops.
 const 은_는: unique symbol = Symbol()
 const 을_를: unique symbol = Symbol()
 const 이_가: unique symbol = Symbol()

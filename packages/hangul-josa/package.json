@@ -16,15 +16,20 @@
   },
   "devDependencies": {
     "@types/node": "catalog:",
-    "microbundle": "catalog:",
+    "tsdown": "catalog:",
     "typedoc": "catalog:",
     "typescript": "catalog:"
   },
   "scripts": {
-    "build": "microbundle -f cjs,modern,umd",
-    "dev": "microbundle -f cjs,modern,umd watch",
+    "build": "tsdown",
     "test": "tsc",
     "doc": "typedoc"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/hangul-josa.modern.js",
+      "require": "./dist/hangul-josa.js"
+    }
   },
   "source": "src/index.ts",
   "main": "dist/hangul-josa.js",
