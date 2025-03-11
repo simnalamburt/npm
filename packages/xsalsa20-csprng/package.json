@@ -27,6 +27,12 @@
     "test": "tsc",
     "doc": "typedoc"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/xsalsa20-csprng.modern.js",
+      "require": "./dist/xsalsa20-csprng.js"
+    }
+  },
   "source": "src/index.ts",
   "main": "dist/xsalsa20-csprng.js",
   "browser": "dist/xsalsa20-csprng.modern.js",
