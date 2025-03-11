@@ -1,6 +1,6 @@
 {
   "name": "hangul-josa",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Let's handle 은/는, 을/를, 이/가, 와/과 with ease using modern javascript syntax!",
   "keywords": ["Hangul", "Korean", "josa", "postposition"],
   "homepage": "https://github.com/simnalamburt/npm/tree/master/packages/hangul-josa",
