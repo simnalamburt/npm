@@ -21,9 +21,7 @@
     "typescript": "catalog:"
   },
   "scripts": {
-    "build": "pnpm build:browser && pnpm build:node",
-    "build:browser": "microbundle -f modern,umd",
-    "build:node": "microbundle -f cjs --target=node --tsconfig tsconfig.node.json",
+    "build": "microbundle -f cjs,modern,umd",
     "test": "tsc",
     "doc": "typedoc"
   },
