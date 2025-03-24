@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "preserve",
     "lib": ["esnext", "dom"],
     "noEmit": true,
     "skipLibCheck": true,
 
     // Strict Typecheck
     "strict": true,
+    "exactOptionalPropertyTypes": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -16,9 +16,7 @@
     "noImplicitOverride": true,
 
     // Module
-    "esModuleInterop": true,
-    "moduleResolution": "bundler",
-    "isolatedModules": true,
+    "module": "preserve",
     "verbatimModuleSyntax": true,
 
     // Advanced
