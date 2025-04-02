@@ -1,6 +1,6 @@
 {
   "files": {
-    "ignore": ["coverage/", "packages/*/dist/*", "packages/*/docs/*"]
+    "ignore": [".rslib", "coverage/", "packages/*/dist/*", "packages/*/docs/*"]
   },
   "formatter": {
     "indentStyle": "space"
