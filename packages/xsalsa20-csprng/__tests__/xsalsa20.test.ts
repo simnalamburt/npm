@@ -1,7 +1,7 @@
 import crypto from 'node:crypto'
 import { assert, describe, it } from 'vitest'
 
-import { XSalsa20 } from '..'
+import { XSalsa20 } from '../src/index'
 
 // biome-ignore format: binary
 const LIBSODIUM_TEST_KEY = Buffer.from([

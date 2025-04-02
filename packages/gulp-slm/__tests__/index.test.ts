@@ -5,7 +5,7 @@ import { extname } from 'node:path'
 
 import { assert, describe, it } from 'vitest'
 
-import slm, { type Options } from '../'
+import slm, { type Options } from '../src/index'
 import { compile } from 'slm'
 
 import through from 'through2'

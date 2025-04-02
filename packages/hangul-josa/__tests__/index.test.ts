@@ -1,6 +1,6 @@
 import { assert, it } from 'vitest'
 
-import { josa, 은, 는, 을, 를, 와, 과, 이, 가, 로, 으로 } from '..'
+import { josa, 은, 는, 을, 를, 와, 과, 이, 가, 로, 으로 } from '../src/index'
 
 it('basic tests', () => {
   const player = '지현'
