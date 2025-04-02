@@ -15,13 +15,14 @@
     "directory": "packages/hangul-josa"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "catalog:",
+    "@rslib/core": "catalog:",
     "@types/node": "catalog:",
-    "tsdown": "catalog:",
     "typedoc": "catalog:",
     "typescript": "catalog:"
   },
   "scripts": {
-    "build": "tsdown",
+    "build": "rslib build",
     "test": "tsc",
     "doc": "typedoc"
   },
