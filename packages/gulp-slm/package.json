@@ -16,15 +16,15 @@
   },
   "dependencies": {
     "plugin-error": "^2.0.1",
-    "slm": ">=0.6.0",
+    "slm": ">=0.6.0 <3.0.0",
     "through2": "^4.0.2"
   },
   "devDependencies": {
-    "@types/gulp": "^4.0.6",
+    "@types/gulp": "^4.0.17",
     "@types/node": "catalog:",
     "@types/replace-ext": "^2.0.2",
-    "@types/through2": "^2.0.36",
-    "@types/vinyl": "^2.0.4",
+    "@types/through2": "^2.0.41",
+    "@types/vinyl": "^2.0.12",
     "gulp": "^5.0.0",
     "replace-ext": "^2.0.0",
     "tsdown": "catalog:",
