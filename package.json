@@ -15,5 +15,5 @@
     "coverage": "vitest run --coverage",
     "fmt": "biome format --write"
   },
-  "packageManager": "pnpm@10.11.0"
+  "packageManager": "pnpm@10.14.0"
 }
