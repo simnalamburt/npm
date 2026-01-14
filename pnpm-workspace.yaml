@@ -5,7 +5,7 @@ catalog:
   '@types/node': ^22.14.1
   tsdown: ^0.6.10
   typedoc: ^0.28.2
-  typescript: ^5.8.3
+  typescript: ^5.9.3
 
 ignoredBuiltDependencies:
   - '@biomejs/biome'
