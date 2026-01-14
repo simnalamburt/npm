@@ -1,8 +1,12 @@
 packages:
-  - 'packages/*'
+  - packages/*
 
 catalog:
+  '@types/node': ^22.14.1
   tsdown: ^0.6.10
   typedoc: ^0.28.2
   typescript: ^5.8.3
-  '@types/node': ^22.14.1
+
+ignoredBuiltDependencies:
+  - '@biomejs/biome'
+  - esbuild
