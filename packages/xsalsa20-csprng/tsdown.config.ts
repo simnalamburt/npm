@@ -11,7 +11,7 @@ const config: UserConfig = defineConfig({
     switch (format) {
       case 'es':
         delete options.dir
-        options.file = 'dist/xsalsa20-csprng.modern.js'
+        options.file = 'dist/xsalsa20-csprng.js'
         break
       case 'umd':
         delete options.dir

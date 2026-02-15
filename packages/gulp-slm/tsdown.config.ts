@@ -9,7 +9,7 @@ const config: UserConfig = defineConfig({
   format: ['es'],
   outputOptions(options) {
     delete options.dir
-    options.file = 'dist/gulp-slm.modern.js'
+    options.file = 'dist/gulp-slm.js'
     return options
   },
 })

@@ -32,7 +32,7 @@
     "doc": "typedoc"
   },
   "exports": {
-    ".": "./dist/hangul-josa.modern.js"
+    ".": "./dist/hangul-josa.js"
   },
   "source": "src/index.ts",
   "unpkg": "dist/hangul-josa.umd.js",

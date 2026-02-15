@@ -45,7 +45,7 @@
     "doc": "typedoc"
   },
   "exports": {
-    ".": "./dist/gulp-slm.modern.js"
+    ".": "./dist/gulp-slm.js"
   },
   "source": "src/index.ts",
   "types": "dist/index.d.ts",

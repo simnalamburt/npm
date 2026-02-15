@@ -11,7 +11,7 @@ const config: UserConfig = defineConfig({
     switch (format) {
       case 'es':
         delete options.dir
-        options.file = 'dist/hangul-josa.modern.js'
+        options.file = 'dist/hangul-josa.js'
         break
       case 'umd':
         delete options.dir

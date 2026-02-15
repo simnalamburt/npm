@@ -31,10 +31,10 @@
     "doc": "typedoc"
   },
   "exports": {
-    ".": "./dist/xsalsa20-csprng.modern.js"
+    ".": "./dist/xsalsa20-csprng.js"
   },
   "source": "src/index.ts",
-  "browser": "dist/xsalsa20-csprng.modern.js",
+  "browser": "dist/xsalsa20-csprng.js",
   "unpkg": "dist/xsalsa20-csprng.umd.js",
   "types": "dist/index.d.ts",
   "files": [
