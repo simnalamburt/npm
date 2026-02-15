@@ -5,11 +5,13 @@ const config: UserConfig = defineConfig({
   clean: true,
   minify: true,
   sourcemap: true,
-  dts: true,
+  dts: {
+    sourcemap: false,
+  },
   format: ['es'],
   outputOptions(options) {
-    delete options.dir
-    options.file = 'dist/gulp-slm.js'
+    options.entryFileNames = chunk =>
+      chunk.name.endsWith('.d') ? 'index.d.ts' : 'gulp-slm.js'
     return options
   },
 })

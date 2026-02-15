@@ -5,17 +5,18 @@ const config: UserConfig = defineConfig({
   clean: true,
   minify: true,
   sourcemap: true,
-  dts: true,
+  dts: {
+    sourcemap: false,
+  },
   format: ['es', 'umd'],
   outputOptions(options, format) {
     switch (format) {
       case 'es':
-        delete options.dir
-        options.file = 'dist/xsalsa20-csprng.js'
+        options.entryFileNames = chunk =>
+          chunk.name.endsWith('.d') ? 'index.d.ts' : 'xsalsa20-csprng.js'
         break
       case 'umd':
-        delete options.dir
-        options.file = 'dist/xsalsa20-csprng.umd.js'
+        options.entryFileNames = 'xsalsa20-csprng.umd.js'
         options.name = 'xsalsa20Csprng'
         break
     }

@@ -5,17 +5,18 @@ const config: UserConfig = defineConfig({
   clean: true,
   minify: true,
   sourcemap: true,
-  dts: true,
+  dts: {
+    sourcemap: false,
+  },
   format: ['es', 'umd'],
   outputOptions(options, format) {
     switch (format) {
       case 'es':
-        delete options.dir
-        options.file = 'dist/hangul-josa.js'
+        options.entryFileNames = chunk =>
+          chunk.name.endsWith('.d') ? 'index.d.ts' : 'hangul-josa.js'
         break
       case 'umd':
-        delete options.dir
-        options.file = 'dist/hangul-josa.umd.js'
+        options.entryFileNames = 'hangul-josa.umd.js'
         options.name = 'hangulJosa'
         break
     }

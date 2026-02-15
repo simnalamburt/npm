@@ -3,7 +3,7 @@ packages:
 
 catalog:
   '@types/node': ^22.14.1
-  tsdown: ^0.6.10
+  tsdown: ^0.20.3
   typedoc: ^0.28.2
   typescript: ^5.9.3
 
