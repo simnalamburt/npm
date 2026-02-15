@@ -2,6 +2,7 @@
   "name": "hangul-josa",
   "version": "0.1.2",
   "description": "Let's handle 은/는, 을/를, 이/가, 와/과 with ease using modern javascript syntax!",
+  "type": "module",
   "keywords": [
     "Hangul",
     "Korean",
@@ -31,14 +32,9 @@
     "doc": "typedoc"
   },
   "exports": {
-    ".": {
-      "import": "./dist/hangul-josa.modern.js",
-      "require": "./dist/hangul-josa.js"
-    }
+    ".": "./dist/hangul-josa.modern.js"
   },
   "source": "src/index.ts",
-  "main": "dist/hangul-josa.js",
-  "module": "dist/hangul-josa.modern.js",
   "unpkg": "dist/hangul-josa.umd.js",
   "types": "dist/index.d.ts",
   "files": [

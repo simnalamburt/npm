@@ -6,16 +6,12 @@ const config: UserConfig = defineConfig({
   minify: true,
   sourcemap: true,
   dts: true,
-  format: ['cjs', 'es', 'umd'],
+  format: ['es', 'umd'],
   outputOptions(options, format) {
     switch (format) {
-      case 'cjs':
-        delete options.dir
-        options.file = 'dist/xsalsa20-csprng.js'
-        break
       case 'es':
         delete options.dir
-        options.file = 'dist/xsalsa20-csprng.modern.js' // For backward compatibility
+        options.file = 'dist/xsalsa20-csprng.modern.js'
         break
       case 'umd':
         delete options.dir

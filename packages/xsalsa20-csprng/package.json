@@ -2,6 +2,7 @@
   "name": "xsalsa20-csprng",
   "version": "2.0.5",
   "description": "CSPRNG and crypto library powered by XSalsa20",
+  "type": "module",
   "keywords": [
     "CSPRNG",
     "crypto",
@@ -30,15 +31,10 @@
     "doc": "typedoc"
   },
   "exports": {
-    ".": {
-      "import": "./dist/xsalsa20-csprng.modern.js",
-      "require": "./dist/xsalsa20-csprng.js"
-    }
+    ".": "./dist/xsalsa20-csprng.modern.js"
   },
   "source": "src/index.ts",
-  "main": "dist/xsalsa20-csprng.js",
   "browser": "dist/xsalsa20-csprng.modern.js",
-  "module": "dist/xsalsa20-csprng.modern.js",
   "unpkg": "dist/xsalsa20-csprng.umd.js",
   "types": "dist/index.d.ts",
   "files": [

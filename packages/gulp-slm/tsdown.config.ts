@@ -6,18 +6,10 @@ const config: UserConfig = defineConfig({
   minify: true,
   sourcemap: true,
   dts: true,
-  format: ['cjs', 'es'],
-  outputOptions(options, format) {
-    switch (format) {
-      case 'cjs':
-        delete options.dir
-        options.file = 'dist/gulp-slm.js'
-        break
-      case 'es':
-        delete options.dir
-        options.file = 'dist/gulp-slm.modern.js' // For backward compatibility
-        break
-    }
+  format: ['es'],
+  outputOptions(options) {
+    delete options.dir
+    options.file = 'dist/gulp-slm.modern.js'
     return options
   },
 })
