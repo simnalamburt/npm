@@ -31,7 +31,8 @@ export default class XSalsa20CSPRNG {
     //
     // IE11 does not support `globalThis`. So `window.msCrypto` should come
     // first.
-    const crypto = window.msCrypto || globalThis.crypto;
+    const crypto =
+      typeof window !== "undefined" ? window.msCrypto || window.crypto : globalThis.crypto;
     crypto.getRandomValues(buf);
 
     const nonce = buf.slice(0, 24);
