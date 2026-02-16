@@ -6,7 +6,7 @@
 pnpm i
 pnpm build
 pnpm doc
-pnpm test
+pnpm run ci
 pnpm coverage
 ```
 
