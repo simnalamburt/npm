@@ -2,9 +2,9 @@ packages:
   - packages/*
 
 catalog:
-  '@types/node': ^22.14.1
+  '@types/node': ^25.2.3
   tsdown: ^0.20.3
-  typedoc: ^0.28.2
+  typedoc: ^0.28.17
   typescript: ^5.9.3
 
 ignoredBuiltDependencies:
