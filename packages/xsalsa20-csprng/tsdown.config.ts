@@ -1,13 +1,13 @@
-import { defineConfig, type UserConfig } from 'tsdown'
+import { defineConfig, type UserConfig } from "tsdown";
 
 const config: UserConfig = defineConfig({
   minify: true,
   sourcemap: true,
-  format: ['es', 'umd'],
+  format: ["es", "umd"],
   outputOptions: {
-    name: 'xsalsa20Csprng',
-    exports: 'named',
+    name: "xsalsa20Csprng",
+    exports: "named",
   },
-})
+});
 
-export default config
+export default config;

@@ -2,11 +2,10 @@
   "name": "xsalsa20-csprng",
   "version": "2.0.5",
   "description": "CSPRNG and crypto library powered by XSalsa20",
-  "type": "module",
   "keywords": [
     "CSPRNG",
-    "crypto",
-    "XSalsa20"
+    "XSalsa20",
+    "crypto"
   ],
   "homepage": "https://github.com/simnalamburt/npm/tree/master/packages/xsalsa20-csprng",
   "bugs": {
@@ -19,25 +18,26 @@
     "url": "git@github.com:simnalamburt/npm.git",
     "directory": "packages/xsalsa20-csprng"
   },
+  "source": "src/index.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "browser": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "unpkg": "dist/index.umd.js",
+  "exports": "./dist/index.mjs",
+  "scripts": {
+    "build": "tsdown",
+    "doc": "typedoc",
+    "test": "tsc"
+  },
   "devDependencies": {
     "@types/node": "catalog:",
     "tsdown": "catalog:",
     "typedoc": "catalog:",
     "typescript": "catalog:"
-  },
-  "scripts": {
-    "build": "tsdown",
-    "test": "tsc",
-    "doc": "typedoc"
-  },
-  "exports": "./dist/index.mjs",
-  "source": "src/index.ts",
-  "browser": "dist/index.mjs",
-  "unpkg": "dist/index.umd.js",
-  "types": "dist/index.d.mts",
-  "files": [
-    "src",
-    "dist"
-  ],
-  "sideEffects": false
+  }
 }

@@ -2,13 +2,12 @@
   "name": "gulp-slm",
   "version": "1.2.4",
   "description": "Compile Slm to HTML for Gulp",
-  "type": "module",
   "keywords": [
-    "slm",
+    "compile",
     "gulp",
-    "plugin",
     "gulpplugin",
-    "compile"
+    "plugin",
+    "slm"
   ],
   "homepage": "https://github.com/simnalamburt/npm/tree/master/packages/gulp-slm",
   "bugs": {
@@ -20,6 +19,20 @@
     "type": "git",
     "url": "git@github.com:simnalamburt/npm.git",
     "directory": "packages/gulp-slm"
+  },
+  "source": "src/index.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "dist/index.d.mts",
+  "exports": "./dist/index.mjs",
+  "scripts": {
+    "build": "tsdown",
+    "doc": "typedoc",
+    "test": "tsc"
   },
   "dependencies": {
     "plugin-error": "^2.0.1",
@@ -38,18 +51,5 @@
     "typedoc": "catalog:",
     "typescript": "catalog:",
     "vinyl": "^3.0.0"
-  },
-  "scripts": {
-    "build": "tsdown",
-    "test": "tsc",
-    "doc": "typedoc"
-  },
-  "exports": "./dist/index.mjs",
-  "source": "src/index.ts",
-  "types": "dist/index.d.mts",
-  "files": [
-    "src",
-    "dist"
-  ],
-  "sideEffects": false
+  }
 }

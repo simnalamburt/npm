@@ -2,7 +2,6 @@
   "name": "hangul-josa",
   "version": "0.1.2",
   "description": "Let's handle 은/는, 을/를, 이/가, 와/과 with ease using modern javascript syntax!",
-  "type": "module",
   "keywords": [
     "Hangul",
     "Korean",
@@ -20,24 +19,25 @@
     "url": "git@github.com:simnalamburt/npm.git",
     "directory": "packages/hangul-josa"
   },
+  "source": "src/index.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "dist/index.d.mts",
+  "unpkg": "dist/index.umd.js",
+  "exports": "./dist/index.mjs",
+  "scripts": {
+    "build": "tsdown",
+    "doc": "typedoc",
+    "test": "tsc"
+  },
   "devDependencies": {
     "@types/node": "catalog:",
     "tsdown": "catalog:",
     "typedoc": "catalog:",
     "typescript": "catalog:"
-  },
-  "scripts": {
-    "build": "tsdown",
-    "test": "tsc",
-    "doc": "typedoc"
-  },
-  "exports": "./dist/index.mjs",
-  "source": "src/index.ts",
-  "unpkg": "dist/index.umd.js",
-  "types": "dist/index.d.mts",
-  "files": [
-    "src",
-    "dist"
-  ],
-  "sideEffects": false
+  }
 }

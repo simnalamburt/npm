@@ -1,5 +1,5 @@
-simnalamburt/npm
-========
+# simnalamburt/npm
+
 📦 Monorepo for my NPM packages.
 
 ```bash
@@ -12,9 +12,9 @@ pnpm coverage
 
 &nbsp;
 
---------
+---
 
-Packages under *simnalamburt/npm* are primarily distributed under the terms of
+Packages under _simnalamburt/npm_ are primarily distributed under the terms of
 both the [Apache License (Version 2.0)] and the [MIT license]. See [COPYRIGHT]
 for details.
 

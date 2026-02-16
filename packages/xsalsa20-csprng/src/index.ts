@@ -16,94 +16,88 @@
 // IE11 support
 declare global {
   interface WindowOrWorkerGlobalScope {
-    readonly msCrypto: Crypto
+    readonly msCrypto: Crypto;
   }
 }
 
 export default class XSalsa20CSPRNG {
-  private xsalsa: XSalsa20GeneratorInt32
+  private xsalsa: XSalsa20GeneratorInt32;
 
   constructor() {
-    const buf = new Uint8Array(24 + 32)
+    const buf = new Uint8Array(24 + 32);
 
     // IE11 does support web workers but Web Crypto API is not available inside
     // Web Workers. So we just use window.crypto instead of globalThis.crypto
     //
     // IE11 does not support `globalThis`. So `window.msCrypto` should come
     // first.
-    const crypto = window.msCrypto || globalThis.crypto
-    crypto.getRandomValues(buf)
+    const crypto = window.msCrypto || globalThis.crypto;
+    crypto.getRandomValues(buf);
 
-    const nonce = buf.slice(0, 24)
-    const key = buf.slice(24)
-    this.xsalsa = xsalsa20GeneratorInt32(nonce, key)
+    const nonce = buf.slice(0, 24);
+    const key = buf.slice(24);
+    this.xsalsa = xsalsa20GeneratorInt32(nonce, key);
   }
 
   static of(nonce: Uint8Array, key: Uint8Array): XSalsa20CSPRNG {
-    const self = Object.create(XSalsa20CSPRNG.prototype)
-    self.xsalsa = xsalsa20GeneratorInt32(nonce, key)
-    return self
+    const self = Object.create(XSalsa20CSPRNG.prototype);
+    self.xsalsa = xsalsa20GeneratorInt32(nonce, key);
+    return self;
   }
 
   randomInt32(): number {
-    return this.xsalsa.next().value
+    return this.xsalsa.next().value;
   }
 
   randomUint32(): number {
-    return this.xsalsa.next().value + 2 ** 31
+    return this.xsalsa.next().value + 2 ** 31;
   }
 
   uniformInt(exclusive_upper_bound: number): number {
-    if (exclusive_upper_bound < 2) return 0
+    if (exclusive_upper_bound < 2) return 0;
 
-    const min = 2 ** 32 % exclusive_upper_bound
-    let r: number
+    const min = 2 ** 32 % exclusive_upper_bound;
+    let r: number;
     do {
-      r = this.randomUint32()
-    } while (r < min)
-    return r % exclusive_upper_bound
+      r = this.randomUint32();
+    } while (r < min);
+    return r % exclusive_upper_bound;
   }
 }
 
-type XSalsa20Generator = Generator<Uint8Array, never, undefined>
-function* xsalsa20Generator(
-  nonce: Uint8Array,
-  key: Uint8Array,
-): XSalsa20Generator {
-  const s = new Uint8Array(32)
-  const z = new Uint8Array(16)
+type XSalsa20Generator = Generator<Uint8Array, never, undefined>;
+function* xsalsa20Generator(nonce: Uint8Array, key: Uint8Array): XSalsa20Generator {
+  const s = new Uint8Array(32);
+  const z = new Uint8Array(16);
   // prettier-ignore
   const SIGMA = new Uint8Array([
     0x65, 0x78, 0x70, 0x61, 0x6e, 0x64, 0x20, 0x33,
     0x32, 0x2d, 0x62, 0x79, 0x74, 0x65, 0x20, 0x6b,
   ])
 
-  core_hsalsa20(s, nonce, key, SIGMA)
-  for (let i = 0; i < 8; i++) z[i] = nonce[i + 16]
+  core_hsalsa20(s, nonce, key, SIGMA);
+  for (let i = 0; i < 8; i++) z[i] = nonce[i + 16];
 
   while (true) {
-    const output = new Uint8Array(64)
-    core_salsa20(output, z, s, SIGMA)
-    yield output
+    const output = new Uint8Array(64);
+    core_salsa20(output, z, s, SIGMA);
+    yield output;
 
-    let u = 1
+    let u = 1;
     for (let i = 8; i < 16; i++) {
-      u += (z[i] & 0xff) | 0
-      z[i] = u & 0xff
-      u >>>= 8
+      u += (z[i] & 0xff) | 0;
+      z[i] = u & 0xff;
+      u >>>= 8;
     }
   }
 }
 
-type XSalsa20GeneratorInt32 = Generator<number, never, undefined>
-function* xsalsa20GeneratorInt32(
-  nonce: Uint8Array,
-  key: Uint8Array,
-): XSalsa20GeneratorInt32 {
-  const generator = xsalsa20Generator(nonce, key)
+type XSalsa20GeneratorInt32 = Generator<number, never, undefined>;
+function* xsalsa20GeneratorInt32(nonce: Uint8Array, key: Uint8Array): XSalsa20GeneratorInt32 {
+  const generator = xsalsa20Generator(nonce, key);
 
   while (true) {
-    const b = generator.next().value
+    const b = generator.next().value;
     // prettier-ignore
     yield* [
       b[ 0] | b[ 1] << 8 | b[ 2] << 16 | b[ 3] << 24,
@@ -127,78 +121,70 @@ function* xsalsa20GeneratorInt32(
 }
 
 export class XSalsa20 {
-  private xsalsa: XSalsa20Generator
-  private buffer: Uint8Array
+  private xsalsa: XSalsa20Generator;
+  private buffer: Uint8Array;
 
   constructor(nonce: Uint8Array, key: Uint8Array) {
     // Check parameter
-    if (nonce.length !== 24) throw new Error('nonce must be 24 bytes')
-    if (key.length !== 32) throw new Error('key must be 32 bytes')
+    if (nonce.length !== 24) throw new Error("nonce must be 24 bytes");
+    if (key.length !== 32) throw new Error("key must be 32 bytes");
 
     // Initialize
-    this.xsalsa = xsalsa20Generator(nonce, key)
-    this.buffer = new Uint8Array(0)
+    this.xsalsa = xsalsa20Generator(nonce, key);
+    this.buffer = new Uint8Array(0);
   }
 
   stream(length: number): Uint8Array {
-    let output: Uint8Array
-    let counter: number
+    let output: Uint8Array;
+    let counter: number;
 
-    const bufLength = this.buffer.length
+    const bufLength = this.buffer.length;
     if (bufLength > 0) {
       if (length < bufLength) {
-        output = this.buffer.slice(0, length)
-        this.buffer = this.buffer.slice(length)
-        return output
+        output = this.buffer.slice(0, length);
+        this.buffer = this.buffer.slice(length);
+        return output;
       } else if (length === bufLength) {
-        output = this.buffer
-        this.buffer = new Uint8Array(0)
-        return output
+        output = this.buffer;
+        this.buffer = new Uint8Array(0);
+        return output;
       } else {
-        output = new Uint8Array(length)
-        output.set(this.buffer)
-        counter = bufLength
+        output = new Uint8Array(length);
+        output.set(this.buffer);
+        counter = bufLength;
 
-        this.buffer = new Uint8Array(0)
+        this.buffer = new Uint8Array(0);
       }
     } else {
-      output = new Uint8Array(length)
-      counter = 0
+      output = new Uint8Array(length);
+      counter = 0;
     }
 
     while (length - counter >= 64) {
-      output.set(this.xsalsa.next().value, counter)
-      counter += 64
+      output.set(this.xsalsa.next().value, counter);
+      counter += 64;
     }
-    const remain = length - counter
+    const remain = length - counter;
     if (remain > 0) {
-      const buffer = this.xsalsa.next().value
-      output.set(buffer.slice(0, remain), counter)
-      this.buffer = buffer.slice(remain)
+      const buffer = this.xsalsa.next().value;
+      output.set(buffer.slice(0, remain), counter);
+      this.buffer = buffer.slice(remain);
     }
 
-    return output
+    return output;
   }
 
-  update(
-    input: Uint8Array,
-    output: Uint8Array = new Uint8Array(input.length),
-  ): Uint8Array {
-    const stream = this.stream(input.length)
-    for (let i = 0; i < input.length; ++i) output[i] = input[i] ^ stream[i]
+  update(input: Uint8Array, output: Uint8Array = new Uint8Array(input.length)): Uint8Array {
+    const stream = this.stream(input.length);
+    for (let i = 0; i < input.length; ++i) output[i] = input[i] ^ stream[i];
 
     // Return
-    return output
+    return output;
   }
 }
 
 // below methods are ported from tweet nacl
-function core_salsa20(
-  o: Uint8Array,
-  p: Uint8Array,
-  k: Uint8Array,
-  c: Uint8Array,
-): void {
+function core_salsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array): void {
   // prettier-ignore
   const
     j0  = c[ 0] | (c[ 1] << 8) | (c[ 2] << 16) | (c[ 3] << 24),
@@ -224,182 +210,177 @@ function core_salsa20(
       x15 = j15, u: number
 
   for (let i = 0; i < 20; i += 2) {
-    u = (x0 + x12) | 0
-    x4 ^= (u << 7) | (u >>> 25)
-    u = (x4 + x0) | 0
-    x8 ^= (u << 9) | (u >>> 23)
-    u = (x8 + x4) | 0
-    x12 ^= (u << 13) | (u >>> 19)
-    u = (x12 + x8) | 0
-    x0 ^= (u << 18) | (u >>> 14)
+    u = (x0 + x12) | 0;
+    x4 ^= (u << 7) | (u >>> 25);
+    u = (x4 + x0) | 0;
+    x8 ^= (u << 9) | (u >>> 23);
+    u = (x8 + x4) | 0;
+    x12 ^= (u << 13) | (u >>> 19);
+    u = (x12 + x8) | 0;
+    x0 ^= (u << 18) | (u >>> 14);
 
-    u = (x5 + x1) | 0
-    x9 ^= (u << 7) | (u >>> 25)
-    u = (x9 + x5) | 0
-    x13 ^= (u << 9) | (u >>> 23)
-    u = (x13 + x9) | 0
-    x1 ^= (u << 13) | (u >>> 19)
-    u = (x1 + x13) | 0
-    x5 ^= (u << 18) | (u >>> 14)
+    u = (x5 + x1) | 0;
+    x9 ^= (u << 7) | (u >>> 25);
+    u = (x9 + x5) | 0;
+    x13 ^= (u << 9) | (u >>> 23);
+    u = (x13 + x9) | 0;
+    x1 ^= (u << 13) | (u >>> 19);
+    u = (x1 + x13) | 0;
+    x5 ^= (u << 18) | (u >>> 14);
 
-    u = (x10 + x6) | 0
-    x14 ^= (u << 7) | (u >>> 25)
-    u = (x14 + x10) | 0
-    x2 ^= (u << 9) | (u >>> 23)
-    u = (x2 + x14) | 0
-    x6 ^= (u << 13) | (u >>> 19)
-    u = (x6 + x2) | 0
-    x10 ^= (u << 18) | (u >>> 14)
+    u = (x10 + x6) | 0;
+    x14 ^= (u << 7) | (u >>> 25);
+    u = (x14 + x10) | 0;
+    x2 ^= (u << 9) | (u >>> 23);
+    u = (x2 + x14) | 0;
+    x6 ^= (u << 13) | (u >>> 19);
+    u = (x6 + x2) | 0;
+    x10 ^= (u << 18) | (u >>> 14);
 
-    u = (x15 + x11) | 0
-    x3 ^= (u << 7) | (u >>> 25)
-    u = (x3 + x15) | 0
-    x7 ^= (u << 9) | (u >>> 23)
-    u = (x7 + x3) | 0
-    x11 ^= (u << 13) | (u >>> 19)
-    u = (x11 + x7) | 0
-    x15 ^= (u << 18) | (u >>> 14)
+    u = (x15 + x11) | 0;
+    x3 ^= (u << 7) | (u >>> 25);
+    u = (x3 + x15) | 0;
+    x7 ^= (u << 9) | (u >>> 23);
+    u = (x7 + x3) | 0;
+    x11 ^= (u << 13) | (u >>> 19);
+    u = (x11 + x7) | 0;
+    x15 ^= (u << 18) | (u >>> 14);
 
-    u = (x0 + x3) | 0
-    x1 ^= (u << 7) | (u >>> 25)
-    u = (x1 + x0) | 0
-    x2 ^= (u << 9) | (u >>> 23)
-    u = (x2 + x1) | 0
-    x3 ^= (u << 13) | (u >>> 19)
-    u = (x3 + x2) | 0
-    x0 ^= (u << 18) | (u >>> 14)
+    u = (x0 + x3) | 0;
+    x1 ^= (u << 7) | (u >>> 25);
+    u = (x1 + x0) | 0;
+    x2 ^= (u << 9) | (u >>> 23);
+    u = (x2 + x1) | 0;
+    x3 ^= (u << 13) | (u >>> 19);
+    u = (x3 + x2) | 0;
+    x0 ^= (u << 18) | (u >>> 14);
 
-    u = (x5 + x4) | 0
-    x6 ^= (u << 7) | (u >>> 25)
-    u = (x6 + x5) | 0
-    x7 ^= (u << 9) | (u >>> 23)
-    u = (x7 + x6) | 0
-    x4 ^= (u << 13) | (u >>> 19)
-    u = (x4 + x7) | 0
-    x5 ^= (u << 18) | (u >>> 14)
+    u = (x5 + x4) | 0;
+    x6 ^= (u << 7) | (u >>> 25);
+    u = (x6 + x5) | 0;
+    x7 ^= (u << 9) | (u >>> 23);
+    u = (x7 + x6) | 0;
+    x4 ^= (u << 13) | (u >>> 19);
+    u = (x4 + x7) | 0;
+    x5 ^= (u << 18) | (u >>> 14);
 
-    u = (x10 + x9) | 0
-    x11 ^= (u << 7) | (u >>> 25)
-    u = (x11 + x10) | 0
-    x8 ^= (u << 9) | (u >>> 23)
-    u = (x8 + x11) | 0
-    x9 ^= (u << 13) | (u >>> 19)
-    u = (x9 + x8) | 0
-    x10 ^= (u << 18) | (u >>> 14)
+    u = (x10 + x9) | 0;
+    x11 ^= (u << 7) | (u >>> 25);
+    u = (x11 + x10) | 0;
+    x8 ^= (u << 9) | (u >>> 23);
+    u = (x8 + x11) | 0;
+    x9 ^= (u << 13) | (u >>> 19);
+    u = (x9 + x8) | 0;
+    x10 ^= (u << 18) | (u >>> 14);
 
-    u = (x15 + x14) | 0
-    x12 ^= (u << 7) | (u >>> 25)
-    u = (x12 + x15) | 0
-    x13 ^= (u << 9) | (u >>> 23)
-    u = (x13 + x12) | 0
-    x14 ^= (u << 13) | (u >>> 19)
-    u = (x14 + x13) | 0
-    x15 ^= (u << 18) | (u >>> 14)
+    u = (x15 + x14) | 0;
+    x12 ^= (u << 7) | (u >>> 25);
+    u = (x12 + x15) | 0;
+    x13 ^= (u << 9) | (u >>> 23);
+    u = (x13 + x12) | 0;
+    x14 ^= (u << 13) | (u >>> 19);
+    u = (x14 + x13) | 0;
+    x15 ^= (u << 18) | (u >>> 14);
   }
-  x0 = (x0 + j0) | 0
-  x1 = (x1 + j1) | 0
-  x2 = (x2 + j2) | 0
-  x3 = (x3 + j3) | 0
-  x4 = (x4 + j4) | 0
-  x5 = (x5 + j5) | 0
-  x6 = (x6 + j6) | 0
-  x7 = (x7 + j7) | 0
-  x8 = (x8 + j8) | 0
-  x9 = (x9 + j9) | 0
-  x10 = (x10 + j10) | 0
-  x11 = (x11 + j11) | 0
-  x12 = (x12 + j12) | 0
-  x13 = (x13 + j13) | 0
-  x14 = (x14 + j14) | 0
-  x15 = (x15 + j15) | 0
+  x0 = (x0 + j0) | 0;
+  x1 = (x1 + j1) | 0;
+  x2 = (x2 + j2) | 0;
+  x3 = (x3 + j3) | 0;
+  x4 = (x4 + j4) | 0;
+  x5 = (x5 + j5) | 0;
+  x6 = (x6 + j6) | 0;
+  x7 = (x7 + j7) | 0;
+  x8 = (x8 + j8) | 0;
+  x9 = (x9 + j9) | 0;
+  x10 = (x10 + j10) | 0;
+  x11 = (x11 + j11) | 0;
+  x12 = (x12 + j12) | 0;
+  x13 = (x13 + j13) | 0;
+  x14 = (x14 + j14) | 0;
+  x15 = (x15 + j15) | 0;
 
-  o[0] = (x0 >>> 0) & 0xff
-  o[1] = (x0 >>> 8) & 0xff
-  o[2] = (x0 >>> 16) & 0xff
-  o[3] = (x0 >>> 24) & 0xff
+  o[0] = (x0 >>> 0) & 0xff;
+  o[1] = (x0 >>> 8) & 0xff;
+  o[2] = (x0 >>> 16) & 0xff;
+  o[3] = (x0 >>> 24) & 0xff;
 
-  o[4] = (x1 >>> 0) & 0xff
-  o[5] = (x1 >>> 8) & 0xff
-  o[6] = (x1 >>> 16) & 0xff
-  o[7] = (x1 >>> 24) & 0xff
+  o[4] = (x1 >>> 0) & 0xff;
+  o[5] = (x1 >>> 8) & 0xff;
+  o[6] = (x1 >>> 16) & 0xff;
+  o[7] = (x1 >>> 24) & 0xff;
 
-  o[8] = (x2 >>> 0) & 0xff
-  o[9] = (x2 >>> 8) & 0xff
-  o[10] = (x2 >>> 16) & 0xff
-  o[11] = (x2 >>> 24) & 0xff
+  o[8] = (x2 >>> 0) & 0xff;
+  o[9] = (x2 >>> 8) & 0xff;
+  o[10] = (x2 >>> 16) & 0xff;
+  o[11] = (x2 >>> 24) & 0xff;
 
-  o[12] = (x3 >>> 0) & 0xff
-  o[13] = (x3 >>> 8) & 0xff
-  o[14] = (x3 >>> 16) & 0xff
-  o[15] = (x3 >>> 24) & 0xff
+  o[12] = (x3 >>> 0) & 0xff;
+  o[13] = (x3 >>> 8) & 0xff;
+  o[14] = (x3 >>> 16) & 0xff;
+  o[15] = (x3 >>> 24) & 0xff;
 
-  o[16] = (x4 >>> 0) & 0xff
-  o[17] = (x4 >>> 8) & 0xff
-  o[18] = (x4 >>> 16) & 0xff
-  o[19] = (x4 >>> 24) & 0xff
+  o[16] = (x4 >>> 0) & 0xff;
+  o[17] = (x4 >>> 8) & 0xff;
+  o[18] = (x4 >>> 16) & 0xff;
+  o[19] = (x4 >>> 24) & 0xff;
 
-  o[20] = (x5 >>> 0) & 0xff
-  o[21] = (x5 >>> 8) & 0xff
-  o[22] = (x5 >>> 16) & 0xff
-  o[23] = (x5 >>> 24) & 0xff
+  o[20] = (x5 >>> 0) & 0xff;
+  o[21] = (x5 >>> 8) & 0xff;
+  o[22] = (x5 >>> 16) & 0xff;
+  o[23] = (x5 >>> 24) & 0xff;
 
-  o[24] = (x6 >>> 0) & 0xff
-  o[25] = (x6 >>> 8) & 0xff
-  o[26] = (x6 >>> 16) & 0xff
-  o[27] = (x6 >>> 24) & 0xff
+  o[24] = (x6 >>> 0) & 0xff;
+  o[25] = (x6 >>> 8) & 0xff;
+  o[26] = (x6 >>> 16) & 0xff;
+  o[27] = (x6 >>> 24) & 0xff;
 
-  o[28] = (x7 >>> 0) & 0xff
-  o[29] = (x7 >>> 8) & 0xff
-  o[30] = (x7 >>> 16) & 0xff
-  o[31] = (x7 >>> 24) & 0xff
+  o[28] = (x7 >>> 0) & 0xff;
+  o[29] = (x7 >>> 8) & 0xff;
+  o[30] = (x7 >>> 16) & 0xff;
+  o[31] = (x7 >>> 24) & 0xff;
 
-  o[32] = (x8 >>> 0) & 0xff
-  o[33] = (x8 >>> 8) & 0xff
-  o[34] = (x8 >>> 16) & 0xff
-  o[35] = (x8 >>> 24) & 0xff
+  o[32] = (x8 >>> 0) & 0xff;
+  o[33] = (x8 >>> 8) & 0xff;
+  o[34] = (x8 >>> 16) & 0xff;
+  o[35] = (x8 >>> 24) & 0xff;
 
-  o[36] = (x9 >>> 0) & 0xff
-  o[37] = (x9 >>> 8) & 0xff
-  o[38] = (x9 >>> 16) & 0xff
-  o[39] = (x9 >>> 24) & 0xff
+  o[36] = (x9 >>> 0) & 0xff;
+  o[37] = (x9 >>> 8) & 0xff;
+  o[38] = (x9 >>> 16) & 0xff;
+  o[39] = (x9 >>> 24) & 0xff;
 
-  o[40] = (x10 >>> 0) & 0xff
-  o[41] = (x10 >>> 8) & 0xff
-  o[42] = (x10 >>> 16) & 0xff
-  o[43] = (x10 >>> 24) & 0xff
+  o[40] = (x10 >>> 0) & 0xff;
+  o[41] = (x10 >>> 8) & 0xff;
+  o[42] = (x10 >>> 16) & 0xff;
+  o[43] = (x10 >>> 24) & 0xff;
 
-  o[44] = (x11 >>> 0) & 0xff
-  o[45] = (x11 >>> 8) & 0xff
-  o[46] = (x11 >>> 16) & 0xff
-  o[47] = (x11 >>> 24) & 0xff
+  o[44] = (x11 >>> 0) & 0xff;
+  o[45] = (x11 >>> 8) & 0xff;
+  o[46] = (x11 >>> 16) & 0xff;
+  o[47] = (x11 >>> 24) & 0xff;
 
-  o[48] = (x12 >>> 0) & 0xff
-  o[49] = (x12 >>> 8) & 0xff
-  o[50] = (x12 >>> 16) & 0xff
-  o[51] = (x12 >>> 24) & 0xff
+  o[48] = (x12 >>> 0) & 0xff;
+  o[49] = (x12 >>> 8) & 0xff;
+  o[50] = (x12 >>> 16) & 0xff;
+  o[51] = (x12 >>> 24) & 0xff;
 
-  o[52] = (x13 >>> 0) & 0xff
-  o[53] = (x13 >>> 8) & 0xff
-  o[54] = (x13 >>> 16) & 0xff
-  o[55] = (x13 >>> 24) & 0xff
+  o[52] = (x13 >>> 0) & 0xff;
+  o[53] = (x13 >>> 8) & 0xff;
+  o[54] = (x13 >>> 16) & 0xff;
+  o[55] = (x13 >>> 24) & 0xff;
 
-  o[56] = (x14 >>> 0) & 0xff
-  o[57] = (x14 >>> 8) & 0xff
-  o[58] = (x14 >>> 16) & 0xff
-  o[59] = (x14 >>> 24) & 0xff
+  o[56] = (x14 >>> 0) & 0xff;
+  o[57] = (x14 >>> 8) & 0xff;
+  o[58] = (x14 >>> 16) & 0xff;
+  o[59] = (x14 >>> 24) & 0xff;
 
-  o[60] = (x15 >>> 0) & 0xff
-  o[61] = (x15 >>> 8) & 0xff
-  o[62] = (x15 >>> 16) & 0xff
-  o[63] = (x15 >>> 24) & 0xff
+  o[60] = (x15 >>> 0) & 0xff;
+  o[61] = (x15 >>> 8) & 0xff;
+  o[62] = (x15 >>> 16) & 0xff;
+  o[63] = (x15 >>> 24) & 0xff;
 }
 
-function core_hsalsa20(
-  o: Uint8Array,
-  p: Uint8Array,
-  k: Uint8Array,
-  c: Uint8Array,
-): void {
+function core_hsalsa20(o: Uint8Array, p: Uint8Array, k: Uint8Array, c: Uint8Array): void {
   // prettier-ignore
   const
     j0  = c[ 0] | (c[ 1] << 8) | (c[ 2] << 16) | (c[ 3] << 24),
@@ -425,116 +406,116 @@ function core_hsalsa20(
       x15 = j15, u: number
 
   for (let i = 0; i < 20; i += 2) {
-    u = (x0 + x12) | 0
-    x4 ^= (u << 7) | (u >>> 25)
-    u = (x4 + x0) | 0
-    x8 ^= (u << 9) | (u >>> 23)
-    u = (x8 + x4) | 0
-    x12 ^= (u << 13) | (u >>> 19)
-    u = (x12 + x8) | 0
-    x0 ^= (u << 18) | (u >>> 14)
+    u = (x0 + x12) | 0;
+    x4 ^= (u << 7) | (u >>> 25);
+    u = (x4 + x0) | 0;
+    x8 ^= (u << 9) | (u >>> 23);
+    u = (x8 + x4) | 0;
+    x12 ^= (u << 13) | (u >>> 19);
+    u = (x12 + x8) | 0;
+    x0 ^= (u << 18) | (u >>> 14);
 
-    u = (x5 + x1) | 0
-    x9 ^= (u << 7) | (u >>> 25)
-    u = (x9 + x5) | 0
-    x13 ^= (u << 9) | (u >>> 23)
-    u = (x13 + x9) | 0
-    x1 ^= (u << 13) | (u >>> 19)
-    u = (x1 + x13) | 0
-    x5 ^= (u << 18) | (u >>> 14)
+    u = (x5 + x1) | 0;
+    x9 ^= (u << 7) | (u >>> 25);
+    u = (x9 + x5) | 0;
+    x13 ^= (u << 9) | (u >>> 23);
+    u = (x13 + x9) | 0;
+    x1 ^= (u << 13) | (u >>> 19);
+    u = (x1 + x13) | 0;
+    x5 ^= (u << 18) | (u >>> 14);
 
-    u = (x10 + x6) | 0
-    x14 ^= (u << 7) | (u >>> 25)
-    u = (x14 + x10) | 0
-    x2 ^= (u << 9) | (u >>> 23)
-    u = (x2 + x14) | 0
-    x6 ^= (u << 13) | (u >>> 19)
-    u = (x6 + x2) | 0
-    x10 ^= (u << 18) | (u >>> 14)
+    u = (x10 + x6) | 0;
+    x14 ^= (u << 7) | (u >>> 25);
+    u = (x14 + x10) | 0;
+    x2 ^= (u << 9) | (u >>> 23);
+    u = (x2 + x14) | 0;
+    x6 ^= (u << 13) | (u >>> 19);
+    u = (x6 + x2) | 0;
+    x10 ^= (u << 18) | (u >>> 14);
 
-    u = (x15 + x11) | 0
-    x3 ^= (u << 7) | (u >>> 25)
-    u = (x3 + x15) | 0
-    x7 ^= (u << 9) | (u >>> 23)
-    u = (x7 + x3) | 0
-    x11 ^= (u << 13) | (u >>> 19)
-    u = (x11 + x7) | 0
-    x15 ^= (u << 18) | (u >>> 14)
+    u = (x15 + x11) | 0;
+    x3 ^= (u << 7) | (u >>> 25);
+    u = (x3 + x15) | 0;
+    x7 ^= (u << 9) | (u >>> 23);
+    u = (x7 + x3) | 0;
+    x11 ^= (u << 13) | (u >>> 19);
+    u = (x11 + x7) | 0;
+    x15 ^= (u << 18) | (u >>> 14);
 
-    u = (x0 + x3) | 0
-    x1 ^= (u << 7) | (u >>> 25)
-    u = (x1 + x0) | 0
-    x2 ^= (u << 9) | (u >>> 23)
-    u = (x2 + x1) | 0
-    x3 ^= (u << 13) | (u >>> 19)
-    u = (x3 + x2) | 0
-    x0 ^= (u << 18) | (u >>> 14)
+    u = (x0 + x3) | 0;
+    x1 ^= (u << 7) | (u >>> 25);
+    u = (x1 + x0) | 0;
+    x2 ^= (u << 9) | (u >>> 23);
+    u = (x2 + x1) | 0;
+    x3 ^= (u << 13) | (u >>> 19);
+    u = (x3 + x2) | 0;
+    x0 ^= (u << 18) | (u >>> 14);
 
-    u = (x5 + x4) | 0
-    x6 ^= (u << 7) | (u >>> 25)
-    u = (x6 + x5) | 0
-    x7 ^= (u << 9) | (u >>> 23)
-    u = (x7 + x6) | 0
-    x4 ^= (u << 13) | (u >>> 19)
-    u = (x4 + x7) | 0
-    x5 ^= (u << 18) | (u >>> 14)
+    u = (x5 + x4) | 0;
+    x6 ^= (u << 7) | (u >>> 25);
+    u = (x6 + x5) | 0;
+    x7 ^= (u << 9) | (u >>> 23);
+    u = (x7 + x6) | 0;
+    x4 ^= (u << 13) | (u >>> 19);
+    u = (x4 + x7) | 0;
+    x5 ^= (u << 18) | (u >>> 14);
 
-    u = (x10 + x9) | 0
-    x11 ^= (u << 7) | (u >>> 25)
-    u = (x11 + x10) | 0
-    x8 ^= (u << 9) | (u >>> 23)
-    u = (x8 + x11) | 0
-    x9 ^= (u << 13) | (u >>> 19)
-    u = (x9 + x8) | 0
-    x10 ^= (u << 18) | (u >>> 14)
+    u = (x10 + x9) | 0;
+    x11 ^= (u << 7) | (u >>> 25);
+    u = (x11 + x10) | 0;
+    x8 ^= (u << 9) | (u >>> 23);
+    u = (x8 + x11) | 0;
+    x9 ^= (u << 13) | (u >>> 19);
+    u = (x9 + x8) | 0;
+    x10 ^= (u << 18) | (u >>> 14);
 
-    u = (x15 + x14) | 0
-    x12 ^= (u << 7) | (u >>> 25)
-    u = (x12 + x15) | 0
-    x13 ^= (u << 9) | (u >>> 23)
-    u = (x13 + x12) | 0
-    x14 ^= (u << 13) | (u >>> 19)
-    u = (x14 + x13) | 0
-    x15 ^= (u << 18) | (u >>> 14)
+    u = (x15 + x14) | 0;
+    x12 ^= (u << 7) | (u >>> 25);
+    u = (x12 + x15) | 0;
+    x13 ^= (u << 9) | (u >>> 23);
+    u = (x13 + x12) | 0;
+    x14 ^= (u << 13) | (u >>> 19);
+    u = (x14 + x13) | 0;
+    x15 ^= (u << 18) | (u >>> 14);
   }
 
-  o[0] = (x0 >>> 0) & 0xff
-  o[1] = (x0 >>> 8) & 0xff
-  o[2] = (x0 >>> 16) & 0xff
-  o[3] = (x0 >>> 24) & 0xff
+  o[0] = (x0 >>> 0) & 0xff;
+  o[1] = (x0 >>> 8) & 0xff;
+  o[2] = (x0 >>> 16) & 0xff;
+  o[3] = (x0 >>> 24) & 0xff;
 
-  o[4] = (x5 >>> 0) & 0xff
-  o[5] = (x5 >>> 8) & 0xff
-  o[6] = (x5 >>> 16) & 0xff
-  o[7] = (x5 >>> 24) & 0xff
+  o[4] = (x5 >>> 0) & 0xff;
+  o[5] = (x5 >>> 8) & 0xff;
+  o[6] = (x5 >>> 16) & 0xff;
+  o[7] = (x5 >>> 24) & 0xff;
 
-  o[8] = (x10 >>> 0) & 0xff
-  o[9] = (x10 >>> 8) & 0xff
-  o[10] = (x10 >>> 16) & 0xff
-  o[11] = (x10 >>> 24) & 0xff
+  o[8] = (x10 >>> 0) & 0xff;
+  o[9] = (x10 >>> 8) & 0xff;
+  o[10] = (x10 >>> 16) & 0xff;
+  o[11] = (x10 >>> 24) & 0xff;
 
-  o[12] = (x15 >>> 0) & 0xff
-  o[13] = (x15 >>> 8) & 0xff
-  o[14] = (x15 >>> 16) & 0xff
-  o[15] = (x15 >>> 24) & 0xff
+  o[12] = (x15 >>> 0) & 0xff;
+  o[13] = (x15 >>> 8) & 0xff;
+  o[14] = (x15 >>> 16) & 0xff;
+  o[15] = (x15 >>> 24) & 0xff;
 
-  o[16] = (x6 >>> 0) & 0xff
-  o[17] = (x6 >>> 8) & 0xff
-  o[18] = (x6 >>> 16) & 0xff
-  o[19] = (x6 >>> 24) & 0xff
+  o[16] = (x6 >>> 0) & 0xff;
+  o[17] = (x6 >>> 8) & 0xff;
+  o[18] = (x6 >>> 16) & 0xff;
+  o[19] = (x6 >>> 24) & 0xff;
 
-  o[20] = (x7 >>> 0) & 0xff
-  o[21] = (x7 >>> 8) & 0xff
-  o[22] = (x7 >>> 16) & 0xff
-  o[23] = (x7 >>> 24) & 0xff
+  o[20] = (x7 >>> 0) & 0xff;
+  o[21] = (x7 >>> 8) & 0xff;
+  o[22] = (x7 >>> 16) & 0xff;
+  o[23] = (x7 >>> 24) & 0xff;
 
-  o[24] = (x8 >>> 0) & 0xff
-  o[25] = (x8 >>> 8) & 0xff
-  o[26] = (x8 >>> 16) & 0xff
-  o[27] = (x8 >>> 24) & 0xff
+  o[24] = (x8 >>> 0) & 0xff;
+  o[25] = (x8 >>> 8) & 0xff;
+  o[26] = (x8 >>> 16) & 0xff;
+  o[27] = (x8 >>> 24) & 0xff;
 
-  o[28] = (x9 >>> 0) & 0xff
-  o[29] = (x9 >>> 8) & 0xff
-  o[30] = (x9 >>> 16) & 0xff
-  o[31] = (x9 >>> 24) & 0xff
+  o[28] = (x9 >>> 0) & 0xff;
+  o[29] = (x9 >>> 8) & 0xff;
+  o[30] = (x9 >>> 16) & 0xff;
+  o[31] = (x9 >>> 24) & 0xff;
 }

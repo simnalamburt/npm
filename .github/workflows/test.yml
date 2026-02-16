@@ -2,15 +2,14 @@ name: Test Packages
 
 on: [push, pull_request]
 permissions:
-  contents:
-    read
+  contents: read
 
 jobs:
   test:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        node: ['current', 'lts/*', 'lts/-1', 'lts/-2']
+        node: ["current", "lts/*", "lts/-1", "lts/-2"]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

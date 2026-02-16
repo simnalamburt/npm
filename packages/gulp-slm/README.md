@@ -1,5 +1,5 @@
-gulp-slm [![version] ![downloads]][npm]
-========
+# gulp-slm [![version] ![downloads]][npm]
+
 Let's use [Slm] with [Gulp]!
 
 ```slim
@@ -14,22 +14,22 @@ html
 ```
 
 ```javascript
-import slm from 'gulp-slm'
+import slm from "gulp-slm";
 
-gulp.task('slm', _ => {
+gulp.task("slm", (_) => {
   const data = {
-    title: 'Hello, world!',
-    text: 'Hello world example for slm template.',
-  }
+    title: "Hello, world!",
+    text: "Hello world example for slm template.",
+  };
 
   return gulp
-    .src('./src/*.slm')
-    .pipe(slm({locals: data}))
-    .pipe(gulp.dest('./build/'))
-})
+    .src("./src/*.slm")
+    .pipe(slm({ locals: data }))
+    .pipe(gulp.dest("./build/"));
+});
 ```
 
-##### Result *(whitespace included for readability)*
+##### Result _(whitespace included for readability)_
 
 ```html
 <!DOCTYPE html>
@@ -48,6 +48,5 @@ gulp.task('slm', _ => {
 [version]: https://badgen.net/npm/v/gulp-slm
 [downloads]: https://badgen.net/npm/dt/gulp-slm
 [npm]: https://npmjs.org/package/gulp-slm
-
 [Slm]: https://github.com/slm-lang/slm
 [Gulp]: https://gulpjs.com/

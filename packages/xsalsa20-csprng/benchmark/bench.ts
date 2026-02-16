@@ -1,14 +1,15 @@
-import process from 'process'
-import XSalsa20CSPRNG from '../src/index'
+import process from "process";
 
-const rng = new XSalsa20CSPRNG()
+import XSalsa20CSPRNG from "../src/index";
 
-const repeat = 10_000_000
-const start = process.hrtime.bigint()
+const rng = new XSalsa20CSPRNG();
+
+const repeat = 10_000_000;
+const start = process.hrtime.bigint();
 for (let i = 0; i < repeat; ++i) {
-  rng.randomInt32()
+  rng.randomInt32();
 }
-const end = process.hrtime.bigint()
-const mean = Number(end - start) / repeat
+const end = process.hrtime.bigint();
+const mean = Number(end - start) / repeat;
 
-console.log(`Each execution took ${mean} nanoseconds`)
+console.log(`Each execution took ${mean} nanoseconds`);
