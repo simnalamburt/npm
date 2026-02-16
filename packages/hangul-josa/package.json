@@ -31,8 +31,8 @@
   "exports": "./dist/index.mjs",
   "scripts": {
     "build": "tsdown",
-    "doc": "typedoc",
-    "test": "tsc"
+    "check": "tsc",
+    "doc": "typedoc"
   },
   "devDependencies": {
     "@types/node": "catalog:",

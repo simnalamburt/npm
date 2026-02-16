@@ -20,5 +20,5 @@ jobs:
       - run: pnpm install
       - run: pnpm build
       - run: pnpm doc
-      - run: pnpm test
+      - run: pnpm run ci
       - run: pnpm coverage

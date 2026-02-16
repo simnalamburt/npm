@@ -4,11 +4,11 @@
   "license": "(Apache-2.0 OR MIT)",
   "scripts": {
     "build": "pnpm -r build",
+    "ci": "pnpm -r check && vitest run && oxlint && oxfmt --check",
     "coverage": "vitest run --coverage",
     "doc": "pnpm -r doc",
     "fix": "oxlint --fix",
-    "fmt": "oxfmt",
-    "test": "pnpm -r test && vitest run && oxlint && oxfmt --check"
+    "fmt": "oxfmt"
   },
   "dependencies": {
     "@vitest/coverage-v8": "^4.0.17",
