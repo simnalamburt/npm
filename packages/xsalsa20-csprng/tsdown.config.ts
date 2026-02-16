@@ -6,6 +6,7 @@ const config: UserConfig = defineConfig({
   format: ['es', 'umd'],
   outputOptions: {
     name: 'xsalsa20Csprng',
+    exports: 'named',
   },
 })
 
