@@ -1,6 +1,6 @@
 {
   "name": "gulp-slm",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Compile Slm to HTML for Gulp",
   "keywords": [
     "compile",
