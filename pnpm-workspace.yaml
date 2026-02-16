@@ -8,5 +8,4 @@ catalog:
   typescript: ^5.9.3
 
 ignoredBuiltDependencies:
-  - '@biomejs/biome'
   - esbuild

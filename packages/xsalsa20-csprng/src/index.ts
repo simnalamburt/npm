@@ -72,7 +72,7 @@ function* xsalsa20Generator(
 ): XSalsa20Generator {
   const s = new Uint8Array(32)
   const z = new Uint8Array(16)
-  // biome-ignore format: binary
+  // prettier-ignore
   const SIGMA = new Uint8Array([
     0x65, 0x78, 0x70, 0x61, 0x6e, 0x64, 0x20, 0x33,
     0x32, 0x2d, 0x62, 0x79, 0x74, 0x65, 0x20, 0x6b,
@@ -104,7 +104,7 @@ function* xsalsa20GeneratorInt32(
 
   while (true) {
     const b = generator.next().value
-    // biome-ignore format: vertically aligned
+    // prettier-ignore
     yield* [
       b[ 0] | b[ 1] << 8 | b[ 2] << 16 | b[ 3] << 24,
       b[ 4] | b[ 5] << 8 | b[ 6] << 16 | b[ 7] << 24,
@@ -199,7 +199,7 @@ function core_salsa20(
   k: Uint8Array,
   c: Uint8Array,
 ): void {
-  // biome-ignore format: vertically aligned
+  // prettier-ignore
   const
     j0  = c[ 0] | (c[ 1] << 8) | (c[ 2] << 16) | (c[ 3] << 24),
     j1  = k[ 0] | (k[ 1] << 8) | (k[ 2] << 16) | (k[ 3] << 24),
@@ -218,7 +218,7 @@ function core_salsa20(
     j14 = k[28] | (k[29] << 8) | (k[30] << 16) | (k[31] << 24),
     j15 = c[12] | (c[13] << 8) | (c[14] << 16) | (c[15] << 24)
 
-  // biome-ignore format: compact
+  // prettier-ignore
   let x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
       x8 = j8, x9 = j9, x10 = j10, x11 = j11, x12 = j12, x13 = j13, x14 = j14,
       x15 = j15, u: number
@@ -400,7 +400,7 @@ function core_hsalsa20(
   k: Uint8Array,
   c: Uint8Array,
 ): void {
-  // biome-ignore format: vertically aligned
+  // prettier-ignore
   const
     j0  = c[ 0] | (c[ 1] << 8) | (c[ 2] << 16) | (c[ 3] << 24),
     j1  = k[ 0] | (k[ 1] << 8) | (k[ 2] << 16) | (k[ 3] << 24),
@@ -419,7 +419,7 @@ function core_hsalsa20(
     j14 = k[28] | (k[29] << 8) | (k[30] << 16) | (k[31] << 24),
     j15 = c[12] | (c[13] << 8) | (c[14] << 16) | (c[15] << 24)
 
-  // biome-ignore format: compact
+  // prettier-ignore
   let x0 = j0, x1 = j1, x2 = j2, x3 = j3, x4 = j4, x5 = j5, x6 = j6, x7 = j7,
       x8 = j8, x9 = j9, x10 = j10, x11 = j11, x12 = j12, x13 = j13, x14 = j14,
       x15 = j15, u: number
