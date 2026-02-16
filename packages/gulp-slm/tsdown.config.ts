@@ -9,11 +9,6 @@ const config: UserConfig = defineConfig({
     sourcemap: false,
   },
   format: ['es'],
-  outputOptions(options) {
-    options.entryFileNames = chunk =>
-      chunk.name.endsWith('.d') ? 'index.d.ts' : 'gulp-slm.js'
-    return options
-  },
 })
 
 export default config

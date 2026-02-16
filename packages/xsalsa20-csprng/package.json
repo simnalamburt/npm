@@ -30,13 +30,11 @@
     "test": "tsc",
     "doc": "typedoc"
   },
-  "exports": {
-    ".": "./dist/xsalsa20-csprng.js"
-  },
+  "exports": "./dist/index.mjs",
   "source": "src/index.ts",
-  "browser": "dist/xsalsa20-csprng.js",
-  "unpkg": "dist/xsalsa20-csprng.umd.js",
-  "types": "dist/index.d.ts",
+  "browser": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.mts",
   "files": [
     "src",
     "dist"

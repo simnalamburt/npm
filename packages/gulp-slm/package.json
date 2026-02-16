@@ -44,11 +44,9 @@
     "test": "tsc",
     "doc": "typedoc"
   },
-  "exports": {
-    ".": "./dist/gulp-slm.js"
-  },
+  "exports": "./dist/index.mjs",
   "source": "src/index.ts",
-  "types": "dist/index.d.ts",
+  "types": "dist/index.d.mts",
   "files": [
     "src",
     "dist"

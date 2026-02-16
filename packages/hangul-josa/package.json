@@ -31,12 +31,10 @@
     "test": "tsc",
     "doc": "typedoc"
   },
-  "exports": {
-    ".": "./dist/hangul-josa.js"
-  },
+  "exports": "./dist/index.mjs",
   "source": "src/index.ts",
-  "unpkg": "dist/hangul-josa.umd.js",
-  "types": "dist/index.d.ts",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.mts",
   "files": [
     "src",
     "dist"

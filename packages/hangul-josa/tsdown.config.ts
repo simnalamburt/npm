@@ -9,18 +9,8 @@ const config: UserConfig = defineConfig({
     sourcemap: false,
   },
   format: ['es', 'umd'],
-  outputOptions(options, format) {
-    switch (format) {
-      case 'es':
-        options.entryFileNames = chunk =>
-          chunk.name.endsWith('.d') ? 'index.d.ts' : 'hangul-josa.js'
-        break
-      case 'umd':
-        options.entryFileNames = 'hangul-josa.umd.js'
-        options.name = 'hangulJosa'
-        break
-    }
-    return options
+  outputOptions: {
+    name: 'hangulJosa',
   },
 })
 
