@@ -27,6 +27,7 @@
   "exclude": ["dist", "docs"],
   "typedocOptions": {
     "entryPoints": ["./src/index.ts"],
-    "out": "docs"
+    "out": "docs",
+    "ignoredHighlightLanguages": ["slim"]
   }
 }
