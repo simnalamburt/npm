@@ -7,5 +7,5 @@ catalog:
   typedoc: ^0.28.17
   typescript: ^5.9.3
 
-ignoredBuiltDependencies:
-  - esbuild
+allowBuilds:
+  esbuild: false
