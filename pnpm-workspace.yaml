@@ -2,7 +2,11 @@ packages:
   - packages/*
 
 catalog:
+  '@typescript/native': npm:typescript@^7.0.2
   '@types/node': ^26.1.2
   tsdown: ^0.22.2
   typedoc: ^0.28.19
-  typescript: ^6.0.3
+  # TODO: Remove this side-by-side setup once TypeScript 7 exposes a stable
+  # programmatic API and TypeDoc supports TypeScript 7 in its peer dependency
+  # range.
+  typescript: npm:@typescript/typescript6@^6.0.2

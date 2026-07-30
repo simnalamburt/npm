@@ -45,6 +45,7 @@
     "@types/replace-ext": "^2.0.2",
     "@types/through2": "^2.0.41",
     "@types/vinyl": "^2.0.12",
+    "@typescript/native": "catalog:",
     "gulp": "^5.0.0",
     "replace-ext": "^2.0.0",
     "tsdown": "catalog:",

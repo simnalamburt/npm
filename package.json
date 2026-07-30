@@ -11,6 +11,7 @@
     "fmt": "oxfmt"
   },
   "dependencies": {
+    "@typescript/native": "catalog:",
     "@vitest/coverage-v8": "^4.1.8",
     "oxfmt": "^0.54.0",
     "oxlint": "^1.69.0",
