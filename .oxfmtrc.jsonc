@@ -1,8 +1,8 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
   "ignorePatterns": ["pnpm-workspace.yaml"],
-  "experimentalSortImports": {},
-  "experimentalSortPackageJson": {
+  "sortImports": {},
+  "sortPackageJson": {
     "sortScripts": true,
   },
 }

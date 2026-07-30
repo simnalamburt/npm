@@ -30,12 +30,8 @@ const u = rng.randomUint32();
 const n = rng.uniformInt(10);
 
 // You can use fixed nonce and key
-const nonce = new Uint8Array([
-  /* nonce with 24 bytes */
-]);
-const key = new Uint8Array([
-  /* key with 32 bytes */
-]);
+const nonce = new Uint8Array([/* nonce with 24 bytes */]);
+const key = new Uint8Array([/* key with 32 bytes */]);
 const deterministic = XSalsa20CSPRNG.of(nonce, key);
 // Fixed nonce and key will result in deterministic output
 console.log(deterministic.randomInt32());
@@ -50,12 +46,8 @@ See [reference][xsalsa20] for the further details.
 ```js
 import { XSalsa20 } from "xsalsa20-csprng";
 
-const nonce = new Uint8Array([
-  /* nonce with 24 bytes */
-]);
-const key = new Uint8Array([
-  /* key with 32 bytes */
-]);
+const nonce = new Uint8Array([/* nonce with 24 bytes */]);
+const key = new Uint8Array([/* key with 32 bytes */]);
 
 // Encrypt
 const encoder = new XSalsa20(nonce, key);
