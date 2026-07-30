@@ -53,9 +53,6 @@ importers:
       slm:
         specifier: '>=0.6.0 <3.0.0'
         version: 2.0.0
-      through2:
-        specifier: ^4.0.2
-        version: 4.0.2
     devDependencies:
       '@types/gulp':
         specifier: ^4.0.18
@@ -66,9 +63,6 @@ importers:
       '@types/replace-ext':
         specifier: ^2.0.2
         version: 2.0.2
-      '@types/through2':
-        specifier: ^2.0.41
-        version: 2.0.41
       '@types/vinyl':
         specifier: ^2.0.12
         version: 2.0.12
@@ -697,9 +691,6 @@ packages:
 
   '@types/streamx@2.9.5':
     resolution: {integrity: sha512-IHYsa6jYrck8VEdSwpY141FTTf6D7boPeMq9jy4qazNrFMA4VbRz/sw5LSsfR7jwdDcx0QKWkUexZvsWBC2eIQ==}
-
-  '@types/through2@2.0.41':
-    resolution: {integrity: sha512-ryQ0tidWkb1O1JuYvWKyMLYEtOWDqF5mHerJzKz/gQpoAaJq2l/dsMPBF0B5BNVT34rbARYJ5/tsZwLfUi2kwQ==}
 
   '@types/undertaker-registry@1.0.4':
     resolution: {integrity: sha512-tW77pHh2TU4uebWXWeEM5laiw8BuJ7pyJYDh6xenOs75nhny2kVgwYbegJ4BoLMYsIrXaBpKYaPdYO3/udG+hg==}
@@ -1811,9 +1802,6 @@ packages:
   text-decoder@1.2.7:
     resolution: {integrity: sha512-vlLytXkeP4xvEq2otHeJfSQIRyWxo/oZGEbXrtEEF9Hnmrdly59sUbzZ/QgyWuLYHctCHxFF4tRQZNQ9k60ExQ==}
 
-  through2@4.0.2:
-    resolution: {integrity: sha512-iOqSav00cVxEEICeD7TjLB1sueEL+81Wpzp2bY17uZjZN0pWZPuo4suZ/61VujxmqSGFfgOcNuTZ85QJwNZQpw==}
-
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
 
@@ -2449,10 +2437,6 @@ snapshots:
   '@types/replace-ext@2.0.2': {}
 
   '@types/streamx@2.9.5':
-    dependencies:
-      '@types/node': 26.1.2
-
-  '@types/through2@2.0.41':
     dependencies:
       '@types/node': 26.1.2
 
@@ -3457,10 +3441,6 @@ snapshots:
       b4a: 1.8.1
     transitivePeerDependencies:
       - react-native-b4a
-
-  through2@4.0.2:
-    dependencies:
-      readable-stream: 3.6.2
 
   tinybench@2.9.0: {}
 

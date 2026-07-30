@@ -36,14 +36,12 @@
   },
   "dependencies": {
     "plugin-error": "^2.0.1",
-    "slm": ">=0.6.0 <3.0.0",
-    "through2": "^4.0.2"
+    "slm": ">=0.6.0 <3.0.0"
   },
   "devDependencies": {
     "@types/gulp": "^4.0.18",
     "@types/node": "catalog:",
     "@types/replace-ext": "^2.0.2",
-    "@types/through2": "^2.0.41",
     "@types/vinyl": "^2.0.12",
     "@typescript/native": "catalog:",
     "gulp": "^5.0.0",

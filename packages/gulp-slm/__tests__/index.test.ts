@@ -1,11 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { extname } from "node:path";
+import { Transform } from "node:stream";
 import { promisify } from "node:util";
 
 import gulp from "gulp";
 import { compile } from "slm";
-import through from "through2";
 import File from "vinyl";
 import { assert, describe, it } from "vitest";
 
@@ -24,13 +24,15 @@ const filename = path.join(__dirname, "fixtures", "helloworld.slm");
 //   from file.data
 //
 const setData = () =>
-  through.obj(function (file, _enc, cb) {
-    file.data = {
-      title: "Greetings!",
-    };
-    this.push(file);
+  new Transform({
+    objectMode: true,
+    transform(file, _enc, cb) {
+      file.data = {
+        title: "Greetings!",
+      };
 
-    return cb();
+      cb(null, file);
+    },
   });
 
 //
@@ -43,12 +45,15 @@ async function expectStream(options: Options) {
   const expected = compiled(options.data || options.locals);
   const ext = ".html";
 
-  return through.obj((file, _enc, cb) => {
-    assert.equal(expected, String(file.contents));
-    assert.equal(extname(file.path), ext);
-    assert.equal(extname(file.relative), file.relative ? ext : "");
+  return new Transform({
+    objectMode: true,
+    transform(file, _enc, cb) {
+      assert.equal(expected, String(file.contents));
+      assert.equal(extname(file.path), ext);
+      assert.equal(extname(file.relative), file.relative ? ext : "");
 
-    return cb();
+      cb();
+    },
   });
 }
 
@@ -120,9 +125,12 @@ describe("gulp-slm", () => {
       .src(filename)
       .pipe(slm())
       .pipe(
-        through.obj((file, _enc, cb) => {
-          assert(file.contents instanceof Buffer);
-          return cb();
+        new Transform({
+          objectMode: true,
+          transform(file, _enc, cb) {
+            assert(file.contents instanceof Buffer);
+            cb();
+          },
         }),
       );
   });
